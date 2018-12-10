@@ -15,7 +15,7 @@ export class AuthApiService {
       username: username,
       password: password
     };
-    return this.commonHttpPost('https://localhost:44314/api/auth/login', data, null);  
+    return this.commonHttpPost('http://gestor-eventos.azurewebsites.net/api/auth/login', data, null);  
   }
 
   private setDefaultHeaders(accessToken) {
@@ -23,7 +23,7 @@ export class AuthApiService {
       'Authorization': `Bearer ${accessToken}`
     });
   }
-
+  
   private getAccessToken() {
     return localStorage.getItem('access_token');
   }
