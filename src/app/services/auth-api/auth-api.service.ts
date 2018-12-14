@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-//import { environment } from '@env';
-
 @Injectable()
 export class AuthApiService {
   private headers: HttpHeaders;
@@ -11,19 +9,20 @@ export class AuthApiService {
   }
 
   public login(username, password) {
-    let data = {
+    const data = {
       username: username,
       password: password
     };
-    return this.commonHttpPost('http://gestor-eventos.azurewebsites.net/api/auth/login', data, null);  
+    return this.commonHttpPost('http://gestor-eventos.azurewebsites.net/api/auth/login', data, null);
   }
 
-  private setDefaultHeaders(accessToken) {
+  private setDefaultHeaders() {
+    const accessToken = this.getAccessToken();
     this.headers = new HttpHeaders({
       'Authorization': `Bearer ${accessToken}`
     });
   }
-  
+
   private getAccessToken() {
     return localStorage.getItem('access_token');
   }
