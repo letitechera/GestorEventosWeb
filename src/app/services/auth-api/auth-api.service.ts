@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { environment } from '@environment';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthApiService {
   private headers: HttpHeaders;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
   }
 
   public login(username, password) {
@@ -13,7 +15,34 @@ export class AuthApiService {
       username: username,
       password: password
     };
-    return this.commonHttpPost('http://gestor-eventos.azurewebsites.net/api/auth/login', data, null);
+    return this.commonHttpPost(`${environment.webApiUrl}/auth/login`, data, null);
+  }
+
+  public setSession(data){
+    console.log(data);
+    // const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
+    // localStorage.setItem('access_token', authResult.accessToken);
+    // localStorage.setItem('expires_at', expiresAt);
+  }
+
+  public isLogged() {
+    var token = this.getAccessToken();
+    return token != null && token != "" ? true : false;
+  }
+
+  private getAccessToken() {
+    return localStorage.getItem('access_token');
+  }
+
+  private deleteSession() {
+    localStorage.removeItem('access_token');
+    // localStorage.removeItem('expires_at');
+    localStorage.clear();
+  }
+
+  public logout() {
+    this.deleteSession();
+    this.router.navigateByUrl('login');
   }
 
   private setDefaultHeaders() {
@@ -21,10 +50,6 @@ export class AuthApiService {
     this.headers = new HttpHeaders({
       'Authorization': `Bearer ${accessToken}`
     });
-  }
-
-  private getAccessToken() {
-    return localStorage.getItem('access_token');
   }
 
   private commonHttpGet(url: string, headers: HttpHeaders) {
