@@ -11,9 +11,22 @@ nav{
                 }
             }
             li.active{
-                color: blueviolet;
                 a{
                     color: black;
+                }
+            }
+            li.right-item{
+                margin: 15px;
+                a{
+                    .profile-icon{
+                        color: skyblue;
+                        margin: 3px;
+                    }
+                }
+                a:hover{
+                    .profile-icon{
+                        color: grey;
+                    }
                 }
             }
         }
