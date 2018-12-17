@@ -18,7 +18,7 @@ export class AuthApiService {
     return this.commonHttpPost(`${environment.webApiUrl}/auth/login`, data, null);
   }
 
-  public setSession(data){
+  public setSession(data) {
     console.log(data);
     // const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     // localStorage.setItem('access_token', authResult.accessToken);
@@ -26,8 +26,8 @@ export class AuthApiService {
   }
 
   public isLogged() {
-    var token = this.getAccessToken();
-    return token != null && token != "" ? true : false;
+    const token = this.getAccessToken();
+    return token != null && token !== '' ? true : false;
   }
 
   private getAccessToken() {
