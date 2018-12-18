@@ -1,0 +1,34 @@
+nav{
+    background-color: #E5E8E8;
+    #collapsingNavbar2{
+        ul{
+            li.nav-item{
+                a{
+                    cursor: pointer;
+                    :hover{
+                        color: skyblue;
+                    }
+                }
+            }
+            li.active{
+                a{
+                    color: black;
+                }
+            }
+            li.right-item{
+                margin: 15px;
+                a{
+                    .profile-icon{
+                        color: skyblue;
+                        margin: 3px;
+                    }
+                }
+                a:hover{
+                    .profile-icon{
+                        color: grey;
+                    }
+                }
+            }
+        }
+    }
+}

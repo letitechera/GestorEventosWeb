@@ -24,8 +24,8 @@ export class AuthApiService {
   }
 
   public isLogged() {
-    var token = this.getAccessToken();
-    return token != null && token != "" ? true : false;
+    const token = this.getAccessToken();
+    return token != null && token !== '' ? true : false;
   }
 
   private getAccessToken() {

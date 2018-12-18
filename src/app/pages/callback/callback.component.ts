@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthApiService } from '@services/auth-api/auth-api.service'
+import { AuthApiService } from '@services/auth-api/auth-api.service';
 
 @Component({
   selector: 'app-callback',
@@ -9,14 +9,13 @@ import { AuthApiService } from '@services/auth-api/auth-api.service'
 })
 export class CallbackComponent implements OnInit {
 
-  constructor(private router: Router, private authservice: AuthApiService) { 
+  constructor(private router: Router, private authservice: AuthApiService) {
   }
 
   ngOnInit() {
-    if(this.authservice.isLogged()){
+    if (this.authservice.isLogged()) {
       this.router.navigateByUrl('home');
-    }
-    else{
+    } else {
       this.router.navigateByUrl('login');
     }
   }

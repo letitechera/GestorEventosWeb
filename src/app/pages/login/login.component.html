@@ -1,13 +1,12 @@
-<div>
-    <div class="find-header">
-        <h5>Login</h5>
-    </div>
-    <div>or <a>Register</a></div>
-    <form [formGroup]="loginForm" class="login-form" (ngSubmit)="login()">
-        <fieldset>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="contact-input">
+<div class="login-wrapper">
+    <div class="login-content">
+        <div class="login-header">
+            <h5>Ingresa con tus datos</h5>
+        </div>
+        <form [formGroup]="loginForm" class="login-form" (ngSubmit)="login()">
+            <fieldset>
+                <div class="row">
+                    <div class="col-md-6">
                         <mat-form-field class="text-input">
                             <input matInput placeholder="Email" type="email" formControlName="username" />
                             <mat-error *ngIf="loginForm.get('username').hasError('required')">
@@ -16,10 +15,8 @@
                         </mat-form-field>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="contact-input">
+                <div class="row">
+                    <div class="col-md-6">
                         <mat-form-field class="text-input">
                             <input matInput placeholder="Password" type="password" formControlName="password" />
                             <mat-error *ngIf="loginForm.get('password').hasError('required')">
@@ -28,21 +25,21 @@
                         </mat-form-field>
                     </div>
                 </div>
+                <div class="row">
+                    <mat-error *ngIf="loginError">
+                        El usuario o contraseña son incorrectos
+                    </mat-error>
+                </div>
+            </fieldset>
+            <div id="submit-block">
+                <div class="submit-input">
+                    <button type="submit" id="login-submit" class="btn btn-next">
+                        <span *ngIf="!loading">Login</span>
+                        <span *ngIf="loading"><fa name="spinner" animation="spin"></fa></span> 
+                    </button>
+                </div>
             </div>
-        </fieldset>
-        <div id="submit-block">
-            <div class="submit-input">
-                <button type="submit" id="login-submit" class="btn btn-next">
-                    <span *ngIf="!loading">Login</span>
-                    <span *ngIf="loading"><i class="fas fa-spinner fa-pulse"></i></span>
-                </button>
-            </div>
-        </div>
-    </form>
+            <div class="register-container">¿No tienes una cuenta? <a>Regístrate aquí</a></div>
+        </form>
+    </div>
 </div>
-
-<!-- <input type="text" [(ngModel)]="username">
-<input type="password" [(ngModel)]="password">
-<span *ngIf="loginError">El usuario o contraseña son incorrectos</span>
-
-<button (click)="login()">Login</button> -->

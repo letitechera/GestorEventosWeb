@@ -1,0 +1,48 @@
+.login-wrapper{
+    text-align: center;
+    .login-content{
+        margin: 0 auto;
+        width: 40%;
+        .login-header{
+            margin-top: 10%;
+        }
+        .login-form{
+            fieldset{
+                padding-top: 30px;
+                .row{
+                    .col-md-6 {
+                        flex: none;
+                        max-width: none;
+                    }
+                    mat-error{
+                        font-size: 14px;
+                        margin: auto;
+                    }
+                }
+            }
+            #submit-block .submit-input button{
+                min-width: 64px;
+                min-height: 36px;
+                margin: 20px;
+                background-color: skyblue;
+                color: white;
+                cursor: pointer;
+            }
+            #submit-block .submit-input button:hover{
+                background-color: gainsboro;
+            }
+            .register-container{
+                font-size: 14px;
+                text-align: center;
+                padding: 30px 0;
+                a{
+                    color: skyblue;
+                    cursor: pointer;
+                }
+                a:hover{
+                    color: grey;
+                }
+            }
+        }
+    }
+}
