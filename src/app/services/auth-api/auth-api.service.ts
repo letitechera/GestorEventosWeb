@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '@environment';
 import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class AuthApiService {
+  private headers: HttpHeaders;
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private router: Router, private http: HttpClient) {
   }
 
   public login(username, password) {
@@ -19,7 +20,7 @@ export class AuthApiService {
 
   public setSession(data) {
     const expiresAt = JSON.stringify((data.expires_in * 1000) + new Date().getTime());
-    localStorage.setItem('eg_auth_token', data.auth_token);
+    localStorage.setItem('access_token', data.auth_token);
     localStorage.setItem('expires_in', expiresAt);
   }
 
@@ -29,11 +30,11 @@ export class AuthApiService {
   }
 
   private getAccessToken() {
-    return localStorage.getItem('eg_auth_token');
+    return localStorage.getItem('access_token');
   }
 
   private deleteSession() {
-    localStorage.removeItem('eg_auth_token');
+    localStorage.removeItem('access_token');
     localStorage.removeItem('expires_in');
     localStorage.clear();
   }
@@ -67,6 +68,15 @@ export class AuthApiService {
 
   private commonHttpPatch(url: string, data: any, headers: HttpHeaders) {
     return this.http.patch(url, data, { headers: headers });
+  }
+
+  private commonHttpDelete(url: string, data: any, headers: HttpHeaders) {
+    const requestOptions = {
+      body: data,
+      headers: headers
+    };
+
+    return this.http.delete(url, requestOptions);
   }
 
 }
