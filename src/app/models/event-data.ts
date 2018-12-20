@@ -9,14 +9,15 @@ export interface EventData {
     Image: string;
     Description: string;
     LocationId: number;
-    AppUserId: string;
     EventTopicId: number;
     Canceled: boolean;
     Schedules?: Schedule[];
     Participants?: Participant[];
     Location: number;
     EventTopic: number;
+    prettyShortStartDate: string;
     PrettyStartDate: string;
+    prettyShortEndDate: string;
     PrettyEndDate: string;
     PrettyStartTime: string;
     PrettyEndTime: string;
