@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<div class="home-content">
+<div>
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
         <ng-container matColumnDef="Image">
             <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
@@ -8,47 +8,54 @@
         </ng-container>
 
         <ng-container matColumnDef="Name">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Evento </th>
             <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Description">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
             <td mat-cell *matCellDef="let element"> {{element.Description}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Location">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Locación </th>
             <td mat-cell *matCellDef="let element"> {{element.LocationId}} </td>
         </ng-container>
 
         <ng-container matColumnDef="StartDate">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> StartDate </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de inicio </th>
             <td mat-cell *matCellDef="let element"> {{element.PrettyStartDate}} </td>
         </ng-container>
 
         <ng-container matColumnDef="FinishDate">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> FinishDate </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de finalización </th>
             <td mat-cell *matCellDef="let element"> {{element.PrettyEndDate}} </td>
         </ng-container>
 
         <ng-container matColumnDef="StartTime">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> StartTime </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de inicio </th>
             <td mat-cell *matCellDef="let element"> {{element.PrettyStartTime}} </td>
         </ng-container>
 
         <ng-container matColumnDef="FinishTime">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> FinishTime </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de finalización </th>
             <td mat-cell *matCellDef="let element"> {{element.PrettyEndTime}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Topic">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Topic </th>
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tema </th>
             <td mat-cell *matCellDef="let element"> {{element.EventTopicId}} </td>
         </ng-container>
 
+        <ng-container matColumnDef="Options">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let element">
+                <a class="options"><fa name="remove" title="Eliminar"></fa></a>
+            </td>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getEvent(row)"></tr>
     </table>
 </div>
 

@@ -3,13 +3,15 @@ import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
 import { EventData } from '@models/event-data';
 import { EventsApiService } from '@services/events-api/events-api.service';
 import { map } from 'rxjs/operators';
+import { AuthApiService } from '@services/auth-api/auth-api.service';
+import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  selector: 'app-events',
+  templateUrl: './events.component.html',
+  styleUrls: ['./events.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class EventsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sorter: MatSort;
@@ -18,11 +20,17 @@ export class HomeComponent implements OnInit {
   public events: EventData[];
   public loading: boolean;
 
-  constructor(private eventsApi: EventsApiService) { }
+  constructor(private eventsApi: EventsApiService, private auth: AuthApiService, private route: Router) { }
 
   ngOnInit() {
+    this.auth.checkSession();
+
     this.setDisplayColumns();
     this.initData();
+  }
+
+  public getEvent(row) {
+    this.route.navigate(['/events', row.EventId]);
   }
 
   private setDisplayColumns() {
@@ -35,7 +43,8 @@ export class HomeComponent implements OnInit {
       'FinishDate',
       'StartTime',
       'FinishTime',
-      'Topic'
+      'Topic',
+      'Options'
     ];
   }
 

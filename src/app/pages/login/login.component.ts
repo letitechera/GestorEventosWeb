@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
       console.log(data);
       this.service.setSession(data);
       this.loading = false;
-      this.router.navigateByUrl('home');
+      this.router.navigateByUrl('events');
     },
     (err) => {
       console.log(err);

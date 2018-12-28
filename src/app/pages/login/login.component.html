@@ -10,7 +10,7 @@
                         <mat-form-field class="text-input">
                             <input matInput placeholder="Email" type="email" formControlName="username" />
                             <mat-error *ngIf="loginForm.get('username').hasError('required')">
-                                Username is required
+                                Escriba un nombre de usuario o email.
                             </mat-error>
                         </mat-form-field>
                     </div>
@@ -20,14 +20,14 @@
                         <mat-form-field class="text-input">
                             <input matInput placeholder="Password" type="password" formControlName="password" />
                             <mat-error *ngIf="loginForm.get('password').hasError('required')">
-                                Password is required
+                                Escriba una contraseña.
                             </mat-error>
                         </mat-form-field>
                     </div>
                 </div>
                 <div class="row">
                     <mat-error *ngIf="loginError">
-                        El usuario o contraseña son incorrectos
+                        El usuario o contraseña son incorrectos.
                     </mat-error>
                 </div>
             </fieldset>
