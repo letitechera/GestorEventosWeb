@@ -1,0 +1,55 @@
+.sub-menu {
+    .left-smenu{
+        float: left;
+        margin: 30px 0 0 15px;
+        a{
+            display: inline;
+            padding: 5px 10px;
+            margin: 7px;
+            font-size: 75%;
+            font-weight: 700;
+            line-height: 1;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            cursor: pointer;
+        }
+    }
+    .right-smenu{
+        float: right;
+        margin: 15px;
+        a{
+            display: inline-block;
+            height: 40px;
+            width: 40px;
+            padding: 10px;
+            margin: 7px 35px 0 0;
+            font-size: 100%;
+            line-height: 1.2;
+            color: #fff;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            border-radius: 100%;
+            cursor: pointer;
+            background-color: deepskyblue;
+        }
+        a:hover{
+            background-color: rgb(0, 155, 175);
+        }
+    }
+}
+
+.style-l{
+    background-color: rgb(27, 231, 180);
+}
+.style-l:hover{
+    background-color: rgb(18, 187, 136);
+}
+.style-t{
+    background-color: gold;
+}
+.style-t:hover{
+    background-color: goldenrod;
+}

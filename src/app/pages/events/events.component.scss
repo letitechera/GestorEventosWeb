@@ -1,10 +1,17 @@
 table {
     width: 100%;
+    border: 1px solid rgba(0,0,0,.07);
+}
+.mat-elevation-z8 {
+    box-shadow: none;
 }
 .options {
     cursor: pointer;
     padding: 5px;
     fa{
-        color:red;
+        color:orange;
+    }
+    fa:hover{
+        color:orangered;
     }
 }

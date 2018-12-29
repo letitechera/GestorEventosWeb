@@ -5,6 +5,18 @@ export interface EventData {
     EventId: number;
     Name: string;
     StartDate: Date;
+    FinishDate: Date;
+    Image: string;
+    Description: string;
+    Location: string;
+    Topic: string;
+    CreatedById: string;
+}
+
+export interface EventDetailsData {
+    EventId: number;
+    Name: string;
+    StartDate: Date;
     EndDate: Date;
     Image: string;
     Description: string;

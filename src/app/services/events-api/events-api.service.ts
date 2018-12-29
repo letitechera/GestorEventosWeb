@@ -16,6 +16,12 @@ export class EventsApiService {
     return this.commonHttpGet(url, this.headers);
   }
 
+  public getAllEventsByUser(id) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/all/${id}`;
+    return this.commonHttpGet(url, this.headers);
+  }
+
   public getEventDetails(id) {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/${id}`;

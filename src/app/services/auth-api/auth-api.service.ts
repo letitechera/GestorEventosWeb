@@ -21,7 +21,9 @@ export class AuthApiService {
   public setSession(data) {
     const expiresAt = JSON.stringify((data.expires_in * 1000) + new Date().getTime());
     localStorage.setItem('access_token', data.auth_token);
+    localStorage.setItem('user_id', data.id);
     localStorage.setItem('expires_in', expiresAt);
+    debugger;
   }
 
   public checkSession() {
@@ -47,6 +49,9 @@ export class AuthApiService {
     return new Date().getTime() < expiresAt;
   }
 
+  public getUserId() {
+    return localStorage.getItem('user_id');
+  }
   
   private getAccessToken() {
     return localStorage.getItem('access_token');
@@ -55,6 +60,7 @@ export class AuthApiService {
   private deleteSession() {
     localStorage.removeItem('access_token');
     localStorage.removeItem('expires_in');
+    localStorage.removeItem('user_id');
     localStorage.clear();
   }
 

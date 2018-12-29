@@ -1,4 +1,5 @@
 <app-header></app-header>
+<sub-menu></sub-menu>
 
 <div>
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
@@ -19,32 +20,32 @@
 
         <ng-container matColumnDef="Location">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Locación </th>
-            <td mat-cell *matCellDef="let element"> {{element.LocationId}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.Location}} </td>
         </ng-container>
 
         <ng-container matColumnDef="StartDate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de inicio </th>
-            <td mat-cell *matCellDef="let element"> {{element.PrettyStartDate}} </td>
+            <td mat-cell *matCellDef="let element"> {{showDate(element.StartDate)}} </td>
         </ng-container>
 
         <ng-container matColumnDef="FinishDate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de finalización </th>
-            <td mat-cell *matCellDef="let element"> {{element.PrettyEndDate}} </td>
+            <td mat-cell *matCellDef="let element"> {{showDate(element.EndDate)}} </td>
         </ng-container>
 
         <ng-container matColumnDef="StartTime">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de inicio </th>
-            <td mat-cell *matCellDef="let element"> {{element.PrettyStartTime}} </td>
+            <td mat-cell *matCellDef="let element"> {{showTime(element.StartDate)}} </td>
         </ng-container>
 
         <ng-container matColumnDef="FinishTime">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de finalización </th>
-            <td mat-cell *matCellDef="let element"> {{element.PrettyEndTime}} </td>
+            <td mat-cell *matCellDef="let element"> {{showTime(element.EndDate)}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Topic">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Tema </th>
-            <td mat-cell *matCellDef="let element"> {{element.EventTopicId}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.Topic}} </td>
         </ng-container>
 
         <ng-container matColumnDef="Options">

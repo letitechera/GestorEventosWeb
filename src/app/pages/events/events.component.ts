@@ -5,6 +5,7 @@ import { EventsApiService } from '@services/events-api/events-api.service';
 import { map } from 'rxjs/operators';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { Router } from '@angular/router';
+import { DateService } from '@services/date/date.service';
 
 @Component({
   selector: 'app-events',
@@ -20,7 +21,8 @@ export class EventsComponent implements OnInit {
   public events: EventData[];
   public loading: boolean;
 
-  constructor(private eventsApi: EventsApiService, private auth: AuthApiService, private route: Router) { }
+  constructor(private eventsApi: EventsApiService, private auth: AuthApiService, private route: Router,
+    private dateService: DateService) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -31,6 +33,14 @@ export class EventsComponent implements OnInit {
 
   public getEvent(row) {
     this.route.navigate(['/events', row.EventId]);
+  }
+
+  public showDate(date){
+    return this.dateService.GetShortDate(date);
+  }
+
+  public showTime(date){
+    return this.dateService.GetTime(date);
   }
 
   private setDisplayColumns() {
@@ -61,8 +71,9 @@ export class EventsComponent implements OnInit {
 
   private getAllEvents(): Promise<any> {
     this.loading = true;
+    let userId = this.auth.getUserId();
     return new Promise<any>((resolve, reject) => {
-      this.eventsApi.getAllEvents()
+      this.eventsApi.getAllEventsByUser(userId)
         .pipe(map((results: any[]) => {
           const data = [];
           if (!results) {
@@ -72,32 +83,16 @@ export class EventsComponent implements OnInit {
             data.push({
               EventId: result.id,
               Name: result.name,
-              StartDate: result.startDate,
-              EndDate: result.endDate,
+              StartDate: new Date(result.startDate),
+              EndDate: new Date(result.finishDate),
               Image: result.image != null ? result.image : '',
               Description: result.description,
-              LocationId: result.locationId,
-              AppUserId: result.appUserId,
-              EventTopicId: result.eventTopicId,
-              Canceled: result.canceled,
-              Schedules: result.schedules,
-              Participants: result.participants,
               Location: result.location,
-              EventTopic: result.eventTopic,
-              PrettyStartDate: result.prettyStartDate,
-              PrettyShortStartDate: result.prettyShortStartDate,
-              PrettyEndDate: result.prettyEndDate,
-              PrettyShortEndDate: result.prettyShortEndDate,
-              PrettyStartTime: result.prettyStartTime,
-              PrettyEndTime: result.prettyEndTime,
-              CreatedByName: result.createdByName,
+              Topic: result.topic,
               CreatedById: result.createdById,
-              ModifiedByName: result.modifiedByName,
-              ModifiedById: result.modifiedById,
-              PrettyCreatedDate: result.prettyCreatedDate,
-              PrettyModifiedDate: result.prettyModifiedDate,
             });
           });
+          console.log(data)
           return data;
         })).subscribe((data: any[]) => {
           resolve(data);

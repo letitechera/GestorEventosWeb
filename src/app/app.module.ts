@@ -18,6 +18,10 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsComponent } from './pages/events/events.component';
 import { EventDetailsComponent } from './pages/event-details/event-details.component';
+import { DatePipe } from '@angular/common';
+import { EventsApiService } from '@services/events-api/events-api.service';
+import { DateService } from '@services/date/date.service';
+import { SubMenuComponent } from './shared/sub-menu/sub-menu.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,8 @@ import { EventDetailsComponent } from './pages/event-details/event-details.compo
     HeaderComponent,
     FooterComponent,
     EventsComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    SubMenuComponent
   ],
   imports: [
     NgbModule.forRoot(),
@@ -41,7 +46,10 @@ import { EventDetailsComponent } from './pages/event-details/event-details.compo
     AngularFontAwesomeModule
   ],
   providers: [
-    AuthApiService
+    DatePipe,
+    AuthApiService,
+    EventsApiService,
+    DateService,
   ],
   bootstrap: [AppComponent]
 })
