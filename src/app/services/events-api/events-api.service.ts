@@ -36,9 +36,8 @@ export class EventsApiService {
 
   public postTopic(name) {
     this.setDefaultHeaders();
-    const url = `${environment.webApiUrl}/events/CreateTopic`;
-    const data = `=${name}`;
-    return this.commonHttpPost(url, data, this.headers);
+    const url = `${environment.webApiUrl}/events/CreateTopic/${name}`;
+    return this.commonHttpPost(url, null, this.headers);
   }
 
   private setDefaultHeaders() {
