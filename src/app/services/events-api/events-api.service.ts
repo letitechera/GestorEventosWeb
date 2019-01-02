@@ -16,6 +16,12 @@ export class EventsApiService {
     return this.commonHttpGet(url, this.headers);
   }
 
+  public getAllTopics() {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/topics`;
+    return this.commonHttpGet(url, this.headers);
+  }
+
   public getAllEventsByUser(id) {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/all/${id}`;
@@ -28,10 +34,18 @@ export class EventsApiService {
     return this.commonHttpGet(url, this.headers);
   }
 
+  public postTopic(name) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/CreateTopic`;
+    const data = `=${name}`;
+    return this.commonHttpPost(url, data, this.headers);
+  }
+
   private setDefaultHeaders() {
     const accessToken = this.getAccessToken();
     this.headers = new HttpHeaders({
-      'Authorization': `Bearer ${accessToken}`
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json'
     });
   }
 

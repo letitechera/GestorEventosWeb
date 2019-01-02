@@ -40,3 +40,8 @@ export interface EventDetailsData {
     PrettyCreatedDate: string;
     PrettyModifiedDate: string;
 }
+
+export interface TopicData{
+    TopicId: number;
+    Name: string;
+}

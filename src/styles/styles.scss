@@ -15,3 +15,20 @@ a {
         transition:.5s;
     }
 }
+.mat-row{
+    -o-transition:.5s;
+        -ms-transition:.5s;
+        -moz-transition:.5s;
+        -webkit-transition:.5s;
+        transition:.5s;
+}
+.cdk-overlay-pane{
+    position: relative;
+    pointer-events: auto;
+    box-sizing: border-box;
+    z-index: 1000;
+    display: flex;
+    min-width: 300px;
+    min-height: 380px;
+    margin: auto;
+}

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './material/material.module';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { ROUTES } from './app.routing';
@@ -22,6 +23,10 @@ import { DatePipe } from '@angular/common';
 import { EventsApiService } from '@services/events-api/events-api.service';
 import { DateService } from '@services/date/date.service';
 import { SubMenuComponent } from './shared/sub-menu/sub-menu.component';
+import { ParticipantsComponent } from './pages/participants/participants.component';
+import { AccreditationComponent } from './pages/accreditation/accreditation.component';
+import { LocationsModalComponent } from './shared/locations-modal/locations-modal.component';
+import { TopicsModalComponent } from './shared/topics-modal/topics-modal.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +37,18 @@ import { SubMenuComponent } from './shared/sub-menu/sub-menu.component';
     FooterComponent,
     EventsComponent,
     EventDetailsComponent,
-    SubMenuComponent
+    SubMenuComponent,
+    ParticipantsComponent,
+    AccreditationComponent,
+    LocationsModalComponent,
+    TopicsModalComponent,
+  ],
+  entryComponents: [
+    LocationsModalComponent,
+    TopicsModalComponent
   ],
   imports: [
+    MatDialogModule,
     NgbModule.forRoot(),
     BrowserModule,
     FormsModule,
@@ -43,9 +57,10 @@ import { SubMenuComponent } from './shared/sub-menu/sub-menu.component';
     BrowserAnimationsModule,
     MaterialModule,
     ReactiveFormsModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
   ],
   providers: [
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
     DatePipe,
     AuthApiService,
     EventsApiService,

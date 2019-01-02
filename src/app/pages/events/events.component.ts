@@ -35,11 +35,11 @@ export class EventsComponent implements OnInit {
     this.route.navigate(['/events', row.EventId]);
   }
 
-  public showDate(date){
+  public showDate(date) {
     return this.dateService.GetShortDate(date);
   }
 
-  public showTime(date){
+  public showTime(date) {
     return this.dateService.GetTime(date);
   }
 

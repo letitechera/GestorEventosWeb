@@ -1,0 +1,27 @@
+<div class="modal-header">
+  <P>Administrar Temas</P>
+  <div class="close-modal-block">
+    <button type="button" class="close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="modal-list">
+    <ul>
+      <li *ngFor="let topic of topics">{{topic.Name}}</li>
+    </ul>
+  </div>
+  <div>
+    <mat-form-field>
+      <input matInput [(ngModel)]="name" placeholder="Agrega un tema">
+    </mat-form-field>
+  </div>
+  <button type="button" class="btn btn-primary btn-join" (click)="addTopic()">
+    <span>Aceptar</span>
+  </button>
+</div>
+<!-- <div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="close" cdkFocusInitial>Ok</button>
+</div> -->

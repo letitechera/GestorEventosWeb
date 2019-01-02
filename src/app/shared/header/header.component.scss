@@ -1,12 +1,13 @@
+@import '~styles/palette';
 nav{
-    background-color: #E5E8E8;
+    background-color: $ge-dolphin;
     #collapsingNavbar2{
         ul{
             li.nav-item{
                 a{
                     cursor: pointer;
                     :hover{
-                        color: skyblue;
+                        color: $ge-deep-sky;
                     }
                 }
             }
@@ -18,8 +19,9 @@ nav{
             li.right-item{
                 margin: 15px;
                 a{
+                    color: $ge-elephant;
                     .profile-icon{
-                        color: deepskyblue;
+                        color: $ge-deep-sky;
                         margin: 3px;
                         -o-transition:.5s;
                         -ms-transition:.5s;
@@ -29,8 +31,9 @@ nav{
                     }
                 }
                 a:hover{
+                    color: black;
                     .profile-icon{
-                        color: grey;
+                        color: $ge-elephant;
                     }
                 }
             }
