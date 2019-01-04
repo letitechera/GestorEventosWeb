@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  webApiUrl: 'http://gestor-eventos.azurewebsites.net/api',
+  webApiUrl: 'https://gestor-eventos.azurewebsites.net/api',
   // webApiUrl: 'http://localhost:41751/api',
 };
 

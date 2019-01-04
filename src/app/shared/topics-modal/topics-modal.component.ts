@@ -123,8 +123,8 @@ export class TopicsModalComponent implements OnInit {
   }
 
 
-  // onNoClick(): void {
-  //   this.dialogRef.close();
-  // }
+  public close(): void {
+    this.dialogRef.close();
+  }
 
 }

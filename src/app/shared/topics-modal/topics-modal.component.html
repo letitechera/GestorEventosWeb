@@ -1,7 +1,7 @@
 <div class="modal-header">
   <P>Administrar Temas</P>
   <div class="close-modal-block">
-    <button type="button" class="close" [mat-dialog-close]="close">
+    <button class="close" (click)="close()">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -17,7 +17,7 @@
       <fieldset>
         <div class="inline">
           <mat-form-field>
-            <input matInput [(ngModel)]="name" placeholder="Agrega un tema" formControlName="name" />
+            <input matInput placeholder="Agrega un tema" formControlName="name" />
             <mat-error *ngIf="topicsForm.get('name').hasError('required') && this.submitted">
                 Escriba un nombre
             </mat-error>
@@ -30,7 +30,3 @@
     </form>
   </div>
 </div>
-<!-- <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="close" cdkFocusInitial>Ok</button>
-</div> -->
