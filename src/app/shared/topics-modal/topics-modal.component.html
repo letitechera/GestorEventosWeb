@@ -1,7 +1,7 @@
 <div class="modal-header">
   <P>Administrar Temas</P>
   <div class="close-modal-block">
-    <button type="button" class="close" (click)="closeModal()">
+    <button type="button" class="close" [mat-dialog-close]="close">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
@@ -9,17 +9,26 @@
 <div class="modal-body">
   <div class="modal-list">
     <ul>
-      <li *ngFor="let topic of topics">{{topic.Name}}</li>
+      <li *ngFor="let topic of topics">{{topic.Name}}<a class="topic-delete options" (click)="removeTopic(topic.TopicId)"><fa name="remove" title="Eliminar"></fa></a></li>
     </ul>
   </div>
   <div>
-    <mat-form-field>
-      <input matInput [(ngModel)]="name" placeholder="Agrega un tema">
-    </mat-form-field>
+    <form [formGroup]="topicsForm" class="topics-form" (ngSubmit)="addTopic()">
+      <fieldset>
+        <div class="inline">
+          <mat-form-field>
+            <input matInput [(ngModel)]="name" placeholder="Agrega un tema" formControlName="name" />
+            <mat-error *ngIf="topicsForm.get('name').hasError('required') && this.submitted">
+                Escriba un nombre
+            </mat-error>
+          </mat-form-field>
+          <button type="submit" class="ge-btn-default">
+            <span>Agregar</span>
+          </button>
+        </div>
+      </fieldset>
+    </form>
   </div>
-  <button type="button" class="btn btn-primary btn-join" (click)="addTopic()">
-    <span>Aceptar</span>
-  </button>
 </div>
 <!-- <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>

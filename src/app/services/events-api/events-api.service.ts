@@ -40,6 +40,12 @@ export class EventsApiService {
     return this.commonHttpPost(url, null, this.headers);
   }
 
+  public deleteTopic(topicId) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/DeleteTopic/${topicId}`;
+    return this.commonHttpDelete(url, null, this.headers);
+  }
+
   private setDefaultHeaders() {
     const accessToken = this.getAccessToken();
     this.headers = new HttpHeaders({

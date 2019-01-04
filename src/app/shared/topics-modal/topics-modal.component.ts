@@ -3,6 +3,8 @@ import { MatDialogRef } from '@angular/material';
 import { EventsApiService } from '@services/events-api/events-api.service';
 import { TopicData } from '@models/event-data';
 import { map } from 'rxjs/operators';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthApiService } from '@services/auth-api/auth-api.service';
 
 @Component({
   selector: 'app-topics-modal',
@@ -10,19 +12,29 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./topics-modal.component.scss']
 })
 export class TopicsModalComponent implements OnInit {
-
   public topics: TopicData[];
+  public topicsForm: FormGroup;
   public loading: boolean;
-  public name: string;
+  public submitted: boolean;
 
-  constructor(public dialogRef: MatDialogRef<TopicsModalComponent>, private eventsApi: EventsApiService) { }
+  constructor(public dialogRef: MatDialogRef<TopicsModalComponent>, private eventsApi: EventsApiService, private auth: AuthApiService,
+    private formBuilder: FormBuilder) { }
 
   ngOnInit() {
+    this.auth.checkSession();
     this.getAllTopics().then((data: any[]) => {
       this.topics = data;
     }, (err) => {
       console.log(err);
     });
+    this.createForm();
+  }
+
+  private createForm() {
+    this.topicsForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+    });
+    this.submitted = false;
   }
 
   private getAllTopics(): Promise<any> {
@@ -40,7 +52,7 @@ export class TopicsModalComponent implements OnInit {
               Name: result.name,
             });
           });
-          console.log(data)
+          console.log(data);
           return data;
         })).subscribe((data: any[]) => {
           resolve(data);
@@ -53,20 +65,22 @@ export class TopicsModalComponent implements OnInit {
     });
   }
 
-  public addTopic() {
-    if (this.name != null && this.name != "") {
-      this.postTopic().then((data: any[]) => {
-        console.log(data);
-
+  public removeTopic(topicId) {
+    this.deleteTopic(topicId).then((data: any[]) => {
+      console.log(data);
+      this.getAllTopics().then((list: any[]) => {
+        this.topics = list;
       }, (err) => {
         console.log(err);
       });
-    }
+    }, (err) => {
+      console.log(err);
+    });
   }
 
-  private postTopic(): Promise<any> {
+  private deleteTopic(topicId): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.eventsApi.postTopic(this.name).subscribe((data) => {
+      this.eventsApi.deleteTopic(topicId).subscribe((data) => {
         console.log(data);
         resolve(data);
       }, (err) => {
@@ -75,6 +89,39 @@ export class TopicsModalComponent implements OnInit {
       });
     });
   }
+
+  public addTopic() {
+    this.submitted = true;
+    if (!this.topicsForm.valid) {
+      this.loading = false;
+      return;
+    }
+    const name = this.topicsForm.get('name').value;
+    this.postTopic(name).then((data: any[]) => {
+      console.log(data);
+      this.getAllTopics().then((list: any[]) => {
+        this.topics = list;
+        this.createForm();
+      }, (err) => {
+        console.log(err);
+      });
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  private postTopic(name): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.eventsApi.postTopic(name).subscribe((data) => {
+        console.log(data);
+        resolve(data);
+      }, (err) => {
+        console.log(err);
+        reject(null);
+      });
+    });
+  }
+
 
   // onNoClick(): void {
   //   this.dialogRef.close();

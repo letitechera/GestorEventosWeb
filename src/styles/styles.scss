@@ -1,4 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~styles/palette";
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 a {
@@ -31,4 +33,34 @@ a {
     min-width: 300px;
     min-height: 380px;
     margin: auto;
+}
+
+.ge-btn-default{
+    display: inline;
+    padding: 10px 12px;
+    margin: 7px;
+    font-size: 80%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    cursor: pointer;
+    color: white;
+    border:none;
+    background-color: $ge-deep-sky;
+}
+.ge-btn-default:hover{
+    background-color: $ge-dark-sky;
+}
+
+.options {
+    cursor: pointer;
+    padding: 5px;
+    fa{
+        color:$ge-elephant;
+    }
+    fa:hover{
+        color:$ge-sunset;
+    }
 }
