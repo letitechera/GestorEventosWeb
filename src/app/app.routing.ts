@@ -3,8 +3,9 @@ import { LoginComponent } from '@pages/login/login.component';
 import { CallbackComponent } from '@pages/callback/callback.component';
 import { EventsComponent } from '@pages/events/events.component';
 import { EventDetailsComponent } from '@pages/event-details/event-details.component';
-import { ParticipantsComponent } from '@pages/participants/participants.component';
+import { InterestedComponent } from '@pages/interested/interested.component';
 import { AccreditationComponent } from '@pages/accreditation/accreditation.component';
+import { LocationsComponent } from '@pages/locations/locations.component';
 
 export const ROUTES: Routes = [
     { path: '', redirectTo: 'callback', pathMatch: 'full' },
@@ -12,6 +13,7 @@ export const ROUTES: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'events', component: EventsComponent },
     { path: 'events/:id', component: EventDetailsComponent },
-    { path: 'participants', component: ParticipantsComponent },
+    { path: 'contacts', component: InterestedComponent },
     { path: 'accreditation', component: AccreditationComponent },
+    { path: 'locations', component: LocationsComponent },
   ];

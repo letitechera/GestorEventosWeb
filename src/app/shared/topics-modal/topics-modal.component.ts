@@ -122,7 +122,6 @@ export class TopicsModalComponent implements OnInit {
     });
   }
 
-
   public close(): void {
     this.dialogRef.close();
   }

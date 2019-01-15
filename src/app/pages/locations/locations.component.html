@@ -1,0 +1,55 @@
+<app-header></app-header>
+<div class="content-body">
+  <div class="sub-menu">
+    <div class="right-smenu">
+      <a title="Agregar Locación" (click)="openDialog(null)">
+        <fa name="plus"></fa>
+      </a>
+    </div>
+    <div class="search">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+        <div class="ico-search"><span class="ico ico-mglass"></span></div>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="content-body">
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+      <ng-container matColumnDef="FirstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="LastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Capacidad </th>
+        <td mat-cell *matCellDef="let element"> {{element.Capacity}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="LastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Dirección </th>
+        <td mat-cell *matCellDef="let element"> {{element.PrettyLocationAddress}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Ciudad </th>
+        <td mat-cell *matCellDef="let element"> {{element.City}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="Options">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+        <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
+          <a class="options" (click)="removeLocation(element.Id)">
+            <fa name="remove" title="Eliminar"></fa>
+          </a>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openDialog(row)"></tr>
+    </table>
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+  </div>
+</div>
+<app-footer></app-footer>

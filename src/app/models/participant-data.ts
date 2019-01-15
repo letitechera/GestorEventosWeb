@@ -1,9 +1,8 @@
 export interface Participant {
-    id: number;
-    firstName: string;
-    birthDate: Date;
-    address1: string;
-    address2: string;
-    email: string;
-    eventId: number;
+    ParticipantId: number;
+    FirstName: string;
+    LastName: string;
+    Email: string;
+    EventId: number;
+    QRCode: string;
 }

@@ -23,7 +23,6 @@ export class AuthApiService {
     localStorage.setItem('access_token', data.auth_token);
     localStorage.setItem('user_id', data.id);
     localStorage.setItem('expires_in', expiresAt);
-    debugger;
   }
 
   public checkSession() {

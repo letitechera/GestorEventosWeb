@@ -22,11 +22,12 @@ import { EventDetailsComponent } from './pages/event-details/event-details.compo
 import { DatePipe } from '@angular/common';
 import { EventsApiService } from '@services/events-api/events-api.service';
 import { DateService } from '@services/date/date.service';
-import { SubMenuComponent } from './shared/sub-menu/sub-menu.component';
-import { ParticipantsComponent } from './pages/participants/participants.component';
+import { InterestedComponent } from './pages/interested/interested.component';
 import { AccreditationComponent } from './pages/accreditation/accreditation.component';
 import { LocationsModalComponent } from './shared/locations-modal/locations-modal.component';
 import { TopicsModalComponent } from './shared/topics-modal/topics-modal.component';
+import { AttendantsModalComponent } from './shared/attendants-modal/attendants-modal.component';
+import { LocationsComponent } from './pages/locations/locations.component';
 
 @NgModule({
   declarations: [
@@ -37,15 +38,17 @@ import { TopicsModalComponent } from './shared/topics-modal/topics-modal.compone
     FooterComponent,
     EventsComponent,
     EventDetailsComponent,
-    SubMenuComponent,
-    ParticipantsComponent,
+    InterestedComponent,
     AccreditationComponent,
     LocationsModalComponent,
     TopicsModalComponent,
+    AttendantsModalComponent,
+    LocationsComponent,
   ],
   entryComponents: [
     LocationsModalComponent,
-    TopicsModalComponent
+    TopicsModalComponent,
+    AttendantsModalComponent
   ],
   imports: [
     MatDialogModule,

@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { EventData } from '@models/event-data';
 import { EventsApiService } from '@services/events-api/events-api.service';
 import { map } from 'rxjs/operators';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { Router } from '@angular/router';
 import { DateService } from '@services/date/date.service';
+import { TopicsModalComponent } from '@shared/topics-modal/topics-modal.component';
 
 @Component({
   selector: 'app-events',
@@ -22,7 +23,7 @@ export class EventsComponent implements OnInit {
   public loading: boolean;
 
   constructor(private eventsApi: EventsApiService, private auth: AuthApiService, private route: Router,
-    private dateService: DateService) { }
+    private dateService: DateService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -108,9 +109,24 @@ export class EventsComponent implements OnInit {
   private initDataSource() {
     this.dataSource = new MatTableDataSource(this.events);
     this.dataSource.paginator = this.paginator;
-
     this.sorter.start = 'desc';
     this.dataSource.sort = this.sorter;
+  }
+
+  openTopicsDialog(): void {
+    const dialogRef = this.dialog.open(TopicsModalComponent, {
+      height: '400px',
+      width: '350px',
+      // data: {name: this.name}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
+  }
+
+  public applyFilter(filterValue: string) {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
