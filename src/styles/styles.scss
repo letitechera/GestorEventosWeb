@@ -1,11 +1,15 @@
-/* You can add global styles to this file, and also import other style files */
 @import "~styles/palette";
+
+/* GENERAL */
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .content-body{
     padding-bottom: 56px;
 }
+
+/* CONTROLS */
+
 a {
     -o-transition:.5s;
     -ms-transition:.5s;
@@ -27,6 +31,27 @@ button{
     -webkit-transition:.5s;
     transition:.5s;
 }
+.ge-btn-default{
+    display: inline;
+    padding: 10px 12px;
+    margin: 7px;
+    font-size: 80%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    cursor: pointer;
+    color: white;
+    border:none;
+    background-color: $ge-deep-sky;
+}
+.ge-btn-default:hover{
+    background-color: $ge-dark-sky;
+}
+
+/* SUB MENU */
+
 .sub-menu {
     color: white;
     clear: both;
@@ -35,10 +60,11 @@ button{
         margin: 30px 0 0 15px;
         a{
             display: inline;
-            padding: 5px 10px;
+            padding: 5px 15px;
             margin: 7px;
-            font-size: 75%;
-            font-weight: 700;
+            font-size: 12px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 300;
             line-height: 1;
             text-align: center;
             white-space: nowrap;
@@ -76,9 +102,47 @@ button{
     background-color: $ge-ocean-hover;
 }
 
-// .search > .mat-form-field-appearance-legacy .mat-form-field-infix {
-//     padding: 15px 0;
-// }
+/* MAT TABLE */
+
+table {
+    width: 100%;
+    border: 1px solid rgba(0,0,0,.07);
+}
+th{
+    color: $ge-elephant;
+}
+.mat-cell{
+    font-size: 12px;
+}
+.mat-elevation-z8 {
+    box-shadow: none;
+}
+.mat-row{
+    cursor: pointer;
+    -o-transition:.5s;
+        -ms-transition:.5s;
+        -moz-transition:.5s;
+        -webkit-transition:.5s;
+        transition:.5s;
+}
+.mat-row:hover{
+    background-color: $ge-chalk;
+}
+.options {
+    cursor: pointer;
+    padding: 5px;
+    fa{
+        color:$ge-elephant;
+    }
+    fa:hover{
+        color:$ge-sunset;
+    }
+}
+.mat-form-field {
+    width: 100%;
+}
+
+/* TABLE SEARCH */
 
 .search{
     color: #000;
@@ -119,72 +183,5 @@ button{
                     -o-transform: rotate(45deg);
             }
         }
-    }
-}
-
-.mat-row{
-    -o-transition:.5s;
-        -ms-transition:.5s;
-        -moz-transition:.5s;
-        -webkit-transition:.5s;
-        transition:.5s;
-}
-.cdk-overlay-pane{
-    position: relative;
-    pointer-events: auto;
-    box-sizing: border-box;
-    z-index: 1000;
-    display: flex;
-    min-width: 300px;
-    min-height: 380px;
-    margin: auto;
-}
-
-.ge-btn-default{
-    display: inline;
-    padding: 10px 12px;
-    margin: 7px;
-    font-size: 80%;
-    font-weight: 700;
-    line-height: 1;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    cursor: pointer;
-    color: white;
-    border:none;
-    background-color: $ge-deep-sky;
-}
-.ge-btn-default:hover{
-    background-color: $ge-dark-sky;
-}
-
-table {
-    width: 100%;
-    border: 1px solid rgba(0,0,0,.07);
-}
-th{
-    color: $ge-elephant;
-}
-.mat-cell{
-    font-size: 12px;
-}
-.mat-elevation-z8 {
-    box-shadow: none;
-}
-.mat-row{
-    cursor: pointer;
-}
-.mat-row:hover{
-    background-color: $ge-chalk;
-}
-.options {
-    cursor: pointer;
-    padding: 5px;
-    fa{
-        color:$ge-elephant;
-    }
-    fa:hover{
-        color:$ge-sunset;
     }
 }

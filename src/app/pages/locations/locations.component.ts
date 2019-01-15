@@ -18,8 +18,8 @@ export class LocationsComponent implements OnInit {
   public dataSource: MatTableDataSource<LocationData>;
   public locations: LocationData[];
   public loading: boolean;
-  
-  constructor(private locationsApi: LocationsApiService, private auth: AuthApiService, 
+
+  constructor(private locationsApi: LocationsApiService, private auth: AuthApiService,
     private dialog: MatDialog) { }
 
   ngOnInit() {
@@ -28,15 +28,16 @@ export class LocationsComponent implements OnInit {
     this.initData();
   }
 
-  public openDialog(element){
+  public openDialog(element) {
+    this.auth.checkSession();
     const dialogRef = this.dialog.open(LocationsModalComponent, {
-      height: '360px',
-      width: '290px',
+      height: '450px',
+      width: '400px',
       data: element
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-      if(result=='changed'){
+      if (result === 'changed') {
         this.initData();
       }
     });
@@ -47,7 +48,7 @@ export class LocationsComponent implements OnInit {
       'Name',
       'Capacity',
       'Address',
-      'City',
+      'Location',
       'Options'
     ];
   }
@@ -55,6 +56,7 @@ export class LocationsComponent implements OnInit {
   private initData() {
     this.getAllLocations().then((data: any[]) => {
       this.locations = data;
+      console.log(data);
       if (this.locations) {
         this.initDataSource();
       }
@@ -76,9 +78,8 @@ export class LocationsComponent implements OnInit {
             data.push({
               Id: result.id,
               Name: result.name,
-              Address1: result.prettyLocationAddress,
-              Address2: result.prettyLocationAddress,
-              PrettyLocationAddress: result.prettyLocationAddress,
+              Address1: result.address1,
+              Address2: result.address2,
               City: result.city,
               Country: result.country,
               Capacity: result.capacity,
@@ -86,7 +87,7 @@ export class LocationsComponent implements OnInit {
               Longitude: result.longitude,
             });
           });
-          console.log(data)
+          console.log(data);
           return data;
         })).subscribe((data: any[]) => {
           resolve(data);

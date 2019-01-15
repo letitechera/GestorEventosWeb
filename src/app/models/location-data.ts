@@ -3,9 +3,7 @@ export interface LocationData {
     Name: string;
     Address1: string;
     Address2: string;
-    PrettyLocationAddress: string;
-    City: string;
-    Country: string;
+    CityId: number;
     Capacity: number;
     Latitude: number;
     Longitude: number;

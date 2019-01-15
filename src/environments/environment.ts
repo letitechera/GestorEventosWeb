@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  // webApiUrl: 'https://gestor-eventos.azurewebsites.net/api',
-  webApiUrl: 'https://localhost:44323/api',
+  webApiUrl: 'https://gestor-eventos.azurewebsites.net/api',
+  // webApiUrl: 'https://localhost:44323/api',
 };
 
 /*

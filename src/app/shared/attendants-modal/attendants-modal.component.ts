@@ -36,8 +36,7 @@ export class AttendantsModalComponent implements OnInit {
     if (this.data == null) {
       this.createFlag = true;
       this.createEmptyForm();
-    }
-    else {
+    } else {
       this.updateFlag = true;
       this.setCurrentForm();
     }
