@@ -1,25 +1,29 @@
 @import '~styles/palette';
 nav{
-    background-color: $ge-dolphin;
+    background-color: $ge-earth;
+    .navbar-brand{
+        color: $ge-chalk;
+    }
     #collapsingNavbar2{
         ul{
             li.nav-item{
                 a{
+                    color: $ge-chalk;
                     cursor: pointer;
-                    :hover{
-                        color: $ge-deep-sky;
-                    }
+                }
+                a:hover{
+                    color: $ge-dolphin;
                 }
             }
             li.active{
                 a{
-                    color: black;
+                    color: $ge-seal;
                 }
             }
             li.right-item{
                 margin: 15px;
                 a{
-                    color: $ge-elephant;
+                    color: $ge-chalk;
                     .profile-icon{
                         color: $ge-deep-sky;
                         margin: 3px;
@@ -31,9 +35,9 @@ nav{
                     }
                 }
                 a:hover{
-                    color: black;
+                    color:  $ge-dolphin;
                     .profile-icon{
-                        color: $ge-elephant;
+                        color: $ge-dark-sky;
                     }
                 }
             }

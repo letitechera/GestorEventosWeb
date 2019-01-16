@@ -1,9 +1,14 @@
 @import "~styles/palette";
 
+@font-face {
+    font-family: opensans;
+    src: url('../assets/OpenSans/OpenSans-Regular.ttf') format("truetype");
+  }
+
 /* GENERAL */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: opensans, 'Helvetica Neue', sans-serif; }
 .content-body{
     padding-bottom: 56px;
 }
@@ -96,10 +101,19 @@ button{
     }
 }
 .style-l{
-    background-color: $ge-ocean;
+    background-color: $ge-sunrise;
 }
 .style-l:hover{
-    background-color: $ge-ocean-hover;
+    background-color: $ge-sunset;
+}
+
+/* MODALS */
+
+.btn-cancel{
+    background-color: $ge-sunrise;
+}
+.btn-cancel:hover{
+    background-color: $ge-sunset;
 }
 
 /* MAT TABLE */
@@ -112,7 +126,7 @@ th{
     color: $ge-elephant;
 }
 .mat-cell{
-    font-size: 12px;
+    font-size: 14px;
 }
 .mat-elevation-z8 {
     box-shadow: none;
