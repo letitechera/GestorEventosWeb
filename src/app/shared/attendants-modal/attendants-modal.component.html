@@ -36,16 +36,18 @@
         </mat-form-field>
       </fieldset>
       <fieldset class="controls">
-        <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
-          <span>Cancelar</span>
-        </button>
-        <button type="submit" class="ge-btn-default btn-accept">
-          <span *ngIf="!loading && createFlag">Agregar</span>
-          <span *ngIf="!loading && updateFlag">Editar</span>
-          <span *ngIf="loading">
-            <fa name="spinner" animation="spin"></fa>
-          </span>
-        </button>
+        <div class="controls-container">
+          <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
+            <span>Cancelar</span>
+          </button>
+          <button type="submit" class="ge-btn-default btn-accept">
+            <span *ngIf="!loading && createFlag">Agregar</span>
+            <span *ngIf="!loading && updateFlag">Editar</span>
+            <span *ngIf="loading">
+              <fa name="spinner" animation="spin"></fa>
+            </span>
+          </button>
+        </div>
       </fieldset>
     </form>
   </div>

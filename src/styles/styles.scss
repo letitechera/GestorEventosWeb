@@ -42,6 +42,11 @@ $spinner-speed: 0.6s;
 
 /* CONTROLS */
 
+.controls-container{
+    margin: 20px auto;
+    margin-bottom: 0;
+    width: fit-content;
+}
 a {
     -o-transition:.5s;
     -ms-transition:.5s;
@@ -67,8 +72,8 @@ button{
     display: inline;
     padding: 10px 12px;
     margin: 7px;
-    font-size: 80%;
-    font-weight: 700;
+    font-size: 12px;
+    font-weight: 400;
     line-height: 1;
     text-align: center;
     white-space: nowrap;
@@ -139,7 +144,7 @@ button{
     overflow-x: hidden;
 }
 .mat-dialog-container{
-    overflow: hidden;
+    overflow: hidden !important;
 }
 .modal-header {
     padding: 5px;
@@ -184,20 +189,20 @@ button{
 }
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-    background: linear-gradient(left, #fff, #e4e4e4);
+    background: linear-gradient(to left, #fff, #e4e4e4);
     border: 1px solid #ccc;
 }
 ::-webkit-scrollbar-thumb:hover {
     background: #fff;
 }
 ::-webkit-scrollbar-thumb:active {
-    background: linear-gradient(left, #22ADD4, #1E98BA);
+    background: linear-gradient(to left, #22ADD4, #1E98BA);
 }
 .btn-cancel{
-    background-color: $ge-sunrise;
+    background-color: $ge-elephant;
 }
 .btn-cancel:hover{
-    background-color: $ge-sunset;
+    background-color: $ge-sunrise;
 }
 
 /* MAT TABLE */

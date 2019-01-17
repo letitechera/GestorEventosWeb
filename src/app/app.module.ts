@@ -29,6 +29,7 @@ import { TopicsModalComponent } from './shared/topics-modal/topics-modal.compone
 import { AttendantsModalComponent } from './shared/attendants-modal/attendants-modal.component';
 import { LocationsComponent } from './pages/locations/locations.component';
 import { EventCreateComponent } from './pages/event-create/event-create.component';
+import { LoginHeaderComponent } from './shared/login-header/login-header.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { EventCreateComponent } from './pages/event-create/event-create.componen
     AttendantsModalComponent,
     LocationsComponent,
     EventCreateComponent,
+    LoginHeaderComponent,
   ],
   entryComponents: [
     LocationsModalComponent,
