@@ -1,4 +1,5 @@
 @import "~styles/palette";
+@import '~@angular/cdk/overlay-prebuilt.css';
 
 @font-face {
     font-family: opensans;
@@ -11,6 +12,32 @@ html, body { height: 100%; }
 body { margin: 0; font-family: opensans, 'Helvetica Neue', sans-serif; }
 .content-body{
     padding-bottom: 56px;
+}
+
+$spinner-size: 30px;
+$spinner-border-width: 6px;
+$spinner-speed: 0.6s;
+.loader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 1;
+    height: 30px;
+    width: 30px;
+    margin: 0 auto;
+    border: 4px solid $ge-dolphin;
+    border-top: 4px solid $ge-seal;
+    border-radius: 100%;
+    -webkit-animation: rotation 0.6s infinite linear;
+    animation: rotation 0.6s infinite linear;
+}
+@-webkit-keyframes rotation {
+   from {-webkit-transform: rotate(0deg);}
+   to {-webkit-transform: rotate(359deg);}
+}
+@keyframes rotation {
+   from {transform: rotate(0deg);}
+   to {transform: rotate(359deg);}
 }
 
 /* CONTROLS */
@@ -108,7 +135,64 @@ button{
 }
 
 /* MODALS */
-
+.modal-body{
+    overflow-x: hidden;
+}
+.mat-dialog-container{
+    overflow: hidden;
+}
+.modal-header {
+    padding: 5px;
+    font-size: 16px;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: 1;
+    letter-spacing: normal;
+  }
+  .close {
+    color: $ge-elephant;
+    font-size: 20px;
+    text-shadow: none;
+    opacity: 1;
+    margin: 0;
+    padding: 0;
+    line-height: 5px;
+  }
+  
+  .close-modal-block {
+    button {
+      box-shadow: none;
+      outline: none;
+      transition: all 0.2s linear;
+  
+      &:hover {
+        opacity: .6;
+      }
+    }
+  }
+  
+  .modal-body{
+    font-size: 14px;
+  }
+::-webkit-scrollbar {
+	width: 10px;
+	background-color: #F5F5F5;
+} 
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+    border: 1px solid #F5F5F5;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: linear-gradient(left, #fff, #e4e4e4);
+    border: 1px solid #ccc;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #fff;
+}
+::-webkit-scrollbar-thumb:active {
+    background: linear-gradient(left, #22ADD4, #1E98BA);
+}
 .btn-cancel{
     background-color: $ge-sunrise;
 }

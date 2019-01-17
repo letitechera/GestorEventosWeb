@@ -2,41 +2,6 @@
 .hidden {
   display: none;
 }
-
-.modal-header {
-  padding: 5px;
-  font-size: 16px;
-  font-style: normal;
-  font-stretch: normal;
-  line-height: 1;
-  letter-spacing: normal;
-}
-
-.close {
-  color: $ge-elephant;
-  font-size: 20px;
-  text-shadow: none;
-  opacity: 1;
-  margin: 0;
-  padding: 0;
-  line-height: 5px;
-}
-
-.close-modal-block {
-  button {
-    box-shadow: none;
-    outline: none;
-    transition: all 0.2s linear;
-
-    &:hover {
-      opacity: .6;
-    }
-  }
-}
-
-.modal-body{
-  font-size: 14px;
-}
 .controls{
     padding-top: 20px;
     .ge-btn-default{

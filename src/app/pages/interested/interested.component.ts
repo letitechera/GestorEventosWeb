@@ -33,7 +33,8 @@ export class InterestedComponent implements OnInit {
     const dialogRef = this.dialog.open(AttendantsModalComponent, {
       height: '360px',
       width: '290px',
-      data: element
+      data: element,
+      hasBackdrop: true
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);

@@ -33,7 +33,8 @@ export class LocationsComponent implements OnInit {
     const dialogRef = this.dialog.open(LocationsModalComponent, {
       height: '450px',
       width: '400px',
-      data: element
+      data: element,
+      hasBackdrop: true
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);

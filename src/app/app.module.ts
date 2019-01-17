@@ -50,7 +50,7 @@ import { EventCreateComponent } from './pages/event-create/event-create.componen
   entryComponents: [
     LocationsModalComponent,
     TopicsModalComponent,
-    AttendantsModalComponent
+    AttendantsModalComponent,
   ],
   imports: [
     MatDialogModule,

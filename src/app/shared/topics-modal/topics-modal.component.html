@@ -7,19 +7,23 @@
   </div>
 </div>
 <div class="modal-body">
+  <div class="loader" *ngIf="loading"></div>
+
   <div class="modal-list">
     <ul>
-      <li *ngFor="let topic of topics">{{topic.Name}}<a class="topic-delete options" (click)="removeTopic(topic.TopicId)"><fa name="remove" title="Eliminar"></fa></a></li>
+      <li *ngFor="let topic of topics">{{topic.Name}}<a class="topic-delete options" (click)="removeTopic(topic.TopicId)">
+          <fa name="remove" title="Eliminar"></fa>
+        </a></li>
     </ul>
   </div>
-  <div>
+  <div *ngIf="!loading">
     <form [formGroup]="topicsForm" class="topics-form" (ngSubmit)="addTopic()">
       <fieldset>
         <div class="inline">
           <mat-form-field>
             <input matInput placeholder="Agrega un tema" formControlName="name" />
             <mat-error *ngIf="topicsForm.get('name').hasError('required') && this.submitted">
-                Escriba un nombre
+              Escriba un nombre
             </mat-error>
           </mat-form-field>
           <button type="submit" class="ge-btn-default">
