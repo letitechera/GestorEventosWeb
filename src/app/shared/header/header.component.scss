@@ -1,8 +1,16 @@
 @import '~styles/palette';
 nav{
     background-color: $ge-earth;
-    .navbar-brand{
-        color: $ge-chalk;
+    .navbar-left{
+        float: left;
+        a.navbar-brand{
+            color: $ge-chalk;
+        }
+    }
+    .navbar-center{
+        clear: both;
+        margin: 0 auto;
+        width: fit-content;
     }
     #collapsingNavbar2{
         ul{
@@ -20,9 +28,16 @@ nav{
                     color: $ge-seal;
                 }
             }
+            
+        }
+    }
+    .navbar-right{
+        float: right;
+        ul{
             li.right-item{
                 margin: 15px;
                 a{
+                    cursor: pointer;
                     color: $ge-chalk;
                     .profile-icon{
                         color: $ge-deep-sky;
