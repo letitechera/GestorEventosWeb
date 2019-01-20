@@ -10,15 +10,26 @@
   </div>
 </div>
 <div class="modal-body">
-  <div>
+  <div class="form-container">
     <form [formGroup]="locationsForm" class="locations-form" (ngSubmit)="submitLocation()">
       <fieldset>
-        <mat-form-field>
-          <input matInput placeholder="Nombre *" formControlName="Name" />
-          <mat-error *ngIf="locationsForm.get('Name').hasError('required') && this.submitted">
-            Escriba un nombre
-          </mat-error>
-        </mat-form-field>
+        <div class="inline">
+          <mat-form-field class="input-name">
+            <input matInput placeholder="Nombre *" formControlName="Name" />
+            <mat-error *ngIf="locationsForm.get('Name').hasError('required') && this.submitted">
+              Escriba un nombre
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="input-capacity">
+            <input matInput placeholder="Capacidad *" formControlName="Capacity" type="number" />
+            <mat-error *ngIf="locationsForm.get('Capacity').hasError('required') && this.submitted">
+              Escriba un número
+            </mat-error>
+            <mat-error *ngIf="locationsForm.get('Capacity').hasError('pattern') && this.submitted">
+              Escriba un número válido
+            </mat-error>
+          </mat-form-field>
+        </div>
         <mat-form-field>
           <input matInput placeholder="Dirección Principal *" formControlName="Address1" />
           <mat-error *ngIf="locationsForm.get('Address1').hasError('required') && this.submitted">
@@ -28,16 +39,7 @@
         <mat-form-field>
           <input matInput placeholder="Dirección Secundaria" formControlName="Address2" />
         </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Capacidad *" formControlName="Capacity" type="number" />
-          <mat-error *ngIf="locationsForm.get('Capacity').hasError('required') && this.submitted">
-            Escriba un número
-          </mat-error>
-          <mat-error *ngIf="locationsForm.get('Capacity').hasError('pattern') && this.submitted">
-            Escriba un número válido
-          </mat-error>
-        </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="input-city">
           <mat-select formControlName="City" placeholder="Ciudad *" [(ngModel)]="selectedcity">
             <mat-option *ngFor="let city of cities" [value]="city.id">
               {{ city.name }}
@@ -47,7 +49,7 @@
             Elija una ciudad
           </mat-error>
         </mat-form-field>
-        <mat-form-field>
+        <mat-form-field class="input-country">
           <mat-select formControlName="Country" placeholder="País *" [(ngModel)]="selected" [disabled]="disabled">
             <mat-option *ngFor="let country of countries" [value]="country.id">
               {{ country.name }}
@@ -59,16 +61,18 @@
         </mat-form-field>
       </fieldset>
       <fieldset class="controls">
-        <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
-          <span>Cancelar</span>
-        </button>
-        <button type="submit" class="ge-btn-default btn-accept">
-          <span *ngIf="!loading && createFlag">Agregar</span>
-          <span *ngIf="!loading && updateFlag">Editar</span>
-          <span *ngIf="loading">
-            <fa name="spinner" animation="spin"></fa>
-          </span>
-        </button>
+        <div class="controls-container">
+          <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
+            <span>Cancelar</span>
+          </button>
+          <button type="submit" class="ge-btn-default btn-accept">
+            <span *ngIf="!loading && createFlag">Agregar</span>
+            <span *ngIf="!loading && updateFlag">Editar</span>
+            <span *ngIf="loading">
+              <fa name="spinner" animation="spin"></fa>
+            </span>
+          </button>
+        </div>
       </fieldset>
     </form>
   </div>

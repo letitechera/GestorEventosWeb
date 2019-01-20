@@ -117,7 +117,7 @@ export class EventsComponent implements OnInit {
     const dialogRef = this.dialog.open(TopicsModalComponent, {
       height: '400px',
       width: '350px',
-      // data: {name: this.name}
+      hasBackdrop: true
     });
 
     dialogRef.afterClosed().subscribe(result => {

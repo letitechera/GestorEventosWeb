@@ -31,9 +31,10 @@ export class LocationsComponent implements OnInit {
   public openDialog(element) {
     this.auth.checkSession();
     const dialogRef = this.dialog.open(LocationsModalComponent, {
-      height: '450px',
+      height: '430px',
       width: '400px',
-      data: element
+      data: element,
+      hasBackdrop: true
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
