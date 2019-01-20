@@ -29,6 +29,10 @@ import { TopicsModalComponent } from './shared/topics-modal/topics-modal.compone
 import { AttendantsModalComponent } from './shared/attendants-modal/attendants-modal.component';
 import { LocationsComponent } from './pages/locations/locations.component';
 import { EventCreateComponent } from './pages/event-create/event-create.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +50,10 @@ import { EventCreateComponent } from './pages/event-create/event-create.componen
     AttendantsModalComponent,
     LocationsComponent,
     EventCreateComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    ProfileComponent,
   ],
   entryComponents: [
     LocationsModalComponent,
