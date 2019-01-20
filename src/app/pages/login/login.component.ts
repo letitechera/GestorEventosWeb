@@ -52,4 +52,8 @@ export class LoginComponent implements OnInit {
       this.loading = false;
     });
   }
+
+  public navigateTo(page){
+    this.router.navigateByUrl(page);
+  }
 }

@@ -10,6 +10,7 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import { ROUTES } from './app.routing';
 import { AuthApiService } from './services/auth-api/auth-api.service';
+import { AccountApiService } from './services/account-api/account-api.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -78,6 +79,7 @@ import { LoginHeaderComponent } from './shared/login-header/login-header.compone
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
     DatePipe,
     AuthApiService,
+    AccountApiService,
     EventsApiService,
     DateService,
   ],
