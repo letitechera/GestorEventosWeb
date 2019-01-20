@@ -20,6 +20,14 @@ export class AccountApiService {
     this.setDefaultHeaders();
     return this.commonHttpPost(`${environment.webApiUrl}/account/register`, data, null);
   }
+
+  public forgotPassword(email) {
+    const data = {
+      email: email,
+    };
+    this.setDefaultHeaders();
+    return this.commonHttpPost(`${environment.webApiUrl}/account/forgot-password`, data, null);
+  }
   
   private getAccessToken() {
     return localStorage.getItem('access_token');
