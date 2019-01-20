@@ -51,14 +51,11 @@ import { LoginHeaderComponent } from './shared/login-header/login-header.compone
     AttendantsModalComponent,
     LocationsComponent,
     EventCreateComponent,
-<<<<<<< HEAD
     RegisterComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
     ProfileComponent,
-=======
     LoginHeaderComponent,
->>>>>>> 6daeaaee17ec87b93ba1e42dc0b94c49711986fa
   ],
   entryComponents: [
     LocationsModalComponent,
