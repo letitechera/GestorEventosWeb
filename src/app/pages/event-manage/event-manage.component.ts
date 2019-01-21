@@ -46,8 +46,8 @@ export class EventManageComponent implements OnInit, OnDestroy {
       Name: '',
       Description: '',
       Image: '',
-      StartDate: new Date(),
-      EndDate: new Date(),
+      StartDate: new Date().toString(),
+      EndDate: new Date().toString(),
       LocationId: 0,
       EventTopicId: 0,
       Canceled: false,
@@ -69,7 +69,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
   }
 
   private GetLocations() {
-    this.locationsApi.getAllLocations().then((locations: any[]) => {
+    this.locationsApi.getAllLocations().subscribe((locations: any[]) => {
       this.locations = locations;
       if (this.id != null && this.id != 0) {
         this.selectedlocation = this.event.Location.Id;

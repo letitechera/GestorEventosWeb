@@ -28,6 +28,15 @@ export class AccountApiService {
     this.setDefaultHeaders();
     return this.commonHttpPost(`${environment.webApiUrl}/account/forgot-password`, data, null);
   }
+
+  public resetPassword(password, newPassword) {
+    const data = {
+      password: password,
+      newPassword: newPassword
+    };
+    this.setDefaultHeaders();
+    return this.commonHttpPost(`${environment.webApiUrl}/account/reset-password`, data, null);
+  }
   
   private getAccessToken() {
     return localStorage.getItem('access_token');

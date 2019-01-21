@@ -28,7 +28,7 @@ export class ForgotPasswordComponent implements OnInit {
     });
   }
 
-  login() {
+  forgotPassword() {
     this.error = false;
     this.loading = true;
     const email = this.forgotForm.get('email').value;

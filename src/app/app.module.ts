@@ -32,7 +32,6 @@ import { LocationsModalComponent } from './shared/locations-modal/locations-moda
 import { TopicsModalComponent } from './shared/topics-modal/topics-modal.component';
 import { AttendantsModalComponent } from './shared/attendants-modal/attendants-modal.component';
 import { LocationsComponent } from './pages/locations/locations.component';
-import { EventCreateComponent } from './pages/event-create/event-create.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
@@ -56,7 +55,6 @@ import { FileUploadService } from '@services/file-upload/file-upload.service';
     TopicsModalComponent,
     AttendantsModalComponent,
     LocationsComponent,
-    EventCreateComponent,
     RegisterComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
