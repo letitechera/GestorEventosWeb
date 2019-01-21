@@ -27,8 +27,8 @@ export class LocationsModalComponent implements OnInit {
   public selectedcity: any;
 
   constructor(public dialogRef: MatDialogRef<LocationsModalComponent>, private locationsApi: LocationsApiService,
-    private geoApi: GeographicsApiService,
-    private auth: AuthApiService, private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any) { }
+    private geoApi: GeographicsApiService, private auth: AuthApiService, 
+    private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.submitted = false;
@@ -53,7 +53,7 @@ export class LocationsModalComponent implements OnInit {
   }
 
   private GetCountries() {
-    this.getAllCountries().then((data: any[]) => {
+    this.geoApi.getAllCountries().then((data: any[]) => {
       this.countries = data;
       this.selected = this.countries[0].id;
       if (data.length <= 1) {
@@ -65,30 +65,8 @@ export class LocationsModalComponent implements OnInit {
     });
   }
 
-  private getAllCountries(): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      this.geoApi.getAllCountries()
-        .pipe(map((results: any[]) => {
-          const data = [];
-          if (!results) {
-            return data;
-          }
-          results.forEach((result) => {
-            data.push(result);
-          });
-          return data;
-        })).subscribe((data: any[]) => {
-          resolve(data);
-          return data;
-        },
-          (err) => {
-            reject([]);
-          });
-    });
-  }
-
   private GetCities(countryId) {
-    this.getAllCities(countryId).then((city: any[]) => {
+    this.geoApi.getAllCities(countryId).then((city: any[]) => {
       this.cities = city;
       if (this.data != null) {
         this.selectedcity = this.data.City.id;
@@ -98,28 +76,6 @@ export class LocationsModalComponent implements OnInit {
       console.log(city);
     }, (err) => {
       console.log(err);
-    });
-  }
-
-  private getAllCities(countryId): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      this.geoApi.getAllCities(countryId)
-        .pipe(map((results: any[]) => {
-          const data = [];
-          if (!results) {
-            return data;
-          }
-          results.forEach((result) => {
-            data.push(result);
-          });
-          return data;
-        })).subscribe((data: any[]) => {
-          resolve(data);
-          return data;
-        },
-          (err) => {
-            reject([]);
-          });
     });
   }
 
@@ -159,44 +115,21 @@ export class LocationsModalComponent implements OnInit {
   }
 
   private addLocation() {
-    this.postLocation().then((data: any[]) => {
+    this.setLocationObject();
+    this.locationsApi.postLocation(this.location).then((data: any[]) => {
       this.dialogRef.close('changed');
     }, (err) => {
       console.log(err);
-    });
-  }
-
-  private postLocation(): Promise<any> {
-    this.setLocationObject();
-    return new Promise<any>((resolve, reject) => {
-      this.locationsApi.postLocation(this.location).subscribe((data) => {
-        resolve(data);
-      }, (err) => {
-        console.log(err);
-        reject(null);
-      });
     });
   }
 
   private editLocation() {
-    this.putLocation().then((data: any[]) => {
+    this.setLocationObject();
+    this.locationsApi.putLocation(this.location).then((data: any[]) => {
       console.log(data);
       this.dialogRef.close('changed');
     }, (err) => {
       console.log(err);
-    });
-  }
-
-  private putLocation(): Promise<any> {
-    this.setLocationObject();
-    return new Promise<any>((resolve, reject) => {
-      this.locationsApi.putLocation(this.location).subscribe((data) => {
-        console.log(data);
-        resolve(data);
-      }, (err) => {
-        console.log(err);
-        reject(null);
-      });
     });
   }
 

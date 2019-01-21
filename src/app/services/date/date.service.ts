@@ -14,4 +14,8 @@ export class DateService {
   public GetTime(date: any) {
     return this.datepipe.transform(date, 'h:mm a');
   }
+  public GetLongDateString(date: any){
+    let res = this.datepipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
+    return res + '.0000000';
+  }
 }

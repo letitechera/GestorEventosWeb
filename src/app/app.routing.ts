@@ -10,6 +10,7 @@ import { EventDetailsComponent } from '@pages/event-details/event-details.compon
 import { InterestedComponent } from '@pages/interested/interested.component';
 import { AccreditationComponent } from '@pages/accreditation/accreditation.component';
 import { LocationsComponent } from '@pages/locations/locations.component';
+import { EventManageComponent } from '@pages/event-manage/event-manage.component';
 
 export const ROUTES: Routes = [
     { path: '', redirectTo: 'callback', pathMatch: 'full' },
@@ -21,6 +22,7 @@ export const ROUTES: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'events', component: EventsComponent },
     { path: 'events/:id', component: EventDetailsComponent },
+    { path: 'events/manage/:id', component: EventManageComponent },
     { path: 'contacts', component: InterestedComponent },
     { path: 'accreditation', component: AccreditationComponent },
     { path: 'locations', component: LocationsComponent },

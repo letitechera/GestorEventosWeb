@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { EventsApiService } from '@services/events-api/events-api.service';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { map } from 'rxjs/operators';
+import { EventData } from '@models/event-data';
+import { DateService } from '@services/date/date.service';
 
 @Component({
   selector: 'event-details',
@@ -13,10 +15,10 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
   id: number;
   private sub: any;
   public loading: boolean;
-  public event: object;
+  public event: EventData;
 
   constructor(private route: ActivatedRoute, private eventsApi: EventsApiService, private auth: AuthApiService,
-    private router: Router) { }
+    private dateService: DateService, private router: Router) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -28,40 +30,44 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  public editEvent(){
+    this.router.navigate(['events/manage/', this.event.EventId]);
+  }
+
   public goBack(){
     this.router.navigateByUrl('events');
   }
 
   public initData(id) {
-    this.getEventDetails(id).then((data: any) => {
+    this.loading = true;
+    this.eventsApi.getEventDetails(id).then((data: any) => {
+      this.loading = false;
       if (data != null) {
-        this.event = data;
-        console.log(event)
+        this.event = {
+          EventId: data.id,
+          Name: data.name,
+          StartDate: new Date(data.startDate),
+          FinishDate: new Date(data.finishDate),
+          Image: data.image != null ? data.image : '',
+          Description: data.description,
+          Location: data.location,
+          Topic: data.topic,
+          CreatedById: data.createdById,
+        };
+        console.log(this.event)
       }
     }, (err) => {
       console.log(err);
+      this.loading = false;
     });
   }
 
-  private getEventDetails(id): Promise<any> {
-    this.loading = true;
-    return new Promise<any>((resolve, reject) => {
-      this.eventsApi.getEventDetails(id)
-        .pipe(map((result: any) => {
-          if (result == null) {
-            return null;
-          }
-          console.log(result);
-          return result;
-        })).subscribe((data: any[]) => {
-          resolve(data);
-          this.loading = false;
-        },
-          (err) => {
-            reject([]);
-            this.loading = false;
-          });
-    });
+  public showDate(date) {
+    return this.dateService.GetShortDate(date);
+  }
+
+  public showTime(date) {
+    return this.dateService.GetTime(date);
   }
 
   ngOnDestroy() {
