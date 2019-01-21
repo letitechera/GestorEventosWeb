@@ -5,31 +5,35 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialModule } from './material/material.module';
-import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule } from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DatePipe } from '@angular/common';
 import { ROUTES } from './app.routing';
+
 import { AuthApiService } from './services/auth-api/auth-api.service';
+import { EventsApiService } from '@services/events-api/events-api.service';
+import { DateService } from '@services/date/date.service';
+import { LocationsApiService } from '@services/locations-api/locations-api.service';
+import { AttendantsApiService } from '@services/attendants-api/attendants-api.service';
+import { GeographicsApiService } from '@services/geographics-api/geographics-api.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
 import { CallbackComponent } from './pages/callback/callback.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventsComponent } from './pages/events/events.component';
 import { EventDetailsComponent } from './pages/event-details/event-details.component';
-import { DatePipe } from '@angular/common';
-import { EventsApiService } from '@services/events-api/events-api.service';
-import { DateService } from '@services/date/date.service';
 import { InterestedComponent } from './pages/interested/interested.component';
 import { AccreditationComponent } from './pages/accreditation/accreditation.component';
 import { LocationsModalComponent } from './shared/locations-modal/locations-modal.component';
 import { TopicsModalComponent } from './shared/topics-modal/topics-modal.component';
 import { AttendantsModalComponent } from './shared/attendants-modal/attendants-modal.component';
 import { LocationsComponent } from './pages/locations/locations.component';
-import { EventCreateComponent } from './pages/event-create/event-create.component';
 import { LoginHeaderComponent } from './shared/login-header/login-header.component';
+import { EventManageComponent } from './pages/event-manage/event-manage.component';
+import { FileUploadService } from '@services/file-upload/file-upload.service';
 
 @NgModule({
   declarations: [
@@ -46,8 +50,8 @@ import { LoginHeaderComponent } from './shared/login-header/login-header.compone
     TopicsModalComponent,
     AttendantsModalComponent,
     LocationsComponent,
-    EventCreateComponent,
     LoginHeaderComponent,
+    EventManageComponent,
   ],
   entryComponents: [
     LocationsModalComponent,
@@ -65,6 +69,7 @@ import { LoginHeaderComponent } from './shared/login-header/login-header.compone
     MaterialModule,
     ReactiveFormsModule,
     AngularFontAwesomeModule,
+    MatButtonModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
@@ -72,6 +77,10 @@ import { LoginHeaderComponent } from './shared/login-header/login-header.compone
     AuthApiService,
     EventsApiService,
     DateService,
+    AttendantsApiService,
+    LocationsApiService,
+    GeographicsApiService,
+    FileUploadService
   ],
   bootstrap: [AppComponent]
 })

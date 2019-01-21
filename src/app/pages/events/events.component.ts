@@ -60,49 +60,17 @@ export class EventsComponent implements OnInit {
   }
 
   private initData() {
-    this.getAllEvents().then((data: any[]) => {
+    this.loading = true;
+    let userId = this.auth.getUserId();
+    this.eventsApi.getAllEvents(userId).then((data: any[]) => {
+      this.loading = false;
       this.events = data;
       if (this.events) {
         this.initDataSource();
       }
     }, (err) => {
+      this.loading = false;
       console.log(err);
-    });
-  }
-
-  private getAllEvents(): Promise<any> {
-    this.loading = true;
-    let userId = this.auth.getUserId();
-    return new Promise<any>((resolve, reject) => {
-      this.eventsApi.getAllEventsByUser(userId)
-        .pipe(map((results: any[]) => {
-          const data = [];
-          if (!results) {
-            return data;
-          }
-          results.forEach((result) => {
-            data.push({
-              EventId: result.id,
-              Name: result.name,
-              StartDate: new Date(result.startDate),
-              EndDate: new Date(result.finishDate),
-              Image: result.image != null ? result.image : '',
-              Description: result.description,
-              Location: result.location,
-              Topic: result.topic,
-              CreatedById: result.createdById,
-            });
-          });
-          console.log(data)
-          return data;
-        })).subscribe((data: any[]) => {
-          resolve(data);
-          this.loading = false;
-        },
-          (err) => {
-            reject([]);
-            this.loading = false;
-          });
     });
   }
 

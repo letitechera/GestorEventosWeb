@@ -55,7 +55,9 @@ export class LocationsComponent implements OnInit {
   }
 
   private initData() {
-    this.getAllLocations().then((data: any[]) => {
+    this.loading = true;
+    this.locationsApi.getAllLocations().then((data: any[]) => {
+      this.loading = false;
       this.locations = data;
       console.log(data);
       if (this.locations) {
@@ -63,62 +65,15 @@ export class LocationsComponent implements OnInit {
       }
     }, (err) => {
       console.log(err);
-    });
-  }
-
-  private getAllLocations(): Promise<any> {
-    this.loading = true;
-    return new Promise<any>((resolve, reject) => {
-      this.locationsApi.getAllLocations()
-        .pipe(map((results: any[]) => {
-          const data = [];
-          if (!results) {
-            return data;
-          }
-          results.forEach((result) => {
-            data.push({
-              Id: result.id,
-              Name: result.name,
-              Address1: result.address1,
-              Address2: result.address2,
-              City: result.city,
-              Country: result.country,
-              Capacity: result.capacity,
-              Latitude: result.latitude,
-              Longitude: result.longitude,
-            });
-          });
-          console.log(data);
-          return data;
-        })).subscribe((data: any[]) => {
-          resolve(data);
-          this.loading = false;
-          return data;
-        },
-          (err) => {
-            reject([]);
-            this.loading = false;
-          });
+      this.loading = false;
     });
   }
 
   public removeLocation(id) {
-    this.deleteLocation(id).then((data: any[]) => {
+    this.locationsApi.deleteLocation(id).then((data: any[]) => {
       this.initData();
     }, (err) => {
       console.log(err);
-    });
-  }
-
-  private deleteLocation(id): Promise<any> {
-    return new Promise<any>((resolve, reject) => {
-      this.locationsApi.deleteLocation(id).subscribe((data) => {
-        console.log(data);
-        resolve(data);
-      }, (err) => {
-        console.log(err);
-        reject(null);
-      });
     });
   }
 

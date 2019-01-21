@@ -1,1 +1,12 @@
 @import '~styles/palette';
+
+td:nth-child(3) {
+    max-width: 100px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 10px;
+}
+th:nth-child(3) {
+    width: 30%;
+}
