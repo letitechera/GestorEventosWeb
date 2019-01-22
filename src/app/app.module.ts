@@ -39,6 +39,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginHeaderComponent } from './shared/login-header/login-header.component';
 import { EventManageComponent } from './pages/event-manage/event-manage.component';
 import { FileUploadService } from '@services/file-upload/file-upload.service';
+import { NgQrScannerModule } from 'angular2-qrscanner';
 
 @NgModule({
   declarations: [
@@ -79,6 +80,7 @@ import { FileUploadService } from '@services/file-upload/file-upload.service';
     ReactiveFormsModule,
     AngularFontAwesomeModule,
     MatButtonModule,
+    NgQrScannerModule
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },

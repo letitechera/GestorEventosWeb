@@ -1,5 +1,11 @@
 <app-header></app-header>
 <div class="content-body">
 
+    <qr-scanner [debug]="false" [canvasWidth]="1080"
+        [canvasHeight]="720"
+        [stopAfterScan]="true"
+        [updateTime]="500">
+    </qr-scanner>
+
 </div>
 <app-footer></app-footer>
