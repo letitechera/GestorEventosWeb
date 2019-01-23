@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/94f891ee-d2c0-43ee-88f5-ffcb463ea4e5/resourceGroups/gestor-eventos/providers/Microsoft.Web/sites/gestoreventos-ui",
+    "appService.deploySubpath": "dist\\gestor-eventos"
+}

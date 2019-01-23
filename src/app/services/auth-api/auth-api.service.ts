@@ -21,22 +21,19 @@ export class AuthApiService {
   public setSession(data) {
     const expiresAt = JSON.stringify((data.expires_in * 1000) + new Date().getTime());
     localStorage.setItem('access_token', data.auth_token);
+    localStorage.setItem('user_id', data.id);
     localStorage.setItem('expires_in', expiresAt);
+  }
+
+  public checkSession() {
+    if(!this.isAuthenticated()){
+      this.logout();
+    }
   }
 
   public isLogged() {
     const token = this.getAccessToken();
     return token != null && token !== '' ? true : false;
-  }
-
-  private getAccessToken() {
-    return localStorage.getItem('access_token');
-  }
-
-  private deleteSession() {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('expires_in');
-    localStorage.clear();
   }
 
   public logout() {
@@ -49,6 +46,21 @@ export class AuthApiService {
     // access token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem('expires_in'));
     return new Date().getTime() < expiresAt;
+  }
+
+  public getUserId() {
+    return localStorage.getItem('user_id');
+  }
+  
+  private getAccessToken() {
+    return localStorage.getItem('access_token');
+  }
+
+  private deleteSession() {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('expires_in');
+    localStorage.removeItem('user_id');
+    localStorage.clear();
   }
 
   private setDefaultHeaders() {

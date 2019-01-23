@@ -1,0 +1,103 @@
+<app-header></app-header>
+<div class="content-body">
+    <div class="sub-menu-event">
+        <a (click)="goBack()">
+            <fa name="caret-left"></fa> Volver
+        </a>
+    </div>
+    <div class="form-container">
+        <div class="loader" *ngIf="loading"></div>
+        <form *ngIf="eventForm!=null" [formGroup]="eventForm" (ngSubmit)="submitEvent()">
+            <fieldset>
+                <div class="row">
+                    <div class="col-xs-6 col-md-6 form-left">
+                        <mat-form-field class="input-name">
+                            <input matInput placeholder="Nombre *" formControlName="Name" />
+                            <mat-error *ngIf="eventForm.get('Name').hasError('required') && this.submitted">
+                                Escriba un nombre
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="input-descrp">
+                            <textarea matInput placeholder="Descripción" formControlName="Description"></textarea>
+                        </mat-form-field>
+                        <div class="inline">
+                            <mat-form-field class="input-startdate">
+                                <input matInput [min]="minDate" [matDatepicker]="picker1" placeholder="Fecha de Inicio *"
+                                    formControlName="StartDate">
+                                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                                <mat-datepicker #picker1></mat-datepicker>
+                                <mat-error *ngIf="eventForm.get('StartDate').hasError('required') && this.submitted">
+                                    Ingrese una fecha
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="input-time1">
+                                <input type="time" matInput placeholder="Hora de inicio *" formControlName="StartTime" />
+                                <mat-error *ngIf="eventForm.get('EndTime').hasError('required') && this.submitted">
+                                    Escriba una hora
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="input-enddate">
+                                <input matInput [min]="minEndDate" [matDatepicker]="picker2" placeholder="Fecha de Finalización *"
+                                    formControlName="EndDate">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2></mat-datepicker>
+                                <mat-error *ngIf="eventForm.get('EndDate').hasError('required') && this.submitted">
+                                    Ingrese una fecha
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="input-time2">
+                                <input type="time" matInput placeholder="Hora de fin *" formControlName="EndTime" />
+                                <mat-error *ngIf="eventForm.get('EndTime').hasError('required') && this.submitted">
+                                    Escriba una hora
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="inline">
+                            <mat-form-field class="input-location">
+                                <mat-select formControlName="LocationId" placeholder="Lugar *" [(ngModel)]="selectedlocation">
+                                    <mat-option *ngFor="let location of locations" [value]="location.Id">
+                                        {{ location.Name }}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="eventForm.get('LocationId').hasError('required')">
+                                    Elija una locación
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="input-topic">
+                                <mat-select formControlName="EventTopicId" placeholder="Tema *" [(ngModel)]="selectedtopic">
+                                    <mat-option *ngFor="let topic of topics" [value]="topic.TopicId">
+                                        {{ topic.Name }}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="eventForm.get('EventTopicId').hasError('required')">
+                                    Elija un tema
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-6 col-md-6 form-right">
+                        <!-- file upload -->
+                        <!-- file upload end -->
+
+                        <fieldset class="controls">
+                            <div class="controls-container">
+                                <button type="button" class="ge-btn-default btn-cancel" (click)="goBack()">
+                                    <span>Cancelar</span>
+                                </button>
+                                <button type="submit" class="ge-btn-default btn-accept">
+                                    <span *ngIf="!loadingBtn && createFlag">Agregar</span>
+                                    <span *ngIf="!loadingBtn && updateFlag">Editar</span>
+                                    <span *ngIf="loadingBtn">
+                                        <fa name="spinner" animation="spin"></fa>
+                                    </span>
+                                </button>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<app-footer></app-footer>

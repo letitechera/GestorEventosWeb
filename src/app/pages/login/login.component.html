@@ -1,3 +1,5 @@
+<login-header></login-header>
+
 <div class="login-wrapper">
     <div class="login-content">
         <div class="login-header">
@@ -10,7 +12,7 @@
                         <mat-form-field class="text-input">
                             <input matInput placeholder="Email" type="email" formControlName="username" />
                             <mat-error *ngIf="loginForm.get('username').hasError('required')">
-                                Username is required
+                                Escriba un nombre de usuario o email.
                             </mat-error>
                         </mat-form-field>
                     </div>
@@ -20,20 +22,20 @@
                         <mat-form-field class="text-input">
                             <input matInput placeholder="Password" type="password" formControlName="password" />
                             <mat-error *ngIf="loginForm.get('password').hasError('required')">
-                                Password is required
+                                Escriba una contraseña.
                             </mat-error>
                         </mat-form-field>
                     </div>
                 </div>
                 <div class="row">
                     <mat-error *ngIf="loginError">
-                        El usuario o contraseña son incorrectos
+                        El usuario o contraseña son incorrectos.
                     </mat-error>
                 </div>
             </fieldset>
             <div id="submit-block">
                 <div class="submit-input">
-                    <button type="submit" id="login-submit" class="btn btn-next">
+                    <button type="submit" id="login-submit" class="ge-btn-default btn-accept">
                         <span *ngIf="!loading">Login</span>
                         <span *ngIf="loading"><fa name="spinner" animation="spin"></fa></span> 
                     </button>
@@ -43,3 +45,4 @@
         </form>
     </div>
 </div>
+<app-footer></app-footer>

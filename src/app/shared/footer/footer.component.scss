@@ -1,5 +1,6 @@
+@import '~styles/palette';
 .footer {
-    background-color: #E5E8E8;
+    background-color: $ge-earth;
     position: fixed;
     left: 0;
     bottom: 0;
@@ -7,5 +8,14 @@
     text-align: center;
  }
  .footer-span{
-     font-size: 12px;
+    font-size: 12px;
+ }
+ .nav-item{
+    color: $ge-seal;
+    a{
+        color: $ge-seal;
+    }
+    a:hover{
+        color: $ge-chalk;
+    }
  }

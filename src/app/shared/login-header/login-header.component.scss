@@ -1,0 +1,10 @@
+@import '~styles/palette';
+nav{
+    background-color: $ge-earth;
+    .navbar-left{
+        float: left;
+        a.navbar-brand{
+            color: $ge-chalk;
+        }
+    }
+}

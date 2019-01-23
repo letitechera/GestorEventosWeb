@@ -1,0 +1,122 @@
+@import '~styles/palette';
+
+.event-details{
+    background-color: $ge-chalk;
+    padding: 30px;
+}
+.event-header{
+    width: 100%;
+    display: inline-block;
+    padding-right: 20px;
+    h2{
+        float: left;
+    }
+    a.event-edit{
+        font-size: 14px;
+        line-height: 2;
+        float: right;
+        cursor: pointer;
+    }
+    a.event-edit:hover{
+        color: $ge-deep-sky;
+    }
+}
+
+.sub-menu-event{
+    padding: 20px;
+    height: fit-content;
+    margin-top: 10px;
+    a{
+        padding: 5px 15px;
+        margin: 7px;
+        font-size: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 300;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        cursor: pointer;
+        background-color: $ge-sunrise;
+        color: $ge-chalk;
+        fa{
+            padding-right: 3px;
+        }
+    }
+    a:hover{
+        background-color: $ge-sunset;
+        color: $ge-chalk;
+    }
+}
+.event-timespans{
+    padding: 20px 0;
+    font-size: 14px;
+    .timespan-label{
+        span{
+            display: inline-block;
+            width: 80px;
+            color: $ge-elephant;
+        }
+        fa{
+            color: $ge-sunrise;
+            margin: 7px;
+        }
+
+    }
+}
+.event-location{
+    font-size: 14px;
+    padding: 10px 0;
+    span{
+        color: $ge-elephant;
+    }
+}
+.event-description{
+    padding: 20px 0;
+    padding-right: 30px;
+    font-size: 14px;
+    line-height: 1.8;
+}
+.event-right{
+    width: 100%;
+    .event-img{
+        float: right;
+    }
+    .center-cropped {
+        width: 500px;
+        height: 250px;
+        background-size: 120%;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+    .event-controls{
+        float: right;
+        padding-top: 25px;
+        margin-top: 35px;
+        padding-left: 25px;
+        border-top: 0.7px solid $ge-elephant;
+        a{
+            cursor: pointer;
+            display: block;
+            margin-left: 20px;
+            width: fit-content;
+            height: fit-content;
+            float: right;
+            font-size: 14px;
+            background-color: $ge-sunrise;
+            text-align: center;
+            color: white;
+            padding: 10px 20px;
+        }
+        a.cancel{
+            background-color: $ge-elephant;
+            margin-right: 0;
+        }
+        a:hover{
+            background-color: $ge-sunset;
+        }
+        a.cancel:hover{
+            background-color: $ge-rat;
+        }
+    }
+}

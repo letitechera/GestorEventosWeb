@@ -1,0 +1,18 @@
+@import "~styles/palette";
+.hidden {
+  display: none;
+}
+.controls{
+    padding-top: 20px;
+    .ge-btn-default{
+        min-width: 70px;
+        margin: 0 10px 0 0;
+        float: left;
+    }
+    .btn-cancel{
+        background-color: $ge-elephant;
+    }
+    .btn-cancel:hover{
+        background-color: $ge-sunset;
+    }
+}

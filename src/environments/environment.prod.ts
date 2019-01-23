@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  webApiUrl: 'https://gestor-eventos.azurewebsites.net/api',
 };

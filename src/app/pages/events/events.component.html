@@ -1,0 +1,83 @@
+<app-header></app-header>
+<div class="sub-menu">
+    <div class="left-smenu">
+        <a class="style-l" title="Administrar Temas" (click)="openTopicsDialog()">Temas</a>
+    </div>
+    <div class="right-smenu">
+        <a title="Crear Evento" class="add-event">
+            <fa name="plus"></fa>
+        </a>
+    </div>
+    <div class="search">
+        <mat-form-field>
+            <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
+            <div class="ico-search"><span class="ico ico-mglass"></span></div>
+        </mat-form-field>
+    </div>
+</div>
+
+<div class="content-body">
+    <div class="loader" *ngIf="loading"></div>
+    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+        <ng-container matColumnDef="Image">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let element"> <img src="{{element.Image}}" width="40px" height="35px" /></td>
+        </ng-container>
+
+        <ng-container matColumnDef="Name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Evento </th>
+            <td mat-cell *matCellDef="let element"> {{element.Name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Description">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Descripción </th>
+            <td mat-cell *matCellDef="let element" class="cutlong"> {{element.Description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Location">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Locación </th>
+            <td mat-cell *matCellDef="let element"> {{element.Location}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="StartDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de inicio </th>
+            <td mat-cell *matCellDef="let element"> {{showDate(element.StartDate)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="EndDate">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha de finalización </th>
+            <td mat-cell *matCellDef="let element"> {{showDate(element.EndDate)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="StartTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de inicio </th>
+            <td mat-cell *matCellDef="let element"> {{showTime(element.StartDate)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="EndTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Hora de finalización </th>
+            <td mat-cell *matCellDef="let element"> {{showTime(element.EndDate)}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Topic">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Tema </th>
+            <td mat-cell *matCellDef="let element"> {{element.Topic}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Options">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+            <td mat-cell *matCellDef="let element">
+                <a class="options">
+                    <fa name="remove" title="Eliminar"></fa>
+                </a>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getEvent(row)"></tr>
+    </table>
+    <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" *ngIf="!loading">
+    </mat-paginator>
+</div>
+
+<app-footer></app-footer>
