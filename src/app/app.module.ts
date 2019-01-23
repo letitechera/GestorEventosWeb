@@ -34,6 +34,8 @@ import { LocationsComponent } from './pages/locations/locations.component';
 import { LoginHeaderComponent } from './shared/login-header/login-header.component';
 import { EventManageComponent } from './pages/event-manage/event-manage.component';
 import { FileUploadService } from '@services/file-upload/file-upload.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { UploadComponent } from './shared/upload/upload.component';
 
 @NgModule({
   declarations: [
@@ -41,17 +43,7 @@ import { FileUploadService } from '@services/file-upload/file-upload.service';
     LoginComponent,
     CallbackComponent,
     HeaderComponent,
-    FooterComponent,
-    EventsComponent,
-    EventDetailsComponent,
-    InterestedComponent,
-    AccreditationComponent,
-    LocationsModalComponent,
-    TopicsModalComponent,
-    AttendantsModalComponent,
-    LocationsComponent,
-    LoginHeaderComponent,
-    EventManageComponent,
+    FooterComponent
   ],
   entryComponents: [
     LocationsModalComponent,
