@@ -51,9 +51,9 @@ export class EventsComponent implements OnInit {
       'Description',
       'Location',
       'StartDate',
-      'FinishDate',
+      'EndDate',
       'StartTime',
-      'FinishTime',
+      'EndTime',
       'Topic',
       'Options'
     ];

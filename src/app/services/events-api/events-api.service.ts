@@ -24,7 +24,7 @@ export class EventsApiService {
               EventId: result.id,
               Name: result.name,
               StartDate: new Date(result.startDate),
-              FinishDate: new Date(result.finishDate),
+              EndDate: new Date(result.endDate),
               Image: result.image != null ? result.image : '',
               Description: result.description,
               Location: result.location,

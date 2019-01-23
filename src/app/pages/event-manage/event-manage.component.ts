@@ -62,34 +62,32 @@ export class EventManageComponent implements OnInit, OnDestroy {
       } else {
         this.createFlag = true;
         this.initializeEmpty();
-        this.GetLocations();
-        this.GetTopics();
+        this.GetLocations(0);
+        this.GetTopics(0);
       }
     });
   }
 
-  private GetLocations() {
+  private GetLocations(id) {
     this.locationsApi.getAllLocations().then((locations: any[]) => {
       this.locations = locations;
       if (this.id != null && this.id != 0) {
-        this.selectedlocation = this.event.Location.Id;
+        this.selectedlocation = id;
       } else {
         this.selectedlocation = locations[0].id;
       }
-      console.log(locations);
     }, (err) => {
       console.log(err);
     });
   }
-  private GetTopics() {
+  private GetTopics(id) {
     this.eventsApi.getAllTopics().then((topics: any[]) => {
       this.topics = topics;
       if (this.id != null && this.id != 0) {
-        this.selectedtopic = this.event.EventTopic.TopicId;
+        this.selectedtopic = id;
       } else {
         this.selectedtopic = topics[0].id;
       }
-      console.log(topics);
     }, (err) => {
       console.log(err);
     });
@@ -100,7 +98,9 @@ export class EventManageComponent implements OnInit, OnDestroy {
       Id: [0, [Validators.required]],
       Name: ['', [Validators.required]],
       StartDate: ['', [Validators.required]],
-      FinishDate: ['', [Validators.required]],
+      EndDate: ['', [Validators.required]],
+      StartTime: ['00:00', [Validators.required]],
+      EndTime: ['00:00', [Validators.required]],
       Description: [''],
       Image: [''],
       LocationId: [this.selectedlocation, [Validators.required]],
@@ -113,7 +113,9 @@ export class EventManageComponent implements OnInit, OnDestroy {
       Id: [this.event.EventId, [Validators.required]],
       Name: [this.event.Name, [Validators.required]],
       StartDate: [this.event.StartDate, [Validators.required]],
-      FinishDate: [this.event.FinishDate, [Validators.required]],
+      EndDate: [this.event.EndDate, [Validators.required]],
+      StartTime: [this.dateService.GetCustomTime(this.event.StartDate), [Validators.required]],
+      EndTime: [this.dateService.GetCustomTime(this.event.EndDate), [Validators.required]],
       Description: [this.event.Description != null ? this.event.Description : ''],
       Image: [this.event.Image != null ? this.event.Image : ''],
       LocationId: [this.selectedlocation, [Validators.required]],
@@ -131,18 +133,17 @@ export class EventManageComponent implements OnInit, OnDestroy {
           EventId: data.id,
           Name: data.name,
           StartDate: new Date(data.startDate),
-          FinishDate: new Date(data.endDate),
+          EndDate: new Date(data.endDate),
           Image: data.image != null ? data.image : '',
           Description: data.description,
           Location: data.location,
           EventTopic: data.eventTopic,
           Canceled: data.canceled,
         };
-        console.log(this.event)
         this.initUpdateForm();
         this.loading = false;
-        this.GetLocations();
-        this.GetTopics();
+        this.GetLocations(data.location.id);
+        this.GetTopics(data.eventTopic.id);
       }
     }, (err) => {
       console.log(err);
@@ -167,6 +168,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.setEventObject();
     this.eventsApi.postEvent(this.eventSend).then((data: any[]) => {
       this.loadingBtn = false;
+      this.goBack();
     }, (err) => {
       console.log(err);
     });
@@ -176,20 +178,23 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.setEventObject();
     this.eventsApi.putEvent(this.eventSend).then((data: any[]) => {
       this.loadingBtn = false;
-      console.log(data);
+      this.goBack();
     }, (err) => {
       console.log(err);
     });
   }
 
   private setEventObject() {
-    var startDate = this.dateService.GetLongDateString(this.eventForm.get('StartDate').value);
-    var endDate = this.dateService.GetLongDateString(this.eventForm.get('EndDate').value);
-
+    var startDate = this.dateService.SetTimeToDate(this.eventForm.get('StartDate').value,  this.eventForm.get('StartTime').value);
+    var endDate = this.dateService.SetTimeToDate(this.eventForm.get('EndDate').value,  this.eventForm.get('EndTime').value);
+    var startDateString = this.dateService.GetLongDateString(startDate);
+    var endDateString = this.dateService.GetLongDateString(endDate);
+    startDate = this.dateService.SetTimeToDate(new Date(startDate), this.eventForm.get('StartTime').value);
+    startDate = this.dateService.SetTimeToDate(new Date(startDate), this.eventForm.get('StartTime').value);
     this.eventSend.Name = this.eventForm.get('Name').value;
     this.eventSend.Description = this.eventForm.get('Description').value;
-    this.eventSend.StartDate = startDate;
-    this.eventSend.EndDate = endDate;
+    this.eventSend.StartDate = startDateString;
+    this.eventSend.EndDate = endDateString;
     this.eventSend.Image = this.eventForm.get('Image').value;
     this.eventSend.EventTopicId = this.eventForm.get('EventTopicId').value;
     this.eventSend.LocationId = this.eventForm.get('LocationId').value;

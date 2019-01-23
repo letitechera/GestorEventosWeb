@@ -47,7 +47,7 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
           EventId: data.id,
           Name: data.name,
           StartDate: new Date(data.startDate),
-          FinishDate: new Date(data.finishDate),
+          EndDate: new Date(data.endDate),
           Image: data.image != null ? data.image : '',
           Description: data.description,
           Location: data.location,

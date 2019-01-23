@@ -22,7 +22,7 @@
                         </mat-form-field>
                         <div class="inline">
                             <mat-form-field class="input-startdate">
-                                <input matInput [min]="minDate" [matDatepicker]="picker1" placeholder="Fecha de Inicio"
+                                <input matInput [min]="minDate" [matDatepicker]="picker1" placeholder="Fecha de Inicio *"
                                     formControlName="StartDate">
                                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                 <mat-datepicker #picker1></mat-datepicker>
@@ -30,13 +30,25 @@
                                     Ingrese una fecha
                                 </mat-error>
                             </mat-form-field>
+                            <mat-form-field class="input-time1">
+                                <input type="time" matInput placeholder="Hora de inicio *" formControlName="StartTime" />
+                                <mat-error *ngIf="eventForm.get('EndTime').hasError('required') && this.submitted">
+                                    Escriba una hora
+                                </mat-error>
+                            </mat-form-field>
                             <mat-form-field class="input-enddate">
-                                <input matInput [min]="minEndDate" [matDatepicker]="picker2" placeholder="Fecha de Finalización"
-                                    formControlName="FinishDate">
+                                <input matInput [min]="minEndDate" [matDatepicker]="picker2" placeholder="Fecha de Finalización *"
+                                    formControlName="EndDate">
                                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                 <mat-datepicker #picker2></mat-datepicker>
-                                <mat-error *ngIf="eventForm.get('FinishDate').hasError('required') && this.submitted">
+                                <mat-error *ngIf="eventForm.get('EndDate').hasError('required') && this.submitted">
                                     Ingrese una fecha
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="input-time2">
+                                <input type="time" matInput placeholder="Hora de fin *" formControlName="EndTime" />
+                                <mat-error *ngIf="eventForm.get('EndTime').hasError('required') && this.submitted">
+                                    Escriba una hora
                                 </mat-error>
                             </mat-form-field>
                         </div>
@@ -70,7 +82,7 @@
 
                         <fieldset class="controls">
                             <div class="controls-container">
-                                <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
+                                <button type="button" class="ge-btn-default btn-cancel" (click)="goBack()">
                                     <span>Cancelar</span>
                                 </button>
                                 <button type="submit" class="ge-btn-default btn-accept">
