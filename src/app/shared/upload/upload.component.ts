@@ -22,6 +22,7 @@ export class UploadComponent implements OnInit {
   public fileLoaded: boolean;
   public fileName: string;
   public fileUrl: string;
+  public resultMsg: boolean;
 
   ngOnInit() {
     this.formData = new FormData();
@@ -36,7 +37,7 @@ export class UploadComponent implements OnInit {
       this.fileLoaded = false;
       return;
     }
-
+    this.resultMsg = false;
     /* Preview */
     if (event.target.files && event.target.files[0]) {
       this.fileUrl = URL.createObjectURL(event.target.files[0]);
@@ -55,14 +56,19 @@ export class UploadComponent implements OnInit {
     }
     /* Store file */
     this.loadingfile = true;
+
     this.http.post(`${this.baseurl}/${this.event}`, this.formData, { reportProgress: true, observe: 'events' })
       .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress)
+        if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
+          if (this.progress == 100) {
+            this.loadingfile = false;
+            this.formData = new FormData();
+            this.fileLoaded = false;
+            this.resultMsg = true;
+          }
+        }
         else if (event.type === HttpEventType.Response) {
-          this.fileName = 'Upload success!';
-          this.loadingfile = false;
-          this.clearImage();
           this.onUploadFinished.emit(event.body);
         }
       });

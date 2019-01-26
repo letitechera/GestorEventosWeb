@@ -10,26 +10,21 @@
           <span *ngIf="fileLoaded">{{fileName}}</span>
         </div>
         <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files, $event)" style="display:none;">
-        <div>
-          <span class="upload" *ngIf="progress > 0">
-            {{progress}}%
-          </span>
-          <span class="upload" *ngIf="message">
-            {{message}}
-          </span>
-        </div>
       </div>
     </a>
   </div>
   <fieldset class="controls">
-      <div class="controls-container">
-          <button type="button" class="ge-btn-default btn-cancel" (click)="clearImage()">
-              <span>Cancelar</span>
-          </button>
-          <button class="ge-btn-default btn-accept" (click)="saveFile()">
-              <span *ngIf="!loadingfile">Guardar Imagen</span>
-              <span *ngIf="loadingfile">{{progress}}</span>
-          </button>
-      </div>
+    <div class="controls-container">
+      <button type="button" class="ge-btn-default btn-cancel" (click)="clearImage()">
+        <span>Cancelar</span>
+      </button>
+      <button type="button" class="ge-btn-default btn-accept" (click)="saveFile()">
+        <span *ngIf="!loadingfile">Guardar Imagen</span>
+        <span *ngIf="loadingfile">
+          <fa name="spinner" animation="spin"></fa>
+        </span>
+      </button>
+    </div>
+    <div *ngIf="resultMsg" class="result-message"><span>La imagen se ha cargado exitosamente!</span></div>
   </fieldset>
 </div>
