@@ -7,7 +7,7 @@
   </div>
   <div class="container event-details">
     <div class="loader" *ngIf="loading"></div>
-    <div class="row" *ngIf="!loading" >
+    <div class="row" *ngIf="!loading">
       <div class="col-xs-6 col-md-6">
         <div class="event-header">
           <h2>{{event.Name}}</h2>
@@ -21,8 +21,8 @@
             {{showTime(event.StartDate)}}
           </div>
           <div class="timespan-label">
-            <span>Termina:</span> {{showDate(event.StartDate)}} <fa name="caret-right"></fa>
-            {{showTime(event.StartDate)}}
+            <span>Termina:</span> {{showDate(event.EndDate)}} <fa name="caret-right"></fa>
+            {{showTime(event.EndDate)}}
           </div>
         </div>
         <div class="event-location">
@@ -46,66 +46,5 @@
       </div>
     </div>
   </div>
-
-  <!-- <form [formGroup]="locationsForm" class="locations-form" (ngSubmit)="submitLocation()">
-    <fieldset>
-      <mat-form-field>
-        <input matInput placeholder="Nombre *" formControlName="Name" />
-        <mat-error *ngIf="locationsForm.get('Name').hasError('required') && this.submitted">
-          Escriba un nombre
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Dirección Principal *" formControlName="Address1" />
-        <mat-error *ngIf="locationsForm.get('Address1').hasError('required') && this.submitted">
-          Escriba una dirección
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Dirección Secundaria" formControlName="Address2" />
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="Capacidad *" formControlName="Capacity" type="number" />
-        <mat-error *ngIf="locationsForm.get('Capacity').hasError('required') && this.submitted">
-          Escriba un número
-        </mat-error>
-        <mat-error *ngIf="locationsForm.get('Capacity').hasError('pattern') && this.submitted">
-          Escriba un número válido
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select formControlName="City" placeholder="Ciudad *" [(ngModel)]="selectedcity">
-          <mat-option *ngFor="let city of cities" [value]="city.id">
-            {{ city.name }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="locationsForm.get('City').hasError('required')">
-          Elija una ciudad
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select formControlName="Country" placeholder="País *" [(ngModel)]="selected" [disabled]="disabled">
-          <mat-option *ngFor="let country of countries" [value]="country.id">
-            {{ country.name }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="locationsForm.get('Country').hasError('required')">
-          Elija un país
-        </mat-error>
-      </mat-form-field>
-    </fieldset>
-    <fieldset class="controls">
-      <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
-        <span>Cancelar</span>
-      </button>
-      <button type="submit" class="ge-btn-default btn-accept">
-        <span *ngIf="!loading && createFlag">Agregar</span>
-        <span *ngIf="!loading && updateFlag">Editar</span>
-        <span *ngIf="loading">
-          <fa name="spinner" animation="spin"></fa>
-        </span>
-      </button>
-    </fieldset>
-  </form> -->
 </div>
 <app-footer></app-footer>

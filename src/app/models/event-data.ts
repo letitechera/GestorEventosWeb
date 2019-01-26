@@ -4,7 +4,7 @@ export interface EventData {
     EventId: number;
     Name: string;
     StartDate: Date;
-    FinishDate: Date;
+    EndDate: Date;
     Image: string;
     Description: string;
     Location: string;
@@ -16,7 +16,7 @@ export interface EventFullData {
     EventId: number;
     Name: string;
     StartDate: Date;
-    FinishDate: Date;
+    EndDate: Date;
     Image: string;
     Description: string;
     Location: LocationData;

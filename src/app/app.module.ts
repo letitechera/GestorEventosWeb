@@ -40,9 +40,14 @@ import { LoginHeaderComponent } from './shared/login-header/login-header.compone
 import { EventManageComponent } from './pages/event-manage/event-manage.component';
 import { FileUploadService } from '@services/file-upload/file-upload.service';
 import { NgQrScannerModule } from 'angular2-qrscanner';
+import { UploadComponent } from './shared/upload/upload.component';
 
 @NgModule({
   declarations: [
+    LocationsModalComponent,
+    TopicsModalComponent,
+    AttendantsModalComponent,
+    LoginHeaderComponent,
     AppComponent,
     LoginComponent,
     CallbackComponent,
@@ -52,9 +57,6 @@ import { NgQrScannerModule } from 'angular2-qrscanner';
     EventDetailsComponent,
     InterestedComponent,
     AccreditationComponent,
-    LocationsModalComponent,
-    TopicsModalComponent,
-    AttendantsModalComponent,
     LocationsComponent,
     RegisterComponent,
     ForgotPasswordComponent,
@@ -62,6 +64,7 @@ import { NgQrScannerModule } from 'angular2-qrscanner';
     ProfileComponent,
     LoginHeaderComponent,
     EventManageComponent,
+    UploadComponent
   ],
   entryComponents: [
     LocationsModalComponent,
