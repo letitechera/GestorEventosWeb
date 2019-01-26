@@ -36,6 +36,18 @@ export class EventsComponent implements OnInit {
     this.route.navigate(['/events', row.EventId]);
   }
 
+  public deleteEvent(eventId){
+    this.eventsApi.deleteEvent(eventId).then((data: any[]) => {
+      this.initData();
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  public createNewEvent() {
+    this.route.navigate(['events/manage/', 0]);
+  }
+
   public showDate(date) {
     return this.dateService.GetShortDate(date);
   }

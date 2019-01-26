@@ -8,7 +8,7 @@ import { environment } from '@environment';
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent implements OnInit {
-  @Input() event: number;
+  @Input() eventId: number;
   @Input() originalImage: string;
   public progress: number;
   public message: string;
@@ -28,7 +28,7 @@ export class UploadComponent implements OnInit {
     this.formData = new FormData();
     console.log(this.originalImage);
     var emptyImage = this.originalImage == null || this.originalImage == "";
-    this.originalImage = this.event == 0 || emptyImage ? environment.defaultImage : this.originalImage;
+    this.originalImage = this.eventId == 0 || emptyImage ? environment.defaultImage : this.originalImage;
     this.fileUrl = this.originalImage;
   }
 
@@ -48,27 +48,36 @@ export class UploadComponent implements OnInit {
     this.formData.append('file', fileToUpload, fileToUpload.name);
     this.fileLoaded = true;
     this.fileName = fileToUpload.name;
+
+    if(this.eventId == 0){
+      this.saveFile();
+    }
   }
 
   public saveFile() {
-    if (!this.fileLoaded || this.event == 0) {
+    if (!this.fileLoaded) {
       return;
     }
     /* Store file */
     this.loadingfile = true;
 
-    this.http.post(`${this.baseurl}/${this.event}`, this.formData, { reportProgress: true, observe: 'events' })
+    this.http.post(`${this.baseurl}/${this.eventId}`, this.formData, { reportProgress: true, observe: 'events' })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
           if (this.progress == 100) {
-            this.loadingfile = false;
+            if(this.eventId != 0){
+              this.loadingfile = false;
+            }
             this.formData = new FormData();
             this.fileLoaded = false;
             this.resultMsg = true;
           }
         }
         else if (event.type === HttpEventType.Response) {
+          if(this.eventId == 0){
+            this.loadingfile = false;
+          }
           this.onUploadFinished.emit(event.body);
         }
       });

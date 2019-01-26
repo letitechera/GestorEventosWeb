@@ -1,5 +1,6 @@
 <div class="upload-container">
   <div *ngIf="fileUrl!=null" class="event-img center-cropped" [ngStyle]="{ 'background-image': 'url(' + fileUrl + ')'}">
+      <div class="loader" *ngIf="loadingfile"></div>
   </div>
   <div class="file-upload" [ngClass]="{'active': fileLoaded}">
     <a (click)="file.click()" class="file-btn-wrapper">
@@ -13,7 +14,7 @@
       </div>
     </a>
   </div>
-  <fieldset class="controls">
+  <fieldset class="controls" *ngIf="eventId != 0">
     <div class="controls-container">
       <button type="button" class="ge-btn-default btn-cancel" (click)="clearImage()">
         <span>Cancelar</span>
