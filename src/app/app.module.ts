@@ -17,6 +17,7 @@ import { DateService } from '@services/date/date.service';
 import { LocationsApiService } from '@services/locations-api/locations-api.service';
 import { AttendantsApiService } from '@services/attendants-api/attendants-api.service';
 import { GeographicsApiService } from '@services/geographics-api/geographics-api.service';
+import { AccountApiService } from './services/account-api/account-api.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -31,9 +32,14 @@ import { LocationsModalComponent } from './shared/locations-modal/locations-moda
 import { TopicsModalComponent } from './shared/topics-modal/topics-modal.component';
 import { AttendantsModalComponent } from './shared/attendants-modal/attendants-modal.component';
 import { LocationsComponent } from './pages/locations/locations.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginHeaderComponent } from './shared/login-header/login-header.component';
 import { EventManageComponent } from './pages/event-manage/event-manage.component';
 import { FileUploadService } from '@services/file-upload/file-upload.service';
+import { NgQrScannerModule } from 'angular2-qrscanner';
 import { UploadComponent } from './shared/upload/upload.component';
 
 @NgModule({
@@ -52,6 +58,11 @@ import { UploadComponent } from './shared/upload/upload.component';
     InterestedComponent,
     AccreditationComponent,
     LocationsComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    ProfileComponent,
+    LoginHeaderComponent,
     EventManageComponent,
     UploadComponent
   ],
@@ -72,11 +83,13 @@ import { UploadComponent } from './shared/upload/upload.component';
     ReactiveFormsModule,
     AngularFontAwesomeModule,
     MatButtonModule,
+    NgQrScannerModule
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
     DatePipe,
     AuthApiService,
+    AccountApiService,
     EventsApiService,
     DateService,
     AttendantsApiService,

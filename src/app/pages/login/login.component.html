@@ -41,7 +41,8 @@
                     </button>
                 </div>
             </div>
-            <div class="register-container">¿No tienes una cuenta? <a>Regístrate aquí</a></div>
+            <div class="register-container" (click)="navigateTo('register')">¿No tienes una cuenta? <a>Regístrate aquí</a></div>
+            <div class="register-container" (click)="navigateTo('forgot-password')">¿Olvidaste tu contraseña? <a>Recupérala aquí</a></div>
         </form>
     </div>
 </div>
