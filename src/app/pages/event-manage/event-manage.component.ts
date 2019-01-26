@@ -7,6 +7,7 @@ import { EventFullData, EventSendableData } from '@models/event-data';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LocationsApiService } from '@services/locations-api/locations-api.service';
 import { FileUploadService } from '@services/file-upload/file-upload.service';
+import { environment } from '@environment';
 
 @Component({
   selector: 'app-event-manage',
@@ -117,7 +118,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
       StartTime: [this.dateService.GetCustomTime(this.event.StartDate), [Validators.required]],
       EndTime: [this.dateService.GetCustomTime(this.event.EndDate), [Validators.required]],
       Description: [this.event.Description != null ? this.event.Description : ''],
-      Image: [this.event.Image != null ? this.event.Image : ''],
+      Image: [this.event.Image != null || this.event.Image != "" ? this.event.Image : environment.defaultImage],
       LocationId: [this.selectedlocation, [Validators.required]],
       EventTopicId: [this.selectedtopic, [Validators.required]],
       Canceled: [this.event.Canceled]

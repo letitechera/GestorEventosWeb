@@ -74,15 +74,6 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
-
-                    </div>
-                    <div class="col-xs-6 col-md-6 form-right">
-                        <!-- file upload -->
-
-                        <app-upload></app-upload>
-
-                        <!-- file upload end -->
-
                         <fieldset class="controls">
                             <div class="controls-container">
                                 <button type="button" class="ge-btn-default btn-cancel" (click)="goBack()">
@@ -97,6 +88,13 @@
                                 </button>
                             </div>
                         </fieldset>
+                    </div>
+                    <div class="col-xs-6 col-md-6 form-right">
+                        <!-- file upload -->
+
+                        <app-upload [event]="id" [originalImage]="event.Image" ></app-upload>
+
+                        <!-- file upload end -->
                     </div>
                 </div>
             </fieldset>

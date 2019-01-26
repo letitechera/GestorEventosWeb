@@ -27,13 +27,14 @@
     }
 }
 .form-container{
-    padding: 30px 60px;
+    padding: 5px 60px;
 }
 .form-left{
     padding: 20px 30px;
 }
 .form-right{
     padding: 20px 30px;
+    padding-top: 0;
 }
 .input-descrp{
 }
@@ -61,4 +62,12 @@
 .input-topic{
     width: 40%;
     padding-left: 3%;
+}
+
+.controls-container{
+    margin-bottom: 0;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    float: right;
 }
