@@ -7,6 +7,7 @@ import { EventFullData, EventSendableData } from '@models/event-data';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LocationsApiService } from '@services/locations-api/locations-api.service';
 import { FileUploadService } from '@services/file-upload/file-upload.service';
+import { environment } from '@environment';
 
 @Component({
   selector: 'app-event-manage',
@@ -22,10 +23,11 @@ export class EventManageComponent implements OnInit, OnDestroy {
   public eventForm: FormGroup;
   public locations: any[];
   public topics: any[];
-  public selectedlocation: any;
-  public selectedtopic: any;
+  public selectedlocation = 1;
+  public selectedtopic = 1;
   public minDate: Date;
   public minEndDate: Date;
+  public originalImage: string;
   public loading: boolean;
   public loadingBtn: boolean;
   public submitted: boolean;
@@ -55,15 +57,17 @@ export class EventManageComponent implements OnInit, OnDestroy {
     };
 
     this.sub = this.route.params.subscribe(params => {
+      debugger
       this.id = +params['id'];
       if (this.id != null && this.id != 0) {
         this.updateFlag = true;
         this.getEventInfo(this.id);
       } else {
         this.createFlag = true;
-        this.initializeEmpty();
+        this.originalImage = environment.defaultImage;
         this.GetLocations(0);
         this.GetTopics(0);
+        this.initializeEmpty();
       }
     });
   }
@@ -72,7 +76,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.locationsApi.getAllLocations().then((locations: any[]) => {
       this.locations = locations;
       if (this.id != null && this.id != 0) {
-        this.selectedlocation = id;
+        this.selectedlocation = this.id;
       } else {
         this.selectedlocation = locations[0].id;
       }
@@ -84,7 +88,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.eventsApi.getAllTopics().then((topics: any[]) => {
       this.topics = topics;
       if (this.id != null && this.id != 0) {
-        this.selectedtopic = id;
+        this.selectedtopic = this.id;
       } else {
         this.selectedtopic = topics[0].id;
       }
@@ -97,17 +101,18 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.eventForm = this.formBuilder.group({
       Id: [0, [Validators.required]],
       Name: ['', [Validators.required]],
-      StartDate: ['', [Validators.required]],
-      EndDate: ['', [Validators.required]],
+      StartDate: [this.minDate, [Validators.required]],
+      EndDate: [this.minEndDate, [Validators.required]],
       StartTime: ['00:00', [Validators.required]],
       EndTime: ['00:00', [Validators.required]],
       Description: [''],
-      Image: [''],
+      Image: [environment.defaultImage],
       LocationId: [this.selectedlocation, [Validators.required]],
-      EventTopicId: [this.selectedtopic, , [Validators.required]],
-      Canceled: ['']
+      EventTopicId: [this.selectedtopic, [Validators.required]],
+      Canceled: [false]
     });
   }
+
   private initUpdateForm() {
     this.eventForm = this.formBuilder.group({
       Id: [this.event.EventId, [Validators.required]],
@@ -117,7 +122,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
       StartTime: [this.dateService.GetCustomTime(this.event.StartDate), [Validators.required]],
       EndTime: [this.dateService.GetCustomTime(this.event.EndDate), [Validators.required]],
       Description: [this.event.Description != null ? this.event.Description : ''],
-      Image: [this.event.Image != null ? this.event.Image : ''],
+      Image: [this.event.Image != null || this.event.Image != "" ? this.event.Image : environment.defaultImage],
       LocationId: [this.selectedlocation, [Validators.required]],
       EventTopicId: [this.selectedtopic, [Validators.required]],
       Canceled: [this.event.Canceled]
@@ -142,6 +147,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
         };
         this.initUpdateForm();
         this.loading = false;
+        this.originalImage = data.image;
         this.GetLocations(data.location.id);
         this.GetTopics(data.eventTopic.id);
       }
@@ -185,8 +191,8 @@ export class EventManageComponent implements OnInit, OnDestroy {
   }
 
   private setEventObject() {
-    var startDate = this.dateService.SetTimeToDate(this.eventForm.get('StartDate').value,  this.eventForm.get('StartTime').value);
-    var endDate = this.dateService.SetTimeToDate(this.eventForm.get('EndDate').value,  this.eventForm.get('EndTime').value);
+    var startDate = this.dateService.SetTimeToDate(this.eventForm.get('StartDate').value, this.eventForm.get('StartTime').value);
+    var endDate = this.dateService.SetTimeToDate(this.eventForm.get('EndDate').value, this.eventForm.get('EndTime').value);
     var startDateString = this.dateService.GetLongDateString(startDate);
     var endDateString = this.dateService.GetLongDateString(endDate);
     startDate = this.dateService.SetTimeToDate(new Date(startDate), this.eventForm.get('StartTime').value);
@@ -195,11 +201,16 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.eventSend.Description = this.eventForm.get('Description').value;
     this.eventSend.StartDate = startDateString;
     this.eventSend.EndDate = endDateString;
-    this.eventSend.Image = this.eventForm.get('Image').value;
+    this.eventSend.Image = this.originalImage;
     this.eventSend.EventTopicId = this.eventForm.get('EventTopicId').value;
     this.eventSend.LocationId = this.eventForm.get('LocationId').value;
     this.eventSend.Id = this.id != null && this.id != 0 ? this.event.EventId : 0;
     this.eventSend.Canceled = false;
+  }
+
+  public uploadFinished = (event) => {
+    this.originalImage = event.newFile;
+    console.log(this.originalImage);
   }
 
   public showDate(date) {
@@ -208,11 +219,14 @@ export class EventManageComponent implements OnInit, OnDestroy {
   public showTime(date) {
     return this.dateService.GetTime(date);
   }
-
   public goBack() {
-    this.router.navigate(['events/', this.event.EventId]);
+    if (this.event != undefined || this.event != null) {
+      this.router.navigate(['events/', this.event.EventId]);
+    }
+    else {
+      this.router.navigateByUrl('events');
+    }
   }
-
   ngOnDestroy() {
     this.sub.unsubscribe();
   }
