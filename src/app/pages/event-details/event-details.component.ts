@@ -30,11 +30,11 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  public editEvent(){
+  public editEvent() {
     this.router.navigate(['events/manage/', this.event.EventId]);
   }
 
-  public goBack(){
+  public goBack() {
     this.router.navigateByUrl('events');
   }
 
@@ -60,6 +60,18 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
       console.log(err);
       this.loading = false;
     });
+  }
+
+  public sendCampaign() {
+    this.loading = true;
+    this.eventsApi.sendCampaign(this.id).then(() => {
+      this.loading = false;
+    },
+      (err) => {
+        console.log(err);
+        this.loading = false;
+      }
+    );
   }
 
   public showDate(date) {

@@ -163,6 +163,43 @@ export class EventsApiService {
     });
   }
 
+  
+  public sendCampaign(id): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.sendCampaignData(id)
+        .pipe(map((result: any) => {
+          if (result == null) {
+            return null;
+          }
+          console.log(result);
+          return result;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
+  public accredit(id): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.accreditParticipant(id)
+        .pipe(map((result: any) => {
+          if (result == null) {
+            return null;
+          }
+          console.log(result);
+          return result;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
   private getAllEventsData() {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/all`;
@@ -221,6 +258,18 @@ export class EventsApiService {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/DeleteTopic/${topicId}`;
     return this.commonHttpDelete(url, null, this.headers);
+  }
+
+  private sendCampaignData(id) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/SendCampaign/${id}`;
+    return this.commonHttpGet(url, this.headers);
+  }
+
+  private accreditParticipant(id) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/accredit/${id}`;
+    return this.commonHttpGet(url, this.headers);
   }
 
   private setDefaultHeaders() {
