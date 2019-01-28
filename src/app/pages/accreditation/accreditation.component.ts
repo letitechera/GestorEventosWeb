@@ -11,6 +11,8 @@ export class AccreditationComponent implements OnInit {
 
   @ViewChild(QrScannerComponent) qrScannerComponent: QrScannerComponent;
 
+  participant: any;
+
   constructor(private eventsApi: EventsApiService) { }
 
   ngOnInit() {
@@ -38,9 +40,18 @@ export class AccreditationComponent implements OnInit {
       }
     });
 
-    this.qrScannerComponent.capturedQr.subscribe(registrationID => {
-      console.log(registrationID);
-      this.eventsApi.accredit(registrationID);
+    this.qrScannerComponent.capturedQr.subscribe(participantId => {
+      console.log(participantId);
+      this.eventsApi.accredit(participantId).then((participant: any[]) => {
+        this.participant = participant;
+        if (participant != null) {
+          console.log("Accreditation OK");
+        }else{
+          console.log("Accreditation FAILED");
+        }
+      }, (err) => {
+        console.log(err);
+      });
     });
   }
 }
