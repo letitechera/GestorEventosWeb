@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<div class="content-body">
+  <div class="event-info-container">
+
+  </div>
+  <div class="schedule-container">
+    <div class="schedule-controls">
+      <a class="add-schedule" (click)="openScheduleDialog(null)">Agregar Agenda</a>
+      <a class="see-speakers" (click)="openSpeakers()">Ver Speakers</a>
+    </div>
+    <div class="blocks container">
+      <div class="schedule-block">
+        <div class="schedule-header"></div>
+        <div class="activities-container">
+          <div class="activity-block">
+            <div class="activity-info">
+              <span class="activity-name"></span>
+              <span class="activity-time"></span>
+              <span class="activity-description"></span>
+            </div>
+            <div class="speakers-container">
+              <div class="speakers-header"></div>
+              <div class="speaker-block">
+                <div class="speaker-image"></div>
+                <span class="speaker-name"></span>
+                <a>
+                  <fa name="remove"></fa>
+                </a>
+              </div>
+              <div class="speakers-controls">
+                <div>Agregar Speaker</div>
+              </div>
+            </div>
+          </div>
+          <div class="add-activity">
+            <a></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

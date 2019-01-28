@@ -61,6 +61,24 @@ export class EventsApiService {
     });
   }
 
+  public getEventDates(id): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.getEventDatesData(id)
+        .pipe(map((result: any) => {
+          if (result == null) {
+            return null;
+          }
+          console.log(result);
+          return result;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
   public getCompleteEvent(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.getCompleteEventData(id)
@@ -178,6 +196,12 @@ export class EventsApiService {
   private getEventDetailsData(id) {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/${id}`;
+    return this.commonHttpGet(url, this.headers);
+  }
+
+  private getEventDatesData(id) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/${id}/dates`;
     return this.commonHttpGet(url, this.headers);
   }
 

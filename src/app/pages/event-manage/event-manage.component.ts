@@ -6,7 +6,6 @@ import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { EventFullData, EventSendableData } from '@models/event-data';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LocationsApiService } from '@services/locations-api/locations-api.service';
-import { FileUploadService } from '@services/file-upload/file-upload.service';
 import { environment } from '@environment';
 
 @Component({
@@ -35,7 +34,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
   private eventSend: EventSendableData;
 
   constructor(private route: ActivatedRoute, private eventsApi: EventsApiService, private auth: AuthApiService,
-    private dateService: DateService, private locationsApi: LocationsApiService, private fileService: FileUploadService,
+    private dateService: DateService, private locationsApi: LocationsApiService, 
     private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {

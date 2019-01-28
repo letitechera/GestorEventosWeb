@@ -1,10 +1,27 @@
 export interface Schedule {
-    id: number;
-    eventId: number;
-    date?: Date;
-    activities: Activity[];
+    Id: number;
+    EventId: number;
+    Date?: Date;
 }
 
 export interface Activity {
-    id: number;
+    Id: number;
+    Description: string;
+    StartTime : Date;
+    EndTime : Date;
+    ActivityTypeId: number;
+    EventScheduleId : Date;
+}
+
+
+export interface Speaker{
+    Id: number;
+    FirstName: string;
+    LastName: string;
+    Position: string;
+    Nationality: string;
+    Company: string;
+    Contact: string;
+    Image: string;
+    ActivityId: number;
 }

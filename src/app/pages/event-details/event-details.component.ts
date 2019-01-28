@@ -34,6 +34,10 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate(['events/manage/', this.event.EventId]);
   }
 
+  public getSchedule() {
+    this.router.navigate(['schedule', this.event.EventId]);
+  }
+
   public goBack(){
     this.router.navigateByUrl('events');
   }

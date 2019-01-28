@@ -38,9 +38,14 @@ import { ResetPasswordComponent } from './pages/reset-password/reset-password.co
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginHeaderComponent } from './shared/login-header/login-header.component';
 import { EventManageComponent } from './pages/event-manage/event-manage.component';
-import { FileUploadService } from '@services/file-upload/file-upload.service';
 import { NgQrScannerModule } from 'angular2-qrscanner';
 import { UploadComponent } from './shared/upload/upload.component';
+import { ScheduleComponent } from './pages/schedule/schedule.component';
+import { SchedulesModalComponent } from './shared/schedules-modal/schedules-modal.component';
+import { ActivityModalComponent } from './shared/activity-modal/activity-modal.component';
+import { SpeakerModalComponent } from './shared/speaker-modal/speaker-modal.component';
+import { PublicEventsComponent } from './pages/public/public-events/public-events.component';
+import { PublicEventComponent } from './pages/public/public-event/public-event.component';
 
 @NgModule({
   declarations: [
@@ -64,12 +69,21 @@ import { UploadComponent } from './shared/upload/upload.component';
     ProfileComponent,
     LoginHeaderComponent,
     EventManageComponent,
-    UploadComponent
+    UploadComponent,
+    ScheduleComponent,
+    SchedulesModalComponent,
+    ActivityModalComponent,
+    SpeakerModalComponent,
+    PublicEventsComponent,
+    PublicEventComponent
   ],
   entryComponents: [
     LocationsModalComponent,
     TopicsModalComponent,
     AttendantsModalComponent,
+    SchedulesModalComponent,
+    ActivityModalComponent,
+    SpeakerModalComponent
   ],
   imports: [
     MatDialogModule,
@@ -95,7 +109,6 @@ import { UploadComponent } from './shared/upload/upload.component';
     AttendantsApiService,
     LocationsApiService,
     GeographicsApiService,
-    FileUploadService
   ],
   bootstrap: [AppComponent]
 })
