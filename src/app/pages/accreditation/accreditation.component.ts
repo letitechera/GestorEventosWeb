@@ -46,6 +46,7 @@ export class AccreditationComponent implements OnInit {
         this.participant = participant;
         if (participant != null) {
           console.log("Accreditation OK");
+          console.log(participant);
         }else{
           console.log("Accreditation FAILED");
         }
