@@ -4,10 +4,18 @@
     <a (click)="goBack()">
       <fa name="arrow-left"></fa> Volver
     </a>
+
+    <div (click)="navigateTo('profile')">
+        <a>Cuenta</a>
+      </div>
+
+    <div (click)="navigateTo('reset-password')">
+      <a>Contraseña</a>
+    </div>
+
   </div>
 
   <div *ngIf="account!=null" class="container event-details content-body">
-
     <div class="form-container">
       <div class="loader" *ngIf="loading"></div>
       <form *ngIf="accountForm!=null" [formGroup]="accountForm" (ngSubmit)="updateAccount()">
@@ -34,10 +42,10 @@
               </div>
 
               <mat-form-field class="input-email">
-                  <input matInput placeholder="Correo Electronico*" formControlName="Email" readonly/>
-                  <mat-error *ngIf="accountForm.get('Email').hasError('required') && this.submitted">
-                      Correo Electronico
-                  </mat-error>
+                <input matInput placeholder="Correo Electronico*" formControlName="Email" readonly />
+                <mat-error *ngIf="accountForm.get('Email').hasError('required') && this.submitted">
+                  Correo Electronico
+                </mat-error>
               </mat-form-field>
 
               <div class="inline">
@@ -75,31 +83,31 @@
               <h3>Informacion de la Organizacion</h3>
 
               <mat-form-field class="input-address1">
-                  <input matInput placeholder="Direccion 1 *" formControlName="Address1" />
-                  <mat-error *ngIf="accountForm.get('Address1').hasError('required') && this.submitted">
-                      Direccion 1
-                  </mat-error>
+                <input matInput placeholder="Direccion 1 *" formControlName="Address1" />
+                <mat-error *ngIf="accountForm.get('Address1').hasError('required') && this.submitted">
+                  Direccion 1
+                </mat-error>
               </mat-form-field>
 
               <mat-form-field class="input-address2">
-                  <input matInput placeholder="Direccion 2 *" formControlName="Address2" />
-                  <mat-error *ngIf="accountForm.get('Address2').hasError('required') && this.submitted">
-                      Direccion 2
-                  </mat-error>
+                <input matInput placeholder="Direccion 2 *" formControlName="Address2" />
+                <mat-error *ngIf="accountForm.get('Address2').hasError('required') && this.submitted">
+                  Direccion 2
+                </mat-error>
               </mat-form-field>
 
               <mat-form-field class="input-city">
-                  <input matInput placeholder="Ciudad *" formControlName="City" />
-                  <mat-error *ngIf="accountForm.get('City').hasError('required') && this.submitted">
-                      Direccion 1
-                  </mat-error>
+                <input matInput placeholder="Ciudad *" formControlName="City" />
+                <mat-error *ngIf="accountForm.get('City').hasError('required') && this.submitted">
+                  Direccion 1
+                </mat-error>
               </mat-form-field>
 
               <mat-form-field class="input-country">
-                  <input matInput placeholder="Pais *" formControlName="Country" />
-                  <mat-error *ngIf="accountForm.get('Country').hasError('required') && this.submitted">
-                      Pais
-                  </mat-error>
+                <input matInput placeholder="Pais *" formControlName="Country" />
+                <mat-error *ngIf="accountForm.get('Country').hasError('required') && this.submitted">
+                  Pais
+                </mat-error>
               </mat-form-field>
 
               <fieldset class="controls">

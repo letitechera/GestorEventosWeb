@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       Id: [this.account.UserId, [Validators.required]],
       FirstName: [this.account.FirstName, [Validators.required]],
       LastName: [this.account.LastName, [Validators.required]],
-      Email: [this.account.Email, [Validators.required]],      
+      Email: [this.account.Email, [Validators.required]],
       Phone: [this.account.Phone, [Validators.required]],
       CellPhone: [this.account.CellPhone, [Validators.required]],
       Job: [this.account.Job, [Validators.required]],
@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.loadingBtn = true;
     this.editAccount();
   }
-  
+
   private editAccount() {
     this.setAccountObject();
     this.usersApi.putAccount(this.account).then((data: any[]) => {
@@ -115,6 +115,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     });
   }
 
+  public navigateTo(page) {
+    this.router.navigateByUrl(page);
+  }
 
   ngOnDestroy() {
     this.sub.unsubscribe();

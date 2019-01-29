@@ -5,7 +5,7 @@ import { EventsApiService } from '@services/events-api/events-api.service';
 @Component({
   selector: 'app-accreditation',
   templateUrl: './accreditation.component.html',
-  styleUrls: ['./accreditation.component.scss']
+  styleUrls: ['./accreditation.component.scss'],
 })
 export class AccreditationComponent implements OnInit {
 
