@@ -20,7 +20,7 @@ export interface EventFullData {
     Image: string;
     Description: string;
     Location: LocationData;
-    EventTopic: TopicData
+    EventTopic: TopicData;
     Canceled: boolean;
 }
 
