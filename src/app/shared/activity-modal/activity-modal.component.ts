@@ -24,8 +24,8 @@ export class ActivityModalComponent implements OnInit {
   public submitted: boolean;
   public loading: boolean;
 
-  constructor(public dialogRef: MatDialogRef<SchedulesModalComponent>, private schedulesApi: SchedulesApiService,
-    private auth: AuthApiService, private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(public dialogRef: MatDialogRef<ActivityModalComponent>, private schedulesApi: SchedulesApiService,
+    private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.submitted = false;

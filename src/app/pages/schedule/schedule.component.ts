@@ -9,6 +9,7 @@ import { MatDialog } from '@angular/material';
 import { SchedulesModalComponent } from '@shared/schedules-modal/schedules-modal.component';
 import { EventData } from '@models/event-data';
 import { environment } from 'environments/environment.prod';
+import { ActivityModalComponent } from '@shared/activity-modal/activity-modal.component';
 
 @Component({
   selector: 'app-schedule',
@@ -72,6 +73,7 @@ export class ScheduleComponent implements OnInit {
   }
 
   public openScheduleDialog(element) {
+    this.auth.checkSession();
     const dialogRef = this.dialog.open(SchedulesModalComponent, {
       height: '220px',
       width: '350px',
@@ -92,8 +94,9 @@ export class ScheduleComponent implements OnInit {
   }
 
   public openActivityDialog(scheduleId, element) {
-    const dialogRef = this.dialog.open(SchedulesModalComponent, {
-      height: '220px',
+    this.auth.checkSession();
+    const dialogRef = this.dialog.open(ActivityModalComponent, {
+      height: '400px',
       width: '350px',
       hasBackdrop: true,
       data: {
@@ -109,7 +112,7 @@ export class ScheduleComponent implements OnInit {
     });
   }
 
-  public getPrettyDate(date){
+  public getPrettyDate(date) {
     this.dateService.GetPrettyDate(date);
   }
 }
