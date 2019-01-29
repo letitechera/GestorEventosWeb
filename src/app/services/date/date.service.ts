@@ -27,4 +27,8 @@ export class DateService {
     let res = this.datepipe.transform(date, 'yyyy-MM-dd HH:mm:ss');
     return res + '.0000000';
   }
+  public GetPrettyDate(date: any){
+    return this.datepipe.transform(date, 'EEEE d, MMM');
+  }
+  
 }

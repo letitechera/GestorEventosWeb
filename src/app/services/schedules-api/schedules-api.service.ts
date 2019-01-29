@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { environment } from '@environment';
+import { DateService } from '@services/date/date.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SchedulesApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dateService: DateService) { }
   private headers: HttpHeaders;
 
   public getSchedulesByEvent(eventId): Promise<any> {
@@ -16,16 +17,15 @@ export class SchedulesApiService {
       this.getSchedulesByEventData(eventId)
         .pipe(map((results: any[]) => {
           const data = [];
-          debugger;
           if (!results) {
             return data;
           }
           results.forEach((result) => {
             data.push({
-
               Id: result.id,
               EventId: result.eventId,
-              Date: result.date
+              Date: new Date(result.date),
+              PrettyDate: this.dateService.GetPrettyDate(new Date(result.date))
             });
           });
           return data;

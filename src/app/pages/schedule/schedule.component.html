@@ -9,9 +9,9 @@
       <a class="add-schedule" (click)="openScheduleDialog(null)">Agregar Agenda</a>
       <a class="see-speakers" (click)="openSpeakers()">Ver Speakers</a>
     </div>
-    <div class="blocks container">
-      <div class="schedule-block">
-        <div class="schedule-header"></div>
+    <div class="row blocks-container">
+      <div class="col-sm-4 col-md-3 schedule-block" *ngFor="let schedule of schedules">
+        <div class="schedule-header">Día {{schedule.PrettyDate}}</div>
         <div class="activities-container">
           <div class="activity-block">
             <div class="activity-info">
@@ -29,12 +29,12 @@
                 </a>
               </div>
               <div class="speakers-controls">
-                <div>Agregar Speaker</div>
+                <a>Agregar Speaker</a>
               </div>
             </div>
           </div>
           <div class="add-activity">
-            <a></a>
+            <a (click)="openActivityDialog(schedule.Id, null)">Agregar Actividad</a>
           </div>
         </div>
       </div>

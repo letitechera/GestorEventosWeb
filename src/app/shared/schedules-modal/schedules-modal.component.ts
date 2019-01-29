@@ -30,18 +30,17 @@ export class SchedulesModalComponent implements OnInit {
 
   ngOnInit() {
     this.submitted = false;
-    this.passedEventId = this.data.eventId;
     this.passedSchedule = this.data.schedule;
-
-    this.minDate = new Date();
-    this.maxDate = new Date();
+    this.passedEventId = this.data.eventId;
+    this.minDate = this.data.startDate;
+    this.maxDate = this.data.endDate;
 
     this.scheduleData = {
       EventId: this.passedEventId,
-      Date: new Date(),
+      Date: this.minDate,
+      PrettyDate: '',
       Id: 0
     };
-    this.getEventDates(this.passedEventId);
     if (this.data.schedule == null) {
       this.createFlag = true;
       this.createEmptyForm();
@@ -60,27 +59,6 @@ export class SchedulesModalComponent implements OnInit {
   private setCurrentForm() {
     this.scheduleForm = this.formBuilder.group({
       Date: [this.passedSchedule.Date, [Validators.required]],
-    });
-  }
-
-  private getEventDates(id) {
-    this.loading = true;
-    this.eventsApi.getCompleteEvent(id).then((data: any) => {
-      if (data != null) {
-        this.minDate = new Date(data.startDate);
-        this.maxDate = new Date(data.endDate);
-        this.loading = false;
-      }
-      if (this.data.schedule == null) {
-        this.createFlag = true;
-        this.createEmptyForm();
-      } else {
-        this.updateFlag = true;
-        this.setCurrentForm();
-      }
-    }, (err) => {
-      console.log(err);
-      this.loading = false;
     });
   }
 

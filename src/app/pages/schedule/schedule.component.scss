@@ -1,0 +1,45 @@
+@import '~styles/palette';
+
+.schedule-container{
+    .event-info-container{
+        padding: 20px;
+    }
+    .schedule-controls{
+        padding: 20px;
+        a{
+            padding: 10px 15px;
+            margin: 7px;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 300;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            cursor: pointer;
+            background-color: $ge-sunrise;
+            color: $ge-chalk;
+            fa{
+                padding-right: 3px;
+            }
+        }
+        a:hover{
+            background-color: $ge-sunset;
+            color: $ge-chalk;
+        }
+    }
+    .blocks-container{
+        padding: 20px 30px;
+        .schedule-block{
+            width: 180px;
+            margin: 10px;
+            border: 1px $ge-dolphin solid;
+            .schedule-header{
+                text-align: center;
+                padding: 5px;
+                font-size: 14px;
+                border-bottom: 1px $ge-dolphin solid;
+            }
+        }
+    }
+}

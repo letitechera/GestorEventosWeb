@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -8,7 +8,8 @@ import { MaterialModule } from './material/material.module';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule } from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DatePipe } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
 import { ROUTES } from './app.routing';
 
 import { AuthApiService } from './services/auth-api/auth-api.service';
@@ -47,6 +48,7 @@ import { SpeakerModalComponent } from './shared/speaker-modal/speaker-modal.comp
 import { PublicEventsComponent } from './pages/public/public-events/public-events.component';
 import { PublicEventComponent } from './pages/public/public-event/public-event.component';
 
+registerLocaleData(localeEs, 'es');
 @NgModule({
   declarations: [
     LocationsModalComponent,
@@ -101,6 +103,7 @@ import { PublicEventComponent } from './pages/public/public-event/public-event.c
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+    { provide: LOCALE_ID, useValue: 'es' },
     DatePipe,
     AuthApiService,
     AccountApiService,
