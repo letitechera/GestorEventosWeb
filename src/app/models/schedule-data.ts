@@ -2,6 +2,7 @@ export interface Schedule {
     Id: number;
     EventId: number;
     Date?: Date;
+    PrettyDate: string;
 }
 
 export interface Activity {
@@ -10,7 +11,7 @@ export interface Activity {
     StartTime : Date;
     EndTime : Date;
     ActivityTypeId: number;
-    EventScheduleId : Date;
+    EventScheduleId : number;
 }
 
 
