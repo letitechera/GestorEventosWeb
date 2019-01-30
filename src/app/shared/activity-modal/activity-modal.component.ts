@@ -19,13 +19,15 @@ export class ActivityModalComponent implements OnInit {
   public activityData: Activity;
   public passedActivity: Activity;
   public passedScheduleId: number;
+  public selectedType: number;
+  public activityTypes: any[];
   public minDate: Date;
   public maxDate: Date;
   public submitted: boolean;
   public loading: boolean;
 
-  constructor(public dialogRef: MatDialogRef<ActivityModalComponent>, private schedulesApi: SchedulesApiService,
-    private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any) { }
+  constructor(public dialogRef: MatDialogRef<SchedulesModalComponent>, private schedulesApi: SchedulesApiService,
+    private auth: AuthApiService, private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.submitted = false;
@@ -33,12 +35,12 @@ export class ActivityModalComponent implements OnInit {
     this.passedScheduleId = this.data.scheduleId;
     this.minDate = this.data.startDate;
     this.maxDate = this.data.endDate;
+    this.GetActivityTypes();
 
     this.activityData = {
       ActivityTypeId: 0,
       Description: '',
       StartTime: new Date(),
-      EndTime: new Date(),
       EventScheduleId: this.passedScheduleId,
       Id: 0
     };
@@ -51,20 +53,79 @@ export class ActivityModalComponent implements OnInit {
     }
   }
 
+  private GetActivityTypes(){
+    this.schedulesApi.getActivityTypes().then((data: any[]) => {
+      this.activityTypes = data;
+      if (this.passedActivity != null) {
+        this.selectedType = this.passedActivity.ActivityTypeId;
+      } else {
+        this.selectedType = data[0].id;
+      }
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
   private createEmptyForm() {
     this.activityForm = this.formBuilder.group({
-      Date: [this.minDate, [Validators.required]],
+      ActivityTypeId: [this.selectedType, [Validators.required]],
+      Description: ['', [Validators.required]],
+      StartTime: [this.minDate, [Validators.required]],
+      EventScheduleId: [this.passedActivity.EventScheduleId, [Validators.required]]
     });
   }
 
   private setCurrentForm() {
     this.activityForm = this.formBuilder.group({
-      ActivityTypeId: [this.passedActivity.ActivityTypeId, [Validators.required]],
+      ActivityTypeId: [this.selectedType, [Validators.required]],
       Description: [this.passedActivity.Description, [Validators.required]],
       StartTime: [this.passedActivity.StartTime, [Validators.required]],
-      EndTime: [this.passedActivity.EndTime, [Validators.required]],
       EventScheduleId: [this.passedActivity.EventScheduleId, [Validators.required]]
     });
+  }
+
+  public submitActivity() {
+    this.submitted = true;
+    if (!this.activityForm.valid) {
+      return;
+    }
+    this.loading = true;
+    if (this.createFlag) {
+      this.addActivity();
+    } else {
+      this.editActivity();
+    }
+  }
+
+  private addActivity() {
+    this.setActivityObject();
+    this.schedulesApi.postActivity(this.activityData).then((data: any[]) => {
+      this.dialogRef.close('changed');
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  private editActivity() {
+    this.setActivityObject();
+    this.schedulesApi.putActivity(this.activityData).then((data: any[]) => {
+      console.log(data);
+      this.dialogRef.close('changed');
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  private setActivityObject() {
+    this.activityData.ActivityTypeId = this.activityForm.get('ActivityTypeId').value;
+    this.activityData.Description = this.activityForm.get('Description').value;
+    this.activityData.StartTime = this.activityForm.get('StartTime').value;
+    this.activityData.EventScheduleId = this.activityForm.get('EventScheduleId').value;
+    this.activityData.Id = this.data != null ? this.data.Id : 0;
+  }
+
+  public close(): void {
+    this.dialogRef.close();
   }
 
 }

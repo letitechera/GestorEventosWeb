@@ -9,7 +9,6 @@ export interface Activity {
     Id: number;
     Description: string;
     StartTime : Date;
-    EndTime : Date;
     ActivityTypeId: number;
     EventScheduleId : number;
 }
@@ -25,4 +24,9 @@ export interface Speaker{
     Contact: string;
     Image: string;
     ActivityId: number;
+}
+
+export interface ActivityType {
+    Id: number;
+    Name: string;
 }

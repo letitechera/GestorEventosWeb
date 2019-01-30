@@ -110,7 +110,6 @@ export class SchedulesApiService {
               Id: result.id,
               Description: result.description,
               StartTime: new Date(result.startTime),
-              EndTime: new Date(result.endTime),
               ActivityTypeId: result.activityTypeId,
               EventScheduleId: result.eventId,
             });
@@ -226,6 +225,31 @@ export class SchedulesApiService {
     });
   }
 
+  public getActivityTypes(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.getActivityTypesData()
+        .pipe(map((results: any[]) => {
+          const data = [];
+          if (!results) {
+            return data;
+          }
+          results.forEach((result) => {
+            data.push({
+              Id: result.id,
+              Name: result.name,
+            });
+          });
+          return data;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+          return data;
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
   private getSchedulesByEventData(eventId) {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/schedules/event/${eventId}/all`;
@@ -304,6 +328,12 @@ export class SchedulesApiService {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/speakers/DeleteSpeaker/${id}`;
     return this.commonHttpDelete(url, null, this.headers);
+  }
+
+  private getActivityTypesData() {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/activitytypes`;
+    return this.commonHttpGet(url, this.headers);
   }
 
   private setDefaultHeaders() {
