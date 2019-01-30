@@ -3,6 +3,7 @@ import { LoginComponent } from '@pages/login/login.component';
 import { RegisterComponent } from '@pages/register/register.component';
 import { ForgotPasswordComponent } from '@pages/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from '@pages/reset-password/reset-password.component';
+import { ChangePasswordComponent } from '@pages/change-password/change-password.component';
 import { ProfileComponent } from '@pages/profile/profile.component';
 import { CallbackComponent } from '@pages/callback/callback.component';
 import { EventsComponent } from '@pages/events/events.component';
@@ -19,6 +20,7 @@ export const ROUTES: Routes = [
     { path: 'register', component: RegisterComponent },
     { path: 'forgot-password', component: ForgotPasswordComponent },
     { path: 'reset-password', component: ResetPasswordComponent },
+    { path: 'change-password', component: ChangePasswordComponent },
     { path: 'profile', component: ProfileComponent },
     { path: 'events', component: EventsComponent },
     { path: 'events/:id', component: EventDetailsComponent },

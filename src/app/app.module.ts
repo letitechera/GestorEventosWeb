@@ -35,6 +35,7 @@ import { LocationsComponent } from './pages/locations/locations.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginHeaderComponent } from './shared/login-header/login-header.component';
 import { EventManageComponent } from './pages/event-manage/event-manage.component';
@@ -61,6 +62,7 @@ import { UploadComponent } from './shared/upload/upload.component';
     RegisterComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    ChangePasswordComponent,
     ProfileComponent,
     LoginHeaderComponent,
     EventManageComponent,

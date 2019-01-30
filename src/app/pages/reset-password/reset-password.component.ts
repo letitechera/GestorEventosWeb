@@ -24,39 +24,27 @@ export class ResetPasswordComponent implements OnInit {
 
   private createForm() {
     this.resetForm = this.formBuilder.group({
-      currentPassword: ['', [Validators.required]],
-      newPassword: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]],
+      code: ['', [Validators.required]],
+      password: ['', [Validators.required]],
     });
   }
 
   resetPassword() {
     this.error = false;
     this.loading = true;
-    
-    const currentPassword = this.resetForm.get('currentPassword').value;
-    const newPassword = this.resetForm.get('newPassword').value;
-    const confirmPassword = this.resetForm.get('confirmPassword').value;  
-   
-    if(confirmPassword != newPassword){
-      this.loading = false;
-      this.error = true;
-      return;
-    }
 
-    this.service.resetPassword(currentPassword, newPassword).subscribe((data) => {
+    const code = this.resetForm.get('code').value;
+    const password = this.resetForm.get('password').value;
+
+    this.service.resetPassword(code, password).subscribe((data) => {
       console.log(data);
       this.loading = false;
-      this.router.navigateByUrl('events');
+      this.router.navigateByUrl('login');
     },
     (err) => {
       console.log(err);
       this.error = true;
       this.loading = false;
     });
-  }
-
-  public navigateTo(page){
-    this.router.navigateByUrl(page);
   }
 }
