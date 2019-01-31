@@ -26,6 +26,7 @@ export class ResetPasswordComponent implements OnInit {
     this.resetForm = this.formBuilder.group({
       code: ['', [Validators.required]],
       password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]],
     });
   }
 
@@ -35,16 +36,20 @@ export class ResetPasswordComponent implements OnInit {
 
     const code = this.resetForm.get('code').value;
     const password = this.resetForm.get('password').value;
+    const confirmPassword = this.resetForm.get('confirmPassword').value;
+
+    if (confirmPassword != password)
+      return;
 
     this.service.resetPassword(code, password).subscribe((data) => {
       console.log(data);
       this.loading = false;
       this.router.navigateByUrl('login');
     },
-    (err) => {
-      console.log(err);
-      this.error = true;
-      this.loading = false;
-    });
+      (err) => {
+        console.log(err);
+        this.error = true;
+        this.loading = false;
+      });
   }
 }
