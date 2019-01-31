@@ -108,6 +108,7 @@ export class SchedulesApiService {
           results.forEach((result) => {
             data.push({
               Id: result.id,
+              Name: result.name,
               Description: result.description,
               StartTime: new Date(result.startTime),
               ActivityTypeId: result.activityTypeId,
@@ -229,6 +230,7 @@ export class SchedulesApiService {
     return new Promise<any>((resolve, reject) => {
       this.getActivityTypesData()
         .pipe(map((results: any[]) => {
+          console.log(results);
           const data = [];
           if (!results) {
             return data;
@@ -262,7 +264,6 @@ export class SchedulesApiService {
     return this.commonHttpGet(url, this.headers);
   }
 
-  
   private postScheduleData(data) {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/schedules/CreateSchedule`;
@@ -332,7 +333,7 @@ export class SchedulesApiService {
 
   private getActivityTypesData() {
     this.setDefaultHeaders();
-    const url = `${environment.webApiUrl}/activitytypes`;
+    const url = `${environment.webApiUrl}/schedules/activitytypes`;
     return this.commonHttpGet(url, this.headers);
   }
 

@@ -34,10 +34,10 @@ export interface EventSendableData {
     Description: string;
     LocationId: number;
     EventTopicId: number;
-    Canceled: boolean;  
+    Canceled: boolean;
 }
 
-export interface TopicData{
+export interface TopicData {
     TopicId: number;
     Name: string;
 }

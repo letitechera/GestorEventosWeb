@@ -35,7 +35,7 @@ export class EventsComponent implements OnInit {
     this.route.navigate(['/events', row.EventId]);
   }
 
-  public deleteEvent(eventId){
+  public deleteEvent(eventId) {
     this.eventsApi.deleteEvent(eventId).then((data: any[]) => {
       this.initData();
     }, (err) => {
@@ -72,7 +72,7 @@ export class EventsComponent implements OnInit {
 
   private initData() {
     this.loading = true;
-    let userId = this.auth.getUserId();
+    const userId = this.auth.getUserId();
     this.eventsApi.getAllEvents(userId).then((data: any[]) => {
       this.loading = false;
       this.events = data;

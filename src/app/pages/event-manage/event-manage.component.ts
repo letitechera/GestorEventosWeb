@@ -34,7 +34,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
   private eventSend: EventSendableData;
 
   constructor(private route: ActivatedRoute, private eventsApi: EventsApiService, private auth: AuthApiService,
-    private dateService: DateService, private locationsApi: LocationsApiService, 
+    private dateService: DateService, private locationsApi: LocationsApiService,
     private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {

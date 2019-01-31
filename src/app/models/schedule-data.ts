@@ -8,13 +8,22 @@ export interface Schedule {
 export interface Activity {
     Id: number;
     Description: string;
-    StartTime : Date;
+    StartTime: Date;
     ActivityTypeId: number;
-    EventScheduleId : number;
+    EventScheduleId: number;
+}
+
+export interface ActivitySendable {
+    Id: number;
+    Name: string;
+    Description: string;
+    StartTime: string;
+    ActivityTypeId: number;
+    EventScheduleId: number;
 }
 
 
-export interface Speaker{
+export interface Speaker {
     Id: number;
     FirstName: string;
     LastName: string;

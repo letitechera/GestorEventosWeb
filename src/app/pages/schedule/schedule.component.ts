@@ -33,12 +33,11 @@ export class ScheduleComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
       this.initEvent();
-      this.initSchedules()
+      this.initSchedules();
     });
   }
 
-  
-  public initEvent(){
+  public initEvent() {
     this.loading = true;
     this.eventsApi.getEventDetails(this.id).then((data: any) => {
       if (data != null) {
@@ -94,15 +93,16 @@ export class ScheduleComponent implements OnInit {
     });
   }
 
-  public openActivityDialog(scheduleId, element) {
+  public openActivityDialog(scheduleId, startDate, element) {
     this.auth.checkSession();
     const dialogRef = this.dialog.open(ActivityModalComponent, {
-      height: '400px',
+      height: '420px',
       width: '350px',
       hasBackdrop: true,
       data: {
         scheduleId: scheduleId,
-        activity: element
+        activity: element,
+        scheduleStartTime: startDate
       }
     });
 
