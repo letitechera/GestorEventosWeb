@@ -12,6 +12,8 @@ import { AccreditationComponent } from '@pages/accreditation/accreditation.compo
 import { LocationsComponent } from '@pages/locations/locations.component';
 import { EventManageComponent } from '@pages/event-manage/event-manage.component';
 import { ScheduleComponent } from '@pages/schedule/schedule.component';
+import { PublicEventsComponent } from '@pages/public/public-events/public-events.component';
+import { PublicEventComponent } from '@pages/public/public-event/public-event.component';
 
 export const ROUTES: Routes = [
     { path: '', redirectTo: 'callback', pathMatch: 'full' },
@@ -28,4 +30,6 @@ export const ROUTES: Routes = [
     { path: 'contacts', component: InterestedComponent },
     { path: 'accreditation', component: AccreditationComponent },
     { path: 'locations', component: LocationsComponent },
+    { path: 'public/events', component: PublicEventsComponent },
+    { path: 'public/events/:id', component: PublicEventComponent }
   ];

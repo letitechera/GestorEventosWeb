@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { EventData } from '@models/event-data';
 import { EventsApiService } from '@services/events-api/events-api.service';
-import { map } from 'rxjs/operators';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { Router } from '@angular/router';
 import { DateService } from '@services/date/date.service';

@@ -55,6 +55,7 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
           Image: data.image != null ? data.image : '',
           Description: data.description,
           Location: data.location,
+          Address: data.address,
           Topic: data.topic,
           CreatedById: data.createdById,
         };

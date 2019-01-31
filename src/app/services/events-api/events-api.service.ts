@@ -28,6 +28,7 @@ export class EventsApiService {
               Image: result.image != null ? result.image : '',
               Description: result.description,
               Location: result.location,
+              Address: result.address,
               Topic: result.topic,
               CreatedById: result.createdById,
             });
