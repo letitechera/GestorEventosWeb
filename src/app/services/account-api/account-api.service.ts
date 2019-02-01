@@ -29,8 +29,7 @@ export class AccountApiService {
     return this.commonHttpPost(`${environment.webApiUrl}/account/forgot-password`, data, null);
   }
 
-  public resetPassword(code, password) {
-    var id = this.getUserId();
+  public resetPassword(id, code, password) {
     const data = {
       id: id,
       code: code,

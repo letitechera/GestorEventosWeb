@@ -42,6 +42,7 @@ import { EventManageComponent } from './pages/event-manage/event-manage.componen
 import { FileUploadService } from '@services/file-upload/file-upload.service';
 import { NgQrScannerModule } from 'angular2-qrscanner';
 import { UploadComponent } from './shared/upload/upload.component';
+import { ParticipantsComponent } from './pages/participants/participants.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { UploadComponent } from './shared/upload/upload.component';
     ProfileComponent,
     LoginHeaderComponent,
     EventManageComponent,
-    UploadComponent
+    UploadComponent,
+    ParticipantsComponent
   ],
   entryComponents: [
     LocationsModalComponent,

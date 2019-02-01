@@ -86,4 +86,7 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  public navigateTo(page) {
+    this.router.navigateByUrl(page);
+  }
 }

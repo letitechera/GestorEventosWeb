@@ -79,7 +79,7 @@ export class EventsApiService {
     });
   }
 
-  
+
   public postEvent(event): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.postEventData(event).subscribe((data) => {
@@ -102,7 +102,7 @@ export class EventsApiService {
       });
     });
   }
-  
+
   public deleteEvent(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.deleteEventData(id).subscribe((data) => {
@@ -163,7 +163,7 @@ export class EventsApiService {
     });
   }
 
-  
+
   public sendCampaign(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.sendCampaignData(id)
@@ -191,6 +191,32 @@ export class EventsApiService {
           }
           console.log(result);
           return result;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
+  public getParticipants(eventId): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.getParticipantsData(eventId)
+        .pipe(map((results: any[]) => {
+          const data = [];
+          if (!results) {
+            return data;
+          }
+          results.forEach((result) => {
+            data.push({
+              FirstName: result.attendant.firstName,
+              LastName: result.attendant.lastName,
+              Email: result.attendant.email
+            });
+          });
+          console.log(data);
+          return data;
         })).subscribe((data: any[]) => {
           resolve(data);
         },
@@ -269,6 +295,12 @@ export class EventsApiService {
   private accreditParticipant(id) {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/accredit/${id}`;
+    return this.commonHttpGet(url, this.headers);
+  }
+
+  private getParticipantsData(eventId) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/` + eventId + `/participants`;
     return this.commonHttpGet(url, this.headers);
   }
 
