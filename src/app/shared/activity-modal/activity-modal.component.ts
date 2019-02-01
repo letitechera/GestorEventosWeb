@@ -76,6 +76,7 @@ export class ActivityModalComponent implements OnInit {
     const startTime = this.dateService.GetTime(this.minDate);
     this.activityForm = this.formBuilder.group({
       ActivityTypeId: [this.selectedType, [Validators.required]],
+      Name: ['', [Validators.required]],
       Description: ['', [Validators.required]],
       StartTime: [startTime, [Validators.required]],
     });
@@ -85,6 +86,7 @@ export class ActivityModalComponent implements OnInit {
     const startTime = this.dateService.SetTimeToDate(this.passedActivity.StartTime, this.activityForm.get('StartTime').value);
     this.activityForm = this.formBuilder.group({
       ActivityTypeId: [this.selectedType, [Validators.required]],
+      Name: [this.passedActivity.Name, [Validators.required]],
       Description: [this.passedActivity.Description, [Validators.required]],
       StartTime: [startTime, [Validators.required]],
     });
@@ -127,6 +129,7 @@ export class ActivityModalComponent implements OnInit {
     const startDateString = this.dateService.GetLongDateString(startDate);
 
     this.activityData.ActivityTypeId = this.activityForm.get('ActivityTypeId').value;
+    this.activityData.Name = this.activityForm.get('Name').value;
     this.activityData.Description = this.activityForm.get('Description').value;
     this.activityData.StartTime = startDateString;
     this.activityData.EventScheduleId = this.passedScheduleId;
