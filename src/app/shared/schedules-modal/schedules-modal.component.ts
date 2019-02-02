@@ -39,7 +39,8 @@ export class SchedulesModalComponent implements OnInit {
       EventId: this.passedEventId,
       Date: this.minDate,
       PrettyDate: '',
-      Id: 0
+      Id: 0,
+      Activities: [],
     };
     if (this.data.schedule == null) {
       this.createFlag = true;

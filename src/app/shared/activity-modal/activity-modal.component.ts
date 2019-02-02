@@ -35,7 +35,7 @@ export class ActivityModalComponent implements OnInit {
   ngOnInit() {
     this.submitted = false;
     this.passedActivity = this.data.activity;
-    this.passedStartDate = this.data.scheduleStartTime;
+    this.passedStartDate = this.data.scheduleStartDate;
     this.passedScheduleId = this.data.scheduleId;
     this.GetActivityTypes();
 
@@ -73,7 +73,7 @@ export class ActivityModalComponent implements OnInit {
   }
 
   private createEmptyForm() {
-    const startTime = this.dateService.GetTime(this.minDate);
+    const startTime = this.dateService.GetCustomTime(this.minDate);
     this.activityForm = this.formBuilder.group({
       ActivityTypeId: [this.selectedType, [Validators.required]],
       Name: ['', [Validators.required]],

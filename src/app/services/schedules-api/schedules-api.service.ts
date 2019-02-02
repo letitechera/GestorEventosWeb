@@ -25,7 +25,8 @@ export class SchedulesApiService {
               Id: result.id,
               EventId: result.eventId,
               Date: new Date(result.date),
-              PrettyDate: this.dateService.GetPrettyDate(new Date(result.date))
+              PrettyDate: this.dateService.GetPrettyDate(new Date(result.date)),
+              Activities: result.activities
             });
           });
           return data;

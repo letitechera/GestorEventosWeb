@@ -3,6 +3,7 @@ export interface Schedule {
     EventId: number;
     Date?: Date;
     PrettyDate: string;
+    Activities: Activity[];
 }
 
 export interface Activity {

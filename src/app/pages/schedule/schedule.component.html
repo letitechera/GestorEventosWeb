@@ -2,28 +2,28 @@
 
 <div class="content-body">
   <div class="event-info-container">
-
+    Gestión de Agenda: <strong>{{this.event.Name}}</strong>
   </div>
   <div class="schedule-container">
     <div class="schedule-controls">
-      <a class="add-schedule" (click)="openScheduleDialog(null)">Agregar Agenda</a>
+      <a class="add-schedule" (click)="openScheduleDialog(null)">Agregar Día</a>
       <!-- <a class="see-speakers" (click)="openSpeakers()">Ver Speakers</a> -->
     </div>
     <div class="row blocks-container">
       <div class="col-sm-4 col-md-3 schedule-block" *ngFor="let schedule of schedules">
         <div class="schedule-header">Día {{schedule.PrettyDate}}</div>
         <div class="activities-container">
-          <div class="activity-block">
-            <div class="activity-info">
-              <span class="activity-name"></span>
-              <span class="activity-time"></span>
-              <span class="activity-description"></span>
-            </div>
+          <div class="activity-block" *ngFor="let activity of schedule.Activities">
+            <a>
+              <div class="activity-header">
+                <span class="activity-name">{{activity.name}}</span>
+                <span class="activity-time">{{getPrettyTime(activity.startTime)}}</span>
+              </div>
+              <div class="activity-description">{{activity.description}}</div>
+            </a>
             <div class="speakers-container">
-              <div class="speakers-header"></div>
               <div class="speaker-block">
-                <div class="speaker-image"></div>
-                <span class="speaker-name"></span>
+                <span></span>
                 <a>
                   <fa name="remove"></fa>
                 </a>
@@ -34,7 +34,9 @@
             </div>
           </div>
           <div class="add-activity">
-            <a (click)="openActivityDialog(schedule.Id, schedule.Date, null)">Agregar Actividad</a>
+            <a title="Agregar Actividad" (click)="openActivityDialog(schedule.Id, schedule.Date, null)">
+              <fa name="plus"></fa>
+            </a>
           </div>
         </div>
       </div>

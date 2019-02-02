@@ -1,11 +1,15 @@
 @import '~styles/palette';
 
+.event-info-container{
+    padding: 30px;
+    font-size: 20px;
+}
 .schedule-container{
     .event-info-container{
         padding: 20px;
     }
     .schedule-controls{
-        padding: 20px;
+        padding: 0 20px;
         a{
             padding: 10px 15px;
             margin: 7px;
@@ -39,6 +43,62 @@
                 padding: 5px;
                 font-size: 14px;
                 border-bottom: 1px $ge-dolphin solid;
+            }
+            .activities-container{
+                margin-bottom: 10px;
+                .activity-block{
+                    margin: 10px 0;
+                    padding: 5px 10px;
+                    font-size: 14px;
+                    border: 1px $ge-dolphin solid;
+                    width: 100%;
+                    .activity-header{
+                        margin: 5px 0;
+                        height: 25px;
+                        .activity-name{
+                            display: block;
+                            width: 50%;
+                            font-weight: 700;
+                            float: left;
+                        }
+                        .activity-time{
+                            display: block;
+                            width: 50%;
+                            color: $ge-elephant;
+                            float: right;
+                            text-align: right;
+                        }
+                    }
+                    .activity-description{
+                        clear: both;
+                        width: 100%;
+                        margin: 20px 0;
+                    }
+                    .speakers-container{
+                        border-top: 1px $ge-dolphin solid;
+                    }
+                }
+                .add-activity{
+                    text-align: center;
+                    margin: 30px auto;
+                    a{
+                        color: white;
+                        display: inline-block;
+                        height: 40px;
+                        width: 40px;
+                        padding: 10px;
+                        font-size: 100%;
+                        line-height: 1.2;
+                        text-align: center;
+                        white-space: nowrap;
+                        vertical-align: middle;
+                        border-radius: 100%;
+                        background-color: $ge-deep-sky;
+                    }
+                    a:hover{
+                        background-color: $ge-dark-sky;
+                    }
+                }
             }
         }
     }

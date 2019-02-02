@@ -66,6 +66,7 @@ export class ScheduleComponent implements OnInit {
     this.schedulesApi.getSchedulesByEvent(this.id).then((data: any[]) => {
       this.loading = false;
       this.schedules = data;
+      console.log(this.schedules);
     }, (err) => {
       this.loading = false;
       console.log(err);
@@ -102,7 +103,7 @@ export class ScheduleComponent implements OnInit {
       data: {
         scheduleId: scheduleId,
         activity: element,
-        scheduleStartTime: startDate
+        scheduleStartDate: startDate
       }
     });
 
@@ -115,5 +116,12 @@ export class ScheduleComponent implements OnInit {
 
   public getPrettyDate(date) {
     this.dateService.GetPrettyDate(date);
+  }
+
+  public getPrettyTime(stringDate) {
+    var date = new Date(stringDate);
+    console.log(stringDate);
+    console.log(date);
+    return this.dateService.GetCustomTime(date);
   }
 }
