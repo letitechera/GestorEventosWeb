@@ -165,4 +165,8 @@ export class ScheduleComponent implements OnInit {
     var date = new Date(stringDate);
     return this.dateService.GetCustomTime(date);
   }
+
+  public goBack() {
+    this.router.navigate(['/events', this.event.EventId]);
+  }
 }

@@ -3,6 +3,12 @@
 .event-info-container{
     padding: 30px;
     font-size: 20px;
+    a{
+        color: $ge-deep-sky;
+    }
+    a:hover{
+        color: $ge-dark-sky;
+    }
 }
 .schedule-container{
     .event-info-container{
