@@ -54,7 +54,6 @@ export class ScheduleComponent implements OnInit {
           Topic: data.topic,
           CreatedById: data.createdById,
         };
-        this.loading = false;
       }
     }, (err) => {
       console.log(err);
@@ -125,7 +124,6 @@ export class ScheduleComponent implements OnInit {
         activityId: activityId,
         speaker: element,
       }
-
     });
 
     dialogRef.afterClosed().subscribe(result => {

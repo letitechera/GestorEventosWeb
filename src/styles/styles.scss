@@ -83,10 +83,11 @@ button{
     color: white;
     border:none;
     background-color: $ge-deep-sky;
+    min-width: 68px;
+
 }
 .ge-btn-default:hover{
     background-color: $ge-dark-sky;
-    min-width: 68px;
 }
 
 /* SUB MENU */
