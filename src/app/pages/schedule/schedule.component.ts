@@ -54,7 +54,6 @@ export class ScheduleComponent implements OnInit {
           Topic: data.topic,
           CreatedById: data.createdById,
         };
-        this.loading = false;
       }
     }, (err) => {
       console.log(err);
@@ -125,7 +124,6 @@ export class ScheduleComponent implements OnInit {
         activityId: activityId,
         speaker: element,
       }
-
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -135,14 +133,36 @@ export class ScheduleComponent implements OnInit {
     });
   }
 
+  public deleteSchedule(scheduleId) {
+    this.schedulesApi.deleteSchedule(scheduleId).then((data: any[]) => {
+      this.initSchedules();
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  public deleteActivity(activityId) {
+    this.schedulesApi.deleteActivity(activityId).then((data: any[]) => {
+      this.initSchedules();
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  public deleteSpeaker(speakerId) {
+    this.schedulesApi.deleteSpeaker(speakerId).then((data: any[]) => {
+      this.initSchedules();
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
   public getPrettyDate(date) {
     this.dateService.GetPrettyDate(date);
   }
 
   public getPrettyTime(stringDate) {
     var date = new Date(stringDate);
-    console.log(stringDate);
-    console.log(date);
     return this.dateService.GetCustomTime(date);
   }
 }

@@ -38,11 +38,11 @@
           <div class="event-img center-cropped" [ngStyle]="{ 'background-image': 'url(' + event.Image + ')'}">
           </div>
           <div class="event-controls">
-            <a class="cancel">Cancelar Evento</a>
-            <a>Vista Previa</a>
             <a (click)="getSchedule()">Gestionar Agenda</a>
-            <a (click)="sendCampaign()">Difundir</a>
             <a (click)="navigateTo('events/' + event.EventId + '/participants')">Participantes</a>
+            <a (click)="sendCampaign()">Difundir</a>
+            <a>Vista Previa</a>
+            <a class="cancel">Cancelar Evento</a>
           </div>
         </div>
       </div>

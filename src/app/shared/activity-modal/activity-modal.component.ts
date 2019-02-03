@@ -47,7 +47,6 @@ export class ActivityModalComponent implements OnInit {
     }
     this.passedStartDate = new Date(this.data.scheduleStartDate);
     this.passedScheduleId = this.data.scheduleId;
-    debugger;
     this.GetActivityTypes();
 
     if (this.passedActivity == null) {
@@ -94,7 +93,6 @@ export class ActivityModalComponent implements OnInit {
   }
 
   private setCurrentForm() {
-    debugger;
     const startTime = this.dateService.GetCustomTime(this.passedActivity.StartTime);
     this.activityForm = this.formBuilder.group({
       ActivityTypeId: [this.selectedType, [Validators.required]],

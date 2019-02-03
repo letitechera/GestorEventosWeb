@@ -1,8 +1,7 @@
 @import '~styles/palette';
 
 .event-details{
-    background-color: $ge-chalk;
-    padding: 30px;
+    padding: 10px 30px;
 }
 .event-header{
     width: 100%;
@@ -25,7 +24,6 @@
 .sub-menu-event{
     padding: 20px;
     height: fit-content;
-    margin-top: 10px;
     a{
         padding: 5px 15px;
         margin: 7px;
@@ -91,26 +89,24 @@
     }
     .event-controls{
         float: right;
-        padding-top: 25px;
-        margin-top: 35px;
-        padding-left: 25px;
-        border-top: 0.7px solid $ge-elephant;
+        margin-top: 20px;
+        text-align: -webkit-right;
+        margin-right: 2px;
+        padding-right: 10px;
+        border-right: 1px $ge-seal solid;
         a{
             cursor: pointer;
             display: block;
-            margin-left: 20px;
-            width: fit-content;
-            height: fit-content;
-            float: right;
+            min-width: 137px;
             font-size: 14px;
             background-color: $ge-sunrise;
             text-align: center;
             color: white;
-            padding: 10px 20px;
+            padding: 5px 10px;
+            margin: 10px 5px;
         }
         a.cancel{
             background-color: $ge-elephant;
-            margin-right: 0;
         }
         a:hover{
             background-color: $ge-sunset;

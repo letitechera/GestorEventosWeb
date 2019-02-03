@@ -12,7 +12,7 @@
         padding: 0 20px;
         a{
             padding: 10px 15px;
-            margin: 7px;
+            margin: 10px;
             font-size: 14px;
             font-family: Arial, Helvetica, sans-serif;
             font-weight: 300;
@@ -35,14 +35,43 @@
     .blocks-container{
         padding: 20px 30px;
         .schedule-block{
-            width: 180px;
-            margin: 10px;
-            border: 1px $ge-dolphin solid;
+        padding: 10px;
+        border: 1px $ge-dolphin solid;
+        height: fit-content;
             .schedule-header{
                 text-align: center;
                 padding: 5px;
+                padding-top: 0;
                 font-size: 14px;
                 border-bottom: 1px $ge-dolphin solid;
+                a.schedule-remove{
+                    display: block;
+                    width: 100%;
+                    height: 12px;
+                    font-size: 12px;
+                    text-align: left;
+                    color: white;
+                    padding: 0 5px 5px 0;
+                    line-height: 0;
+                    -o-transition:.2s;
+                    -ms-transition:.2s;
+                    -moz-transition:.2s;
+                    -webkit-transition:.2s;
+                    transition:.2s;
+                }
+                a{
+                    display: block;
+                    float:right;
+                    color: $ge-deep-sky;
+                }
+                a:hover{
+                    color: $ge-dark-sky;
+                }
+            }
+            .schedule-header:hover{
+                .schedule-remove{
+                    color: $ge-sunset;
+                }
             }
             .activities-container{
                 margin-bottom: 10px;
@@ -55,17 +84,24 @@
                     a.activity{
                         display: block;
                         .activity-header{
-                            margin: 5px 0;
-                            height: 25px;
+                            height: 30px;
+                            .activity-remove{
+                                font-size:12px;
+                                display: block;
+                                height: 15px;
+                                line-height: 0;
+                                text-align: right;
+                                color: white;
+                            }
                             .activity-name{
                                 display: block;
-                                width: 50%;
+                                width: 80%;
                                 font-weight: 700;
                                 float: left;
                             }
                             .activity-time{
                                 display: block;
-                                width: 50%;
+                                width: 20%;
                                 color: $ge-elephant;
                                 float: right;
                                 text-align: right;
@@ -79,6 +115,11 @@
                     }
                     a.activity:hover{
                         color: $ge-elephant;
+                        .activity-header{
+                            .activity-remove{
+                                color: $ge-sunset;
+                            }
+                        }
                     }
                     .speakers-container{
                         border-top: 1px $ge-dolphin solid;
@@ -87,6 +128,24 @@
                             margin: 5px 0;
                             a:hover{
                                 color: $ge-elephant;
+                            }
+                            a.speaker-remove{
+                                float: right;
+                                font-size: 12px;
+                                color: white;
+                                line-height: 1.7;
+                                padding: 3px;
+                                -o-transition:.2s;
+                                -ms-transition:.2s;
+                                -moz-transition:.2s;
+                                -webkit-transition:.2s;
+                                transition:.2s;
+                            }
+                        }
+                        .speaker-block:hover{
+                            cursor: pointer;
+                            a.speaker-remove{
+                                color: $ge-sunset;
                             }
                         }
                         .speakers-controls{
