@@ -2,10 +2,9 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Activity, ActivitySendable } from '@models/schedule-data';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { SchedulesModalComponent } from '@shared/schedules-modal/schedules-modal.component';
-import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { DateService } from '@services/date/date.service';
+import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
 
 @Component({
   selector: 'app-activity-modal',
@@ -28,7 +27,7 @@ export class ActivityModalComponent implements OnInit {
   public submitted: boolean;
   public loading: boolean;
 
-  constructor(public dialogRef: MatDialogRef<SchedulesModalComponent>, private schedulesApi: SchedulesApiService,
+  constructor(public dialogRef: MatDialogRef<ActivityModalComponent>, private schedulesApi: SchedulesApiService,
     private auth: AuthApiService, private formBuilder: FormBuilder, private dateService: DateService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 

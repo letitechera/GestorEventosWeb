@@ -23,6 +23,7 @@ import {
   MatDialogModule,
   MatExpansionModule,
   MatAutocompleteModule,
+  MatSidenavModule
 } from '@angular/material';
 
 @NgModule({
@@ -49,7 +50,8 @@ import {
     MatListModule,
     MatDialogModule,
     MatExpansionModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSidenavModule
   ],
   exports: [
     MatButtonModule,
@@ -74,7 +76,8 @@ import {
     MatListModule,
     MatDialogModule,
     MatExpansionModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatSidenavModule
   ]
 })
 export class MaterialModule {}

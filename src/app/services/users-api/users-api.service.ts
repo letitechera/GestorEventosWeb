@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '@environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -16,15 +17,47 @@ export class UsersApiService {
     return this.commonHttpGet(url, this.headers);
   }
 
-  public getUserProfile() {
-    const id = this.getUserId();
-    return this.getUserById(id);
+  public getUserProfile(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      var id = this.getUserId();
+      this.getUserById(id)
+        .pipe(map((result: any) => {
+          if (result == null) {
+            return null;
+          }
+          console.log(result);
+          return result;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
   }
   
-  public getUserById(id) {
+  private getUserById(id) {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/users/${id}`;
     return this.commonHttpGet(url, this.headers);
+  }
+
+  public putAccount(event): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.putAccountData(event).subscribe((data) => {
+        console.log(data);
+        resolve(data);
+      }, (err) => {
+        console.log(err);
+        reject(null);
+      });
+    });
+  }
+  
+  private putAccountData(data) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/account/edit`;
+    return this.commonHttpPut(url, data, this.headers);
   }
 
   private setDefaultHeaders() {
@@ -45,5 +78,9 @@ export class UsersApiService {
 
   private commonHttpGet(url: string, headers: HttpHeaders) {
     return this.http.get(url, { headers: headers });
+  }
+
+  private commonHttpPut(url: string, data: any, headers: HttpHeaders) {
+    return this.http.put(url, data, { headers: headers });
   }
 }

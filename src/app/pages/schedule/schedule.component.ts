@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Schedule } from '@models/schedule-data';
-import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { EventsApiService } from '@services/events-api/events-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DateService } from '@services/date/date.service';
 import { MatDialog } from '@angular/material';
-import { SchedulesModalComponent } from '@shared/schedules-modal/schedules-modal.component';
 import { EventData } from '@models/event-data';
 import { environment } from 'environments/environment.prod';
 import { ActivityModalComponent } from '@shared/activity-modal/activity-modal.component';
+import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
+import { SchedulesModalComponent } from '@shared/schedules-modal/schedules-modal.component';
 import { SpeakerModalComponent } from '@shared/speaker-modal/speaker-modal.component';
 
 @Component({

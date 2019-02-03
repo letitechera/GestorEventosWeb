@@ -36,17 +36,20 @@ import { LocationsComponent } from './pages/locations/locations.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { ChangePasswordComponent } from './pages/change-password/change-password.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginHeaderComponent } from './shared/login-header/login-header.component';
 import { EventManageComponent } from './pages/event-manage/event-manage.component';
 import { NgQrScannerModule } from 'angular2-qrscanner';
 import { UploadComponent } from './shared/upload/upload.component';
+import { ParticipantsComponent } from './pages/participants/participants.component';
 import { ScheduleComponent } from './pages/schedule/schedule.component';
 import { SchedulesModalComponent } from './shared/schedules-modal/schedules-modal.component';
 import { ActivityModalComponent } from './shared/activity-modal/activity-modal.component';
 import { SpeakerModalComponent } from './shared/speaker-modal/speaker-modal.component';
 import { PublicEventsComponent } from './pages/public/public-events/public-events.component';
 import { PublicEventComponent } from './pages/public/public-event/public-event.component';
+import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -68,10 +71,12 @@ registerLocaleData(localeEs, 'es');
     RegisterComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    ChangePasswordComponent,
     ProfileComponent,
     LoginHeaderComponent,
     EventManageComponent,
     UploadComponent,
+    ParticipantsComponent,
     ScheduleComponent,
     SchedulesModalComponent,
     ActivityModalComponent,
@@ -112,6 +117,7 @@ registerLocaleData(localeEs, 'es');
     AttendantsApiService,
     LocationsApiService,
     GeographicsApiService,
+    SchedulesApiService
   ],
   bootstrap: [AppComponent]
 })

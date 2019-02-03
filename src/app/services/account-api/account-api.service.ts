@@ -29,15 +29,31 @@ export class AccountApiService {
     return this.commonHttpPost(`${environment.webApiUrl}/account/forgot-password`, data, null);
   }
 
-  public resetPassword(password, newPassword) {
+  public resetPassword(id, code, password) {
     const data = {
-      password: password,
-      newPassword: newPassword
+      id: id,
+      code: code,
+      password: password
     };
     this.setDefaultHeaders();
     return this.commonHttpPost(`${environment.webApiUrl}/account/reset-password`, data, null);
   }
+
+  public changePassword(currentPassword, newPassword) {
+    var id = this.getUserId();
+    const data = {
+      id: id,
+      currentPassword: currentPassword,
+      newPassword: newPassword
+    };
+    this.setDefaultHeaders();
+    return this.commonHttpPost(`${environment.webApiUrl}/account/change-password`, data, null);
+  }
   
+  private getUserId() {
+    return localStorage.getItem('user_id');
+  }
+
   private getAccessToken() {
     return localStorage.getItem('access_token');
   }
