@@ -13,18 +13,16 @@ import { EventData } from '@models/event-data';
 export class PublicEventsComponent implements OnInit {
   public events: EventData[];
   public loading: boolean;
-  constructor(private eventsApi: EventsApiService, private auth: AuthApiService, private route: Router,
+  constructor(private eventsApi: EventsApiService, private route: Router,
     private dateService: DateService) { }
 
   ngOnInit() {
-    this.auth.checkSession();
     this.initData();
   }
 
   private initData() {
     this.loading = true;
-    let userId = this.auth.getUserId();
-    this.eventsApi.getAllEvents(userId).then((data: any[]) => {
+    this.eventsApi.getAllEvents().then((data: any[]) => {
       this.loading = false;
       this.events = data;
     }, (err) => {

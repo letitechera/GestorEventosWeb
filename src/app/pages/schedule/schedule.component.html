@@ -14,15 +14,21 @@
       <div class="col-sm-4 col-md-3" *ngFor="let schedule of schedules">
         <div class="schedule-block">
           <div class="schedule-header">
+            <a class="schedule-remove" (click)="deleteSchedule(schedule.Id)">
+              <fa name="remove"></fa>
+            </a>
             <span>Día {{schedule.PrettyDate}}</span>
-            <a (click)="openScheduleDialog(schedule)">
+            <a (click)="openScheduleDialog(schedule)" title="Editar Día">
               <fa name="edit"></fa>
             </a>
           </div>
           <div class="activities-container">
             <div class="activity-block" *ngFor="let activity of schedule.Activities">
-              <a class="activity" (click)="openActivityDialog(schedule.Id, schedule.Date, activity)">
+              <a class="activity" (click)="openActivityDialog(schedule.Id, schedule.Date, activity)" title="Editar Actividad">
                 <div class="activity-header">
+                  <a class="activity-remove" title="Eliminar Actividad" (click)="$event.stopPropagation(); deleteActivity(activity.id)">
+                    <fa name="remove"></fa>
+                  </a>
                   <span class="activity-name">{{activity.name}}</span>
                   <span class="activity-time">{{getPrettyTime(activity.startTime)}}</span>
                 </div>
@@ -30,8 +36,11 @@
               </a>
               <div class="speakers-container">
                 <div class="speaker-block" *ngFor="let speaker of activity.speakers">
-                  <a (click)="openSpeakersDialog(activity.id, speaker)">
+                  <a (click)="openSpeakersDialog(activity.id, speaker)" title="Editar">
                     <span>{{speaker.firstName}} {{speaker.lastName}}</span>
+                  </a>
+                  <a class="speaker-remove" title="Eliminar Speaker" (click)="deleteSpeaker(speaker.id)">
+                    <fa name="remove"></fa>
                   </a>
                 </div>
                 <div class="speakers-controls">
