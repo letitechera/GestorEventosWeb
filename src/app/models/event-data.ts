@@ -8,6 +8,7 @@ export interface EventData {
     Image: string;
     Description: string;
     Location: string;
+    Address: string;
     Topic: string;
     CreatedById: string;
 }
@@ -20,7 +21,7 @@ export interface EventFullData {
     Image: string;
     Description: string;
     Location: LocationData;
-    EventTopic: TopicData
+    EventTopic: TopicData;
     Canceled: boolean;
 }
 
@@ -33,10 +34,10 @@ export interface EventSendableData {
     Description: string;
     LocationId: number;
     EventTopicId: number;
-    Canceled: boolean;  
+    Canceled: boolean;
 }
 
-export interface TopicData{
+export interface TopicData {
     TopicId: number;
     Name: string;
 }

@@ -1,0 +1,15 @@
+<app-header></app-header>
+<div class="content-body">
+  <div class="sub-menu-event">
+    <a (click)="goBack()">
+      <fa name="arrow-left"></fa> Volver
+    </a>
+  </div>
+
+  <div *ngIf="user!=null" class="container event-details content-body">
+    <p><b>Nombre: </b><span>{{user.firstName}}</span></p>
+    <p><b>Apellido: </b><span>{{user.lastName}}</span></p>
+    <p><b>Correo Electrónico: </b><span>{{user.email}}</span></p>
+  </div>
+</div>
+<app-footer></app-footer>

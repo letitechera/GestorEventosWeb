@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -8,7 +8,8 @@ import { MaterialModule } from './material/material.module';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule } from '@angular/material';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DatePipe } from '@angular/common';
+import { DatePipe, registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
 import { ROUTES } from './app.routing';
 
 import { AuthApiService } from './services/auth-api/auth-api.service';
@@ -17,6 +18,7 @@ import { DateService } from '@services/date/date.service';
 import { LocationsApiService } from '@services/locations-api/locations-api.service';
 import { AttendantsApiService } from '@services/attendants-api/attendants-api.service';
 import { GeographicsApiService } from '@services/geographics-api/geographics-api.service';
+import { AccountApiService } from './services/account-api/account-api.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -31,11 +33,22 @@ import { LocationsModalComponent } from './shared/locations-modal/locations-moda
 import { TopicsModalComponent } from './shared/topics-modal/topics-modal.component';
 import { AttendantsModalComponent } from './shared/attendants-modal/attendants-modal.component';
 import { LocationsComponent } from './pages/locations/locations.component';
+import { RegisterComponent } from './pages/register/register.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './pages/reset-password/reset-password.component';
+import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginHeaderComponent } from './shared/login-header/login-header.component';
 import { EventManageComponent } from './pages/event-manage/event-manage.component';
-import { FileUploadService } from '@services/file-upload/file-upload.service';
+import { NgQrScannerModule } from 'angular2-qrscanner';
 import { UploadComponent } from './shared/upload/upload.component';
+import { ScheduleComponent } from './pages/schedule/schedule.component';
+import { SchedulesModalComponent } from './shared/schedules-modal/schedules-modal.component';
+import { ActivityModalComponent } from './shared/activity-modal/activity-modal.component';
+import { SpeakerModalComponent } from './shared/speaker-modal/speaker-modal.component';
+import { PublicEventsComponent } from './pages/public/public-events/public-events.component';
+import { PublicEventComponent } from './pages/public/public-event/public-event.component';
 
+registerLocaleData(localeEs, 'es');
 @NgModule({
   declarations: [
     LocationsModalComponent,
@@ -52,13 +65,27 @@ import { UploadComponent } from './shared/upload/upload.component';
     InterestedComponent,
     AccreditationComponent,
     LocationsComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    ProfileComponent,
+    LoginHeaderComponent,
     EventManageComponent,
-    UploadComponent
+    UploadComponent,
+    ScheduleComponent,
+    SchedulesModalComponent,
+    ActivityModalComponent,
+    SpeakerModalComponent,
+    PublicEventsComponent,
+    PublicEventComponent
   ],
   entryComponents: [
     LocationsModalComponent,
     TopicsModalComponent,
     AttendantsModalComponent,
+    SchedulesModalComponent,
+    ActivityModalComponent,
+    SpeakerModalComponent
   ],
   imports: [
     MatDialogModule,
@@ -72,17 +99,19 @@ import { UploadComponent } from './shared/upload/upload.component';
     ReactiveFormsModule,
     AngularFontAwesomeModule,
     MatButtonModule,
+    NgQrScannerModule
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
+    { provide: LOCALE_ID, useValue: 'es' },
     DatePipe,
     AuthApiService,
+    AccountApiService,
     EventsApiService,
     DateService,
     AttendantsApiService,
     LocationsApiService,
     GeographicsApiService,
-    FileUploadService
   ],
   bootstrap: [AppComponent]
 })

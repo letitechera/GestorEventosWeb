@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort, MatTableDataSource, MatDialog } from '@angular/material';
 import { EventData } from '@models/event-data';
 import { EventsApiService } from '@services/events-api/events-api.service';
-import { map } from 'rxjs/operators';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { Router } from '@angular/router';
 import { DateService } from '@services/date/date.service';
@@ -36,7 +35,7 @@ export class EventsComponent implements OnInit {
     this.route.navigate(['/events', row.EventId]);
   }
 
-  public deleteEvent(eventId){
+  public deleteEvent(eventId) {
     this.eventsApi.deleteEvent(eventId).then((data: any[]) => {
       this.initData();
     }, (err) => {
@@ -73,7 +72,7 @@ export class EventsComponent implements OnInit {
 
   private initData() {
     this.loading = true;
-    let userId = this.auth.getUserId();
+    const userId = this.auth.getUserId();
     this.eventsApi.getAllEvents(userId).then((data: any[]) => {
       this.loading = false;
       this.events = data;

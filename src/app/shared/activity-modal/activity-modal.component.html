@@ -1,0 +1,61 @@
+<div class="modal-header">
+  <P>
+    <span *ngIf="createFlag">Agregar Actividad</span>
+    <span *ngIf="updateFlag">Editar Actividad</span>
+  </P>
+  <div class="close-modal-block">
+    <button class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="form-container">
+    <form [formGroup]="activityForm" class="activity-form" (ngSubmit)="submitActivity()">
+      <fieldset>
+        <mat-form-field class="input-descr">
+          <input matInput placeholder="Titulo *" formControlName="Name" />
+          <mat-error *ngIf="activityForm.get('Name').hasError('required') && this.submitted">
+            Escriba una descripción a la Actividad
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-descr">
+          <input matInput placeholder="Descripción *" formControlName="Description" />
+          <mat-error *ngIf="activityForm.get('Description').hasError('required') && this.submitted">
+            Escriba una descripción a la Actividad
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-time">
+          <input type="time" matInput placeholder="Hora *" formControlName="StartTime" />
+          <mat-error *ngIf="activityForm.get('StartTime').hasError('required') && this.submitted">
+            Escriba una hora
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-type">
+          <mat-select formControlName="ActivityTypeId" placeholder="Tipo *" [(ngModel)]="selectedType" [disabled]="disabled">
+            <mat-option *ngFor="let type of activityTypes" [value]="type.Id">
+              {{ type.Name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="activityForm.get('ActivityTypeId').hasError('required')">
+            Elija un tipo de actividad
+          </mat-error>
+        </mat-form-field>
+      </fieldset>
+      <fieldset class="controls">
+        <div class="controls-container">
+          <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
+            <span>Cancelar</span>
+          </button>
+          <button type="submit" class="ge-btn-default btn-accept">
+            <span *ngIf="!loading && createFlag">Agregar</span>
+            <span *ngIf="!loading && updateFlag">Editar</span>
+            <span *ngIf="loading">
+              <fa name="spinner" animation="spin"></fa>
+            </span>
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
