@@ -41,7 +41,6 @@ export class AccreditationComponent implements OnInit {
     });
 
     this.qrScannerComponent.capturedQr.subscribe(participantId => {
-      console.log(participantId);
       this.eventsApi.accredit(participantId).then((participant: any[]) => {
         this.participant = participant;
         if (participant != null) {

@@ -25,7 +25,6 @@ export class UsersApiService {
           if (result == null) {
             return null;
           }
-          console.log(result);
           return result;
         })).subscribe((data: any[]) => {
           resolve(data);
@@ -45,7 +44,6 @@ export class UsersApiService {
   public putAccount(event): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.putAccountData(event).subscribe((data) => {
-        console.log(data);
         resolve(data);
       }, (err) => {
         console.log(err);

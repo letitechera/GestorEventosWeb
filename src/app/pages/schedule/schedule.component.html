@@ -3,7 +3,7 @@
 <div class="content-body">
   <div class="loader" *ngIf="loading"></div>
   <div class="event-info-container" *ngIf="!loading">
-    Gestión de Agenda: <strong>{{this.event.Name}}</strong>
+    Gestión de Agenda: <a (click)="goBack()"><strong>{{event.Name}}</strong></a>
   </div>
   <div class="schedule-container" *ngIf="!loading">
     <div class="schedule-controls">

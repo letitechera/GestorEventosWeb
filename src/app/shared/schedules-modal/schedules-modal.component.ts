@@ -88,7 +88,6 @@ export class SchedulesModalComponent implements OnInit {
   private editSchedule() {
     this.setScheduleObject();
     this.schedulesApi.putSchedule(this.scheduleData).then((data: any[]) => {
-      console.log(data);
       this.dialogRef.close('changed');
     }, (err) => {
       console.log(err);

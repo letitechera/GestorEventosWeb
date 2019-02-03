@@ -126,7 +126,6 @@ export class LocationsModalComponent implements OnInit {
   private editLocation() {
     this.setLocationObject();
     this.locationsApi.putLocation(this.location).then((data: any[]) => {
-      console.log(data);
       this.dialogRef.close('changed');
     }, (err) => {
       console.log(err);

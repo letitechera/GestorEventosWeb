@@ -44,7 +44,6 @@ export class TopicsModalComponent implements OnInit {
 
   public removeTopic(topicId) {
     this.eventsApi.deleteTopic(topicId).then((data: any[]) => {
-      console.log(data);
       this.InitTopics();
     }, (err) => {
       console.log(err);
@@ -59,7 +58,6 @@ export class TopicsModalComponent implements OnInit {
     }
     const name = this.topicsForm.get('name').value;
     this.eventsApi.postTopic(name).then((data: any[]) => {
-      console.log(data);
       this.InitTopics();
     }, (err) => {
       console.log(err);

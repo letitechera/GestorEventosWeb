@@ -115,7 +115,6 @@ export class SpeakerModalComponent implements OnInit {
   private editSpeaker() {
     this.setSpeakerObject();
     this.schedulesApi.putSpeaker(this.speakerData).then((data: any[]) => {
-      console.log(data);
       this.dialogRef.close('changed');
     }, (err) => {
       console.log(err);

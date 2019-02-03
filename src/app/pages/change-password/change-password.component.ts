@@ -45,7 +45,6 @@ export class ChangePasswordComponent implements OnInit {
     }
 
     this.service.changePassword(currentPassword, newPassword).subscribe((data) => {
-      console.log(data);
       this.loading = false;
       this.router.navigateByUrl('events');
     },

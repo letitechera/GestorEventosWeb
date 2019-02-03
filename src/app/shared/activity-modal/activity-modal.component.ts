@@ -127,7 +127,6 @@ export class ActivityModalComponent implements OnInit {
   private editActivity() {
     this.setActivityObject();
     this.schedulesApi.putActivity(this.activityData).then((data: any[]) => {
-      console.log(data);
       this.dialogRef.close('changed');
     }, (err) => {
       console.log(err);

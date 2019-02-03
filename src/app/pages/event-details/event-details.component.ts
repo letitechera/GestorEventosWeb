@@ -59,7 +59,6 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
           Topic: data.topic,
           CreatedById: data.createdById,
         };
-        console.log(this.event)
       }
     }, (err) => {
       console.log(err);

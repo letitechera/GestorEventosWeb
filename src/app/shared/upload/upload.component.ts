@@ -26,7 +26,6 @@ export class UploadComponent implements OnInit {
 
   ngOnInit() {
     this.formData = new FormData();
-    console.log(this.originalImage);
     var emptyImage = this.originalImage == null || this.originalImage == "";
     this.originalImage = this.eventId == 0 || emptyImage ? environment.defaultImage : this.originalImage;
     this.fileUrl = this.originalImage;
