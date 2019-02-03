@@ -1,4 +1,4 @@
-export interface Participant {
+export interface ParticipantData {
     ParticipantId: number;
     FirstName: string;
     LastName: string;

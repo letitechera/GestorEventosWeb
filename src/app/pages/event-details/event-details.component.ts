@@ -30,7 +30,7 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
-  public editEvent(){
+  public editEvent() {
     this.router.navigate(['events/manage/', this.event.EventId]);
   }
 
@@ -67,6 +67,18 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     });
   }
 
+  public sendCampaign() {
+    this.loading = true;
+    this.eventsApi.sendCampaign(this.id).then(() => {
+      this.loading = false;
+    },
+      (err) => {
+        console.log(err);
+        this.loading = false;
+      }
+    );
+  }
+
   public showDate(date) {
     return this.dateService.GetShortDate(date);
   }
@@ -79,4 +91,7 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  public navigateTo(page) {
+    this.router.navigateByUrl(page);
+  }
 }

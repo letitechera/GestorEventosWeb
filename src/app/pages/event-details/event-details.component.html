@@ -41,6 +41,8 @@
             <a class="cancel">Cancelar Evento</a>
             <a>Vista Previa</a>
             <a (click)="getSchedule()">Gestionar Agenda</a>
+            <a (click)="sendCampaign()">Difundir</a>
+            <a (click)="navigateTo('events/' + event.EventId + '/participants')">Participantes</a>
           </div>
         </div>
       </div>

@@ -1,16 +1,19 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { QrScannerComponent } from 'angular2-qrscanner';
+import { EventsApiService } from '@services/events-api/events-api.service';
 
 @Component({
   selector: 'app-accreditation',
   templateUrl: './accreditation.component.html',
-  styleUrls: ['./accreditation.component.scss']
+  styleUrls: ['./accreditation.component.scss'],
 })
 export class AccreditationComponent implements OnInit {
 
   @ViewChild(QrScannerComponent) qrScannerComponent: QrScannerComponent;
 
-  constructor() { }
+  participant: any;
+
+  constructor(private eventsApi: EventsApiService) { }
 
   ngOnInit() {
     this.qrScannerComponent.getMediaDevices().then(devices => {
@@ -37,8 +40,19 @@ export class AccreditationComponent implements OnInit {
       }
     });
 
-    this.qrScannerComponent.capturedQr.subscribe(result => {
-      console.log(result);
+    this.qrScannerComponent.capturedQr.subscribe(participantId => {
+      console.log(participantId);
+      this.eventsApi.accredit(participantId).then((participant: any[]) => {
+        this.participant = participant;
+        if (participant != null) {
+          console.log("Accreditation OK");
+          console.log(participant);
+        }else{
+          console.log("Accreditation FAILED");
+        }
+      }, (err) => {
+        console.log(err);
+      });
     });
   }
 }

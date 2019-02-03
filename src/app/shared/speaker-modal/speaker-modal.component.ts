@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Speaker } from '@models/schedule-data';
 import { environment } from 'environments/environment.prod';
+import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
 
 @Component({
   selector: 'app-speaker-modal',
