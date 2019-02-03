@@ -34,7 +34,11 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate(['events/manage/', this.event.EventId]);
   }
 
-  public goBack() {
+  public getSchedule() {
+    this.router.navigate(['schedule', this.event.EventId]);
+  }
+
+  public goBack(){
     this.router.navigateByUrl('events');
   }
 
@@ -51,6 +55,7 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
           Image: data.image != null ? data.image : '',
           Description: data.description,
           Location: data.location,
+          Address: data.address,
           Topic: data.topic,
           CreatedById: data.createdById,
         };

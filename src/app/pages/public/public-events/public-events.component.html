@@ -1,0 +1,24 @@
+<login-header></login-header>
+<div class="content-body">
+  <div>
+    <h2>Hechále un vistazo a próximos eventos!</h2>
+  </div>
+  <div class="p-events-container">
+    <div class="row">
+      <div class="col-md-4" *ngFor="let event of events">
+        <a (click)="getEvent(event.EventId)">
+          <div class="event-header">
+            <div>
+              <span>{{event.Name}}</span>
+              <span>{{event.StartDate}}</span>
+            </div>
+          </div>
+          <div class="event-info">
+            <p>{{event.Description}}</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

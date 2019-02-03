@@ -1,0 +1,41 @@
+<div class="modal-header">
+  <P>
+    <span *ngIf="createFlag">Agregar Día</span>
+    <span *ngIf="updateFlag">Editar Día</span>
+  </P>
+  <div class="close-modal-block">
+    <button class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="form-container">
+    <form [formGroup]="scheduleForm" class="schedule-form" (ngSubmit)="submitSchedule()">
+      <fieldset>
+        <mat-form-field class="input-date">
+          <input matInput [min]="minDate" matInput [max]="maxDate"[matDatepicker]="picker1" placeholder="Fecha *" formControlName="Date">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+          <mat-error *ngIf="scheduleForm.get('Date').hasError('required') && this.submitted">
+            Ingrese una fecha
+          </mat-error>
+        </mat-form-field>
+      </fieldset>
+      <fieldset class="controls">
+        <div class="controls-container">
+          <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
+            <span>Cancelar</span>
+          </button>
+          <button type="submit" class="ge-btn-default btn-accept">
+            <span *ngIf="!loading && createFlag">Agregar</span>
+            <span *ngIf="!loading && updateFlag">Editar</span>
+            <span *ngIf="loading">
+              <fa name="spinner" animation="spin"></fa>
+            </span>
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

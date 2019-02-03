@@ -28,6 +28,7 @@ export class EventsApiService {
               Image: result.image != null ? result.image : '',
               Description: result.description,
               Location: result.location,
+              Address: result.address,
               Topic: result.topic,
               CreatedById: result.createdById,
             });
@@ -46,6 +47,24 @@ export class EventsApiService {
   public getEventDetails(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.getEventDetailsData(id)
+        .pipe(map((result: any) => {
+          if (result == null) {
+            return null;
+          }
+          console.log(result);
+          return result;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
+  public getEventDates(id): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.getEventDatesData(id)
         .pipe(map((result: any) => {
           if (result == null) {
             return null;
@@ -241,6 +260,12 @@ export class EventsApiService {
   private getEventDetailsData(id) {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/${id}`;
+    return this.commonHttpGet(url, this.headers);
+  }
+
+  private getEventDatesData(id) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/${id}/dates`;
     return this.commonHttpGet(url, this.headers);
   }
 
