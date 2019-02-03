@@ -52,30 +52,57 @@
                     font-size: 14px;
                     border: 1px $ge-dolphin solid;
                     width: 100%;
-                    .activity-header{
-                        margin: 5px 0;
-                        height: 25px;
-                        .activity-name{
-                            display: block;
-                            width: 50%;
-                            font-weight: 700;
-                            float: left;
+                    a.activity{
+                        display: block;
+                        .activity-header{
+                            margin: 5px 0;
+                            height: 25px;
+                            .activity-name{
+                                display: block;
+                                width: 50%;
+                                font-weight: 700;
+                                float: left;
+                            }
+                            .activity-time{
+                                display: block;
+                                width: 50%;
+                                color: $ge-elephant;
+                                float: right;
+                                text-align: right;
+                            }
                         }
-                        .activity-time{
-                            display: block;
-                            width: 50%;
-                            color: $ge-elephant;
-                            float: right;
-                            text-align: right;
+                        .activity-description{
+                            clear: both;
+                            width: 100%;
+                            margin: 20px 0;
                         }
                     }
-                    .activity-description{
-                        clear: both;
-                        width: 100%;
-                        margin: 20px 0;
+                    a.activity:hover{
+                        color: $ge-elephant;
                     }
                     .speakers-container{
                         border-top: 1px $ge-dolphin solid;
+                        padding: 5px 0;
+                        .speaker-block{
+                            margin: 5px 0;
+                            a:hover{
+                                color: $ge-elephant;
+                            }
+                        }
+                        .speakers-controls{
+                            a{
+                                font-size: 12px;
+                                fa{
+                                    color: $ge-deep-sky;
+                                }
+                            }
+                            a:hover{
+                                color: $ge-elephant;
+                                fa{
+                                    color: $ge-dark-sky;
+                                }
+                            }
+                        }
                     }
                 }
                 .add-activity{

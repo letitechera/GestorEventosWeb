@@ -86,6 +86,7 @@ button{
 }
 .ge-btn-default:hover{
     background-color: $ge-dark-sky;
+    min-width: 68px;
 }
 
 /* SUB MENU */
@@ -201,6 +202,7 @@ button{
 }
 .btn-cancel{
     background-color: $ge-elephant;
+
 }
 .btn-cancel:hover{
     background-color: $ge-sunrise;

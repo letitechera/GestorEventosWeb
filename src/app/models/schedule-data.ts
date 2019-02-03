@@ -24,7 +24,6 @@ export interface ActivitySendable {
     EventScheduleId: number;
 }
 
-
 export interface Speaker {
     Id: number;
     FirstName: string;

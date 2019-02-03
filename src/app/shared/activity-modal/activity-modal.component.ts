@@ -34,9 +34,21 @@ export class ActivityModalComponent implements OnInit {
 
   ngOnInit() {
     this.submitted = false;
-    this.passedActivity = this.data.activity;
-    this.passedStartDate = this.data.scheduleStartDate;
+    if (this.data.activity != null) {
+      this.passedActivity = {
+        Name: this.data.activity.name,
+        Description: this.data.activity.description,
+        StartTime: this.data.activity.startTime,
+        ActivityTypeId: this.data.activity.activityTypeId,
+        EventScheduleId: this.data.activity.scheduleId,
+        Id: this.data.activity.id
+      };
+    } else {
+      this.passedActivity = null;
+    }
+    this.passedStartDate = new Date(this.data.scheduleStartDate);
     this.passedScheduleId = this.data.scheduleId;
+    debugger;
     this.GetActivityTypes();
 
     if (this.passedActivity == null) {
@@ -44,7 +56,7 @@ export class ActivityModalComponent implements OnInit {
       this.createFlag = true;
       this.createEmptyForm();
     } else {
-      this.minDate = this.passedActivity.StartTime;
+      this.minDate = new Date(this.passedActivity.StartTime);
       this.updateFlag = true;
       this.setCurrentForm();
     }
@@ -83,7 +95,8 @@ export class ActivityModalComponent implements OnInit {
   }
 
   private setCurrentForm() {
-    const startTime = this.dateService.SetTimeToDate(this.passedActivity.StartTime, this.activityForm.get('StartTime').value);
+    debugger;
+    const startTime = this.dateService.GetCustomTime(this.passedActivity.StartTime);
     this.activityForm = this.formBuilder.group({
       ActivityTypeId: [this.selectedType, [Validators.required]],
       Name: [this.passedActivity.Name, [Validators.required]],

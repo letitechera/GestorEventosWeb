@@ -10,6 +10,7 @@ import { SchedulesModalComponent } from '@shared/schedules-modal/schedules-modal
 import { EventData } from '@models/event-data';
 import { environment } from 'environments/environment.prod';
 import { ActivityModalComponent } from '@shared/activity-modal/activity-modal.component';
+import { SpeakerModalComponent } from '@shared/speaker-modal/speaker-modal.component';
 
 @Component({
   selector: 'app-schedule',
@@ -105,6 +106,26 @@ export class ScheduleComponent implements OnInit {
         activity: element,
         scheduleStartDate: startDate
       }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'changed') {
+        this.initSchedules();
+      }
+    });
+  }
+
+  public openSpeakersDialog(activityId, element) {
+    this.auth.checkSession();
+    const dialogRef = this.dialog.open(SpeakerModalComponent, {
+      height: '450px',
+      width: '420px',
+      hasBackdrop: true,
+      data: {
+        activityId: activityId,
+        speaker: element,
+      }
+
     });
 
     dialogRef.afterClosed().subscribe(result => {
