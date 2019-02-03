@@ -33,7 +33,6 @@ export class ForgotPasswordComponent implements OnInit {
     this.loading = true;
     const email = this.forgotForm.get('email').value;
     this.service.forgotPassword(email).subscribe((data) => {
-      console.log(data);
       this.loading = false;
       this.router.navigateByUrl('login');
     },

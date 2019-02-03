@@ -93,7 +93,6 @@ export class AttendantsModalComponent implements OnInit {
 
   private editAttendant() {
     this.putAttendant().then((data: any[]) => {
-      console.log(data);
       this.dialogRef.close('changed');
     }, (err) => {
       console.log(err);
@@ -104,7 +103,6 @@ export class AttendantsModalComponent implements OnInit {
     this.setAttendantObject();
     return new Promise<any>((resolve, reject) => {
       this.attendantsApi.putAttendant(this.attendant).subscribe((data) => {
-        console.log(data);
         resolve(data);
       }, (err) => {
         console.log(err);

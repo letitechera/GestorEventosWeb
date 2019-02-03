@@ -208,7 +208,6 @@ export class EventManageComponent implements OnInit, OnDestroy {
 
   public uploadFinished = (event) => {
     this.originalImage = event.newFile;
-    console.log(this.originalImage);
   }
 
   public showDate(date) {

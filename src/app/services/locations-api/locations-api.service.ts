@@ -57,7 +57,6 @@ export class LocationsApiService {
   public putLocation(location): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.putLocationData(location).subscribe((data) => {
-        console.log(data);
         resolve(data);
       }, (err) => {
         console.log(err);

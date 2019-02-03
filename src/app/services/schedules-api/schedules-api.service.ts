@@ -78,7 +78,6 @@ export class SchedulesApiService {
   public putSchedule(schedule): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.putScheduleData(schedule).subscribe((data) => {
-        console.log(data);
         resolve(data);
       }, (err) => {
         console.log(err);
@@ -141,7 +140,6 @@ export class SchedulesApiService {
   public putActivity(activity): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.putActivityData(activity).subscribe((data) => {
-        console.log(data);
         resolve(data);
       }, (err) => {
         console.log(err);
@@ -207,7 +205,6 @@ export class SchedulesApiService {
   public putSpeaker(speaker): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.putSpeakerData(speaker).subscribe((data) => {
-        console.log(data);
         resolve(data);
       }, (err) => {
         console.log(err);
@@ -231,7 +228,6 @@ export class SchedulesApiService {
     return new Promise<any>((resolve, reject) => {
       this.getActivityTypesData()
         .pipe(map((results: any[]) => {
-          console.log(results);
           const data = [];
           if (!results) {
             return data;

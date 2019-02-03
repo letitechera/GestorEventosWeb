@@ -66,7 +66,6 @@ export class ScheduleComponent implements OnInit {
     this.schedulesApi.getSchedulesByEvent(this.id).then((data: any[]) => {
       this.loading = false;
       this.schedules = data;
-      console.log(this.schedules);
     }, (err) => {
       this.loading = false;
       console.log(err);

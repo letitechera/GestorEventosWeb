@@ -33,7 +33,6 @@ export class EventsApiService {
               CreatedById: result.createdById,
             });
           });
-          console.log(data)
           return data;
         })).subscribe((data: any[]) => {
           resolve(data);
@@ -51,7 +50,6 @@ export class EventsApiService {
           if (result == null) {
             return null;
           }
-          console.log(result);
           return result;
         })).subscribe((data: any[]) => {
           resolve(data);
@@ -69,7 +67,6 @@ export class EventsApiService {
           if (result == null) {
             return null;
           }
-          console.log(result);
           return result;
         })).subscribe((data: any[]) => {
           resolve(data);
@@ -87,7 +84,6 @@ export class EventsApiService {
           if (result == null) {
             return null;
           }
-          console.log(result);
           return result;
         })).subscribe((data: any[]) => {
           resolve(data);
@@ -113,7 +109,6 @@ export class EventsApiService {
   public putEvent(event): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.putEventData(event).subscribe((data) => {
-        console.log(data);
         resolve(data);
       }, (err) => {
         console.log(err);
@@ -147,7 +142,6 @@ export class EventsApiService {
               Name: result.name,
             });
           });
-          console.log(data);
           return data;
         })).subscribe((data: any[]) => {
           resolve(data);
@@ -161,7 +155,6 @@ export class EventsApiService {
   public postTopic(name): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.postTopicData(name).subscribe((data) => {
-        console.log(data);
         resolve(data);
       }, (err) => {
         console.log(err);
@@ -173,7 +166,6 @@ export class EventsApiService {
   public deleteTopic(topicId): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.deleteTopicData(topicId).subscribe((data) => {
-        console.log(data);
         resolve(data);
       }, (err) => {
         console.log(err);
@@ -190,7 +182,6 @@ export class EventsApiService {
           if (result == null) {
             return null;
           }
-          console.log(result);
           return result;
         })).subscribe((data: any[]) => {
           resolve(data);
@@ -208,7 +199,6 @@ export class EventsApiService {
           if (result == null) {
             return null;
           }
-          console.log(result);
           return result;
         })).subscribe((data: any[]) => {
           resolve(data);
@@ -234,7 +224,6 @@ export class EventsApiService {
               Email: result.attendant.email
             });
           });
-          console.log(data);
           return data;
         })).subscribe((data: any[]) => {
           resolve(data);

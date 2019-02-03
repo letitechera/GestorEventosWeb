@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { DateService } from '@services/date/date.service';
-import { EventsApiService } from '@services/events-api/events-api.service';
-import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { Router } from '@angular/router';
 import { EventData } from '@models/event-data';
+import { PublicApiService } from '@services/public-api/public-api.service';
 
 @Component({
   selector: 'app-public-events',
@@ -13,7 +12,7 @@ import { EventData } from '@models/event-data';
 export class PublicEventsComponent implements OnInit {
   public events: EventData[];
   public loading: boolean;
-  constructor(private eventsApi: EventsApiService, private route: Router,
+  constructor(private publicApi: PublicApiService, private route: Router,
     private dateService: DateService) { }
 
   ngOnInit() {
@@ -22,9 +21,10 @@ export class PublicEventsComponent implements OnInit {
 
   private initData() {
     this.loading = true;
-    this.eventsApi.getAllEvents().then((data: any[]) => {
+    this.publicApi.getAllEvents().then((data: any[]) => {
       this.loading = false;
       this.events = data;
+      console.log(data)
     }, (err) => {
       this.loading = false;
       console.log(err);
@@ -32,7 +32,7 @@ export class PublicEventsComponent implements OnInit {
   }
 
   public getEvent(eventId) {
-    this.route.navigate(['/events', eventId]);
+    this.route.navigate(['public/events/', eventId]);
   }
 
   public showDate(date) {
@@ -42,14 +42,5 @@ export class PublicEventsComponent implements OnInit {
   public showTime(date) {
     return this.dateService.GetTime(date);
   }
-
-  public deleteEvent(eventId){
-    this.eventsApi.deleteEvent(eventId).then((data: any[]) => {
-      this.initData();
-    }, (err) => {
-      console.log(err);
-    });
-  }
-
 
 }

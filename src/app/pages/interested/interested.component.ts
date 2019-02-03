@@ -37,7 +37,6 @@ export class InterestedComponent implements OnInit {
       hasBackdrop: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if(result=='changed'){
         this.initData();
       }
@@ -81,7 +80,6 @@ export class InterestedComponent implements OnInit {
               Email: result.email,
             });
           });
-          console.log(data)
           return data;
         })).subscribe((data: any[]) => {
           resolve(data);
@@ -106,7 +104,6 @@ export class InterestedComponent implements OnInit {
   private deleteInterested(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.attendantsApi.deleteAttendant(id).subscribe((data) => {
-        console.log(data);
         resolve(data);
       }, (err) => {
         console.log(err);

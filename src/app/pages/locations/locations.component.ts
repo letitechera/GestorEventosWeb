@@ -37,7 +37,6 @@ export class LocationsComponent implements OnInit {
       hasBackdrop: true
     });
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       if (result === 'changed') {
         this.initData();
       }
@@ -59,7 +58,6 @@ export class LocationsComponent implements OnInit {
     this.locationsApi.getAllLocations().then((data: any[]) => {
       this.loading = false;
       this.locations = data;
-      console.log(data);
       if (this.locations) {
         this.initDataSource();
       }
