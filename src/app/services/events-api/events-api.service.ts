@@ -219,6 +219,7 @@ export class EventsApiService {
           }
           results.forEach((result) => {
             data.push({
+              ParticipantId: result.id,
               FirstName: result.attendant.firstName,
               LastName: result.attendant.lastName,
               Email: result.attendant.email
@@ -233,6 +234,24 @@ export class EventsApiService {
           });
     });
   }
+
+  public sendCertificate(id): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.sendCertificateData(id)
+        .pipe(map((result: any) => {
+          if (result == null) {
+            return null;
+          }
+          return result;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
 
   private getAllEventsData() {
     this.setDefaultHeaders();
@@ -315,6 +334,12 @@ export class EventsApiService {
   private getParticipantsData(eventId) {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/` + eventId + `/participants`;
+    return this.commonHttpGet(url, this.headers);
+  }
+
+  private sendCertificateData(id) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/certificates/${id}`;
     return this.commonHttpGet(url, this.headers);
   }
 
