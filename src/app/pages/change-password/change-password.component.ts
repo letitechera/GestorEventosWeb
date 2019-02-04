@@ -55,7 +55,11 @@ export class ChangePasswordComponent implements OnInit {
     });
   }
 
-  public navigateTo(page){
+  public navigateTo(page) {
     this.router.navigateByUrl(page);
+  }
+
+  public goBack() {
+    this.router.navigateByUrl('login');
   }
 }

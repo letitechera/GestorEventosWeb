@@ -32,7 +32,7 @@
           </mat-error>
         </mat-form-field>
         <mat-form-field class="input-type">
-          <mat-select formControlName="ActivityTypeId" placeholder="Tipo *" [(ngModel)]="selectedType" [disabled]="disabled">
+          <mat-select formControlName="ActivityTypeId" placeholder="Tipo *" [(ngModel)]="selectedType">
             <mat-option *ngFor="let type of activityTypes" [value]="type.Id">
               {{ type.Name }}
             </mat-option>
