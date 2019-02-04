@@ -1,24 +1,34 @@
 <login-header></login-header>
+
 <div class="content-body">
-  <div>
-    <h2>Hechále un vistazo a próximos eventos!</h2>
+  <div class="events-header">
+    <div class="title">
+      <div class="title-decor"></div>
+      <div class="title-text">
+        Hechále un vistazo a próximos eventos!
+      </div>
+    </div>
   </div>
   <div class="p-events-container">
     <div class="row">
-      <div class="col-md-4" *ngFor="let event of events">
-        <a (click)="getEvent(event.EventId)">
-          <div class="event-header">
-            <div>
-              <span>{{event.Name}}</span>
-              <span>{{event.StartDate}}</span>
+      <div class="col-md-4 event-col" *ngFor="let event of events">
+        <div class="event-container">
+          <a (click)="getEvent(event.EventId)">
+            <div class="event-img center-cropped" [ngStyle]="{ 'background-image': 'url(' + event.Image + ')'}"></div>
+            <div class="event-info">
+              <span class="event-name">{{event.Name}}</span>
+              <span class="event-loc">{{event.Location}}</span>
+              <span class="event-descr">{{showShortDescription(event.Description)}}</span>
             </div>
-          </div>
-          <div class="event-info">
-            <p>{{event.Description}}</p>
-          </div>
-        </a>
+            <div class="event-date">
+              <span class="event-day">{{showDayDate(event.StartDate)}}</span>
+              <span class="event-month">{{showAbbreviatedMonth(event.StartDate)}}</span>
+            </div>
+          </a>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
 <app-footer></app-footer>
