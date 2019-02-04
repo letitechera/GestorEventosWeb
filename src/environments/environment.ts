@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  // webApiUrl: 'https://gestor-eventos.azurewebsites.net/api',
+  webApiUrl: 'https://gestor-eventos.azurewebsites.net/api',
   // webApiUrl: 'https://localhost:44314/api',
-  webApiUrl: 'https://localhost:44323/api',
+  // webApiUrl: 'https://localhost:44323/api',
   // webApiUrl: 'https://localhost:41751/api',
   defaultImage: 'https://geventosfiles.blob.core.windows.net/eventimages/default-event-image.jpg',
 };
