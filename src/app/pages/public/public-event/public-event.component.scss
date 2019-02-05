@@ -69,5 +69,26 @@
     }
     .event-info{
         clear: both;
+        padding: 30px;
+        .event-descr{
+            padding: 10px 20px 10px 10px;
+            h5{
+                margin: 10px 0;
+                font-size: 16px;
+            }
+            p{
+                font-size: 14px;
+            }
+        }
+        .event-details{
+            h5{
+                margin: 10px 0;
+                font-size: 16px;
+            }
+            p{
+                margin: 0;
+                font-size: 14px;
+            }
+        }
     }
 }
