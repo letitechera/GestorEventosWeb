@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { DatePipe } from '@angular/common'
+import { DatePipe } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,12 @@ export class DateService {
 
   constructor(public datepipe: DatePipe) { }
 
+  public GetDayDate(date: any) {
+    return this.datepipe.transform(date, 'd');
+  }
+  public GetAbbreviatedMonth(date: any) {
+    return this.datepipe.transform(date, 'MMM');
+  }
   public GetShortDate(date: any) {
     return this.datepipe.transform(date, 'yyyy-MM-dd');
   }
@@ -16,6 +22,9 @@ export class DateService {
   }
   public GetCustomTime(date: any) {
     return this.datepipe.transform(date, 'HH:mm');
+  }
+  public GetPrettyDateTime(date: any) {
+    return this.datepipe.transform(date, 'EEEE d MMM yyyy, HH:mm');
   }
   public SetTimeToDate(date: Date, time: string) {
     const timestring = time.split(':');

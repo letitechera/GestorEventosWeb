@@ -2,7 +2,6 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventsApiService } from '@services/events-api/events-api.service';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
-import { map } from 'rxjs/operators';
 import { EventData } from '@models/event-data';
 import { DateService } from '@services/date/date.service';
 

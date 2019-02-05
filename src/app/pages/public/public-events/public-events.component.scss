@@ -1,0 +1,93 @@
+@import '~styles/palette';
+
+.events-header{
+    padding: 50px 0 10px 50px;
+    .title{
+        padding-left: 10px;
+        .title-decor{
+            height: 50px;
+            width: 10px;
+            background-color: $ge-sunrise;
+            margin-right: 20px;
+            float: left;
+        }
+        .title-text{
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 34px;
+            line-height: 1.6;
+            float: left;
+        }
+    }
+}
+.p-events-container{
+    clear: both;
+    max-width: 1356px;
+    margin: 0 auto;
+    .row{
+        padding: 40px 60px;
+        .event-col{
+            .event-container{
+                padding: 20px;
+                height: fit-content;
+                a{
+                    display: block;
+                    width: 100%;
+                    height: 300px;
+                    border-radius: 5px;
+                    .event-img{
+                        // float: right;
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                    }
+                    .center-cropped {
+                        width: 100%;
+                        height: 200px;
+                        background-size: 110%;
+                        background-position: center center;
+                        background-repeat: no-repeat;
+                    }
+                    .event-info{
+                        padding: 15px;
+                        width: 80%;
+                        float: left;
+                        .event-name{
+                            display: block;
+                            padding-bottom: 5px;
+                            font-weight: 600;
+                        }
+                        .event-loc{
+                            display: block;
+                            font-size: 12px;
+                        }
+                        .event-descr{
+                            display: block;
+                            font-size: 12px;
+                        }
+                    }
+                    .event-date{
+                        padding: 15px;
+                        width: 20%;
+                        float: right;
+                        text-align: center;
+                        .event-day{
+                            font-size: 18px;
+                            display: block;
+                            font-weight: 600;
+                            color: $ge-elephant;
+                        }
+                        .event-month{
+                            font-size: 16px;
+                            display: block;
+                            color: $ge-sunrise;
+                            font-weight: 600;
+                        }
+                    }
+                }
+                a:hover{
+                    box-shadow: 0 3px 7px 0 $ge-dolphin, 0 5px 15px 0 $ge-dolphin;
+                }
+            }
+        }
+    }
+}
