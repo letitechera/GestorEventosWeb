@@ -9,7 +9,7 @@ export class DateService {
   constructor(public datepipe: DatePipe) { }
 
   public GetDayDate(date: any) {
-    return this.datepipe.transform(date, 'd');
+    return this.datepipe.transform(date, 'dd');
   }
   public GetAbbreviatedMonth(date: any) {
     return this.datepipe.transform(date, 'MMM');

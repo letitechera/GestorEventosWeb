@@ -30,9 +30,9 @@ export class PublicEventComponent implements OnInit, OnDestroy {
   public initData(id) {
     this.eventLoading = true;
     this.publicApi.getEvent(id).then((data: any) => {
-      this.eventLoading = false;
       if (data != null) {
         this.event = data;
+        this.eventLoading = false;
         console.log(this.event);
       }
     }, (err) => {
@@ -40,8 +40,8 @@ export class PublicEventComponent implements OnInit, OnDestroy {
       this.eventLoading = false;
     });
   }
-  
-  public goBack(){
+
+  public goBack() {
     this.router.navigateByUrl('public/events');
   }
 

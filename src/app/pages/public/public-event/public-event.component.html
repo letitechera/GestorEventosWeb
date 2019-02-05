@@ -1,23 +1,24 @@
 <login-header></login-header>
 
 <div class="content-body">
-    <div class="event-container">
-        <div class="loader" *ngIf="eventLoading"></div>
-        <div class="event-header" *ngIf="!eventLoading">
-            <div class="event-img"></div>
+    <div class="loader" *ngIf="eventLoading"></div>
+    <div class="event-container" *ngIf="!eventLoading">
+        <div class="event-header">
+            <div class="center-cropped" [ngStyle]="{ 'background-image': 'url(' + event.Image + ')'}">
+            </div>
             <div class="event-sum">
                 <div class="event-date">
                     <span class="event-day">{{showDayDate(event.StartDate)}}</span>
                     <span class="event-month">{{showAbbreviatedMonth(event.StartDate)}}</span>
                 </div>
                 <div class="event-title">{{event.Name}}</div>
-                <div class="event-topic">{{event.Topic}}</div>
+                <div class="event-topic">{{event.Topic.name}}</div>
                 <div class="controls">
-                    <a class="inscription-btn">Inscribirme!</a>
+                    <a>Inscribirme!</a>
                 </div>
             </div>
         </div>
-        <div class="row event-info" *ngIf="!eventLoading">
+        <div class="row event-info">
             <div class="col-md-9">
                 <div class="event-descr">
                     <h5>Descripción</h5>
@@ -36,16 +37,13 @@
                     <p>{{event.Location.address1}}</p>
                     <p *ngIf="event.Location.address2!=null||event.Location.address2!=''">
                         {{event.Location.address2}}</p>
-                    <p>{{event.Location.address1}}</p>
                     <p>{{event.Location.city.name}}, {{event.Location.city.country.name}}</p>
                 </div>
             </div>
         </div>
         <div class="event-schedule">
             <div class="loader" *ngIf="scheduleLoading"></div>
-            <div class="schedule container">
-
-
+            <div class="schedule container" *ngIf="!scheduleLoading">
             </div>
         </div>
     </div>

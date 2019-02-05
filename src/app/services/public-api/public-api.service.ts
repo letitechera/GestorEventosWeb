@@ -58,7 +58,7 @@ export class PublicApiService {
             Description: result.description,
             Location: result.location,
             Address: result.address,
-            Topic: result.topic,
+            Topic: result.eventTopic,
             CreatedById: result.createdById,
           };
           return data;
