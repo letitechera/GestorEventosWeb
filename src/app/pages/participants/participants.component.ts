@@ -48,6 +48,8 @@ export class ParticipantsComponent implements OnInit {
       'FirstName',
       'LastName',
       'Email',
+      'Phone',
+      'CellPhone',
       'Accredit',
       'Certificate'
     ];

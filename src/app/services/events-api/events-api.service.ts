@@ -220,9 +220,11 @@ export class EventsApiService {
           results.forEach((result) => {
             data.push({
               ParticipantId: result.id,
-              FirstName: result.attendant.firstName,
-              LastName: result.attendant.lastName,
-              Email: result.attendant.email
+              FirstName: result.firstName,
+              LastName: result.lastName,
+              Email: result.email,
+              Phone: result.phone,
+              CellPhone: result.cellPhone
             });
           });
           return data;
@@ -252,9 +254,9 @@ export class EventsApiService {
     });
   }
 
-  public registerToEvent(eventId, attendantId): Promise<any> {
+  public registerToEvent(participant): Promise<any> {
     return new Promise<any>((resolve, reject) => {
-      this.registerToEventData(eventId, attendantId)
+      this.registerToEventData(participant)
         .pipe(map((result: any) => {
           if (result == null) {
             return null;
@@ -360,10 +362,10 @@ export class EventsApiService {
     return this.commonHttpGet(url, this.headers);
   }
 
-  private registerToEventData(eventId, attendantId) {
+  private registerToEventData(participant) {
     this.setDefaultHeaders();
-    const url = `${environment.webApiUrl}/events/registerToEvent/${eventId}/${attendantId}`;
-    return this.commonHttpGet(url, this.headers);
+    const url = `${environment.webApiUrl}/events/registerToEvent`;
+    return this.commonHttpPost(url, participant, this.headers);
   }
 
   private setDefaultHeaders() {

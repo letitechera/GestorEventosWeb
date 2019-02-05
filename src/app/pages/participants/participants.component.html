@@ -11,7 +11,7 @@
 <div class="content-body">
     <div class="loader" *ngIf="loading"></div>
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-  
+
         <ng-container matColumnDef="FirstName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
             <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
@@ -26,19 +26,29 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo Electronico </th>
             <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
         </ng-container>
-    
+
+        <ng-container matColumnDef="Phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </th>
+            <td mat-cell *matCellDef="let element"> {{element.Phone}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="CellPhone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Celular </th>
+            <td mat-cell *matCellDef="let element"> {{element.CellPhone}} </td>
+        </ng-container>
+
         <ng-container matColumnDef="Accredit">
             <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
                 <button>Acreditar</button>
-            </td>           
+            </td>
         </ng-container>
 
         <ng-container matColumnDef="Certificate">
             <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
                 <button (click)="sendCertificate(element.ParticipantId)">Emitir Certificado</button>
-            </td>           
+            </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

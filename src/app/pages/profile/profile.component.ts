@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.loadingBtn = true;
     this.editAccount();
   }
-
+  
   private editAccount() {
     this.setAccountObject();
     this.usersApi.putAccount(this.account).then((data: any[]) => {

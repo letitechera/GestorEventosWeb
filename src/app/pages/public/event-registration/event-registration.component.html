@@ -33,7 +33,7 @@
                 <div class="col-xs-6 col-md-6 form-left">
 
                   <div>
-                      <h3>Inscripcion - Confirmacion de Asistencia al Evento</h3>
+                      <h4>Inscripcion - Confirmacion de Asistencia al Evento</h4>
 
                       <mat-form-field class="input-firstname">
                         <input matInput placeholder="Nombre *" formControlName="FirstName" />
@@ -57,7 +57,7 @@
                       </mat-form-field>
     
                       <mat-form-field class="input-phone">
-                        <input matInput placeholder="Correo Electronico*" formControlName="Phone" />
+                        <input matInput placeholder="Telefono*" formControlName="Phone" />
                         <mat-error *ngIf="eventRegistrationForm.get('Phone').hasError('required') && this.submitted">
                           Telefono
                         </mat-error>
