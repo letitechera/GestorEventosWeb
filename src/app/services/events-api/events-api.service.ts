@@ -252,6 +252,23 @@ export class EventsApiService {
     });
   }
 
+  public registerToEvent(eventId, attendantId): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.registerToEventData(eventId, attendantId)
+        .pipe(map((result: any) => {
+          if (result == null) {
+            return null;
+          }
+          return result;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
 
   private getAllEventsData() {
     this.setDefaultHeaders();
@@ -340,6 +357,12 @@ export class EventsApiService {
   private sendCertificateData(id) {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/certificates/${id}`;
+    return this.commonHttpGet(url, this.headers);
+  }
+
+  private registerToEventData(eventId, attendantId) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/registerToEvent/${eventId}/${attendantId}`;
     return this.commonHttpGet(url, this.headers);
   }
 
