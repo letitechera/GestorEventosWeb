@@ -23,6 +23,9 @@ export class DateService {
   public GetCustomTime(date: any) {
     return this.datepipe.transform(date, 'HH:mm');
   }
+  public GetPrettyDateTime(date: any) {
+    return this.datepipe.transform(date, 'EEEE d MMM yyyy, HH:mm');
+  }
   public SetTimeToDate(date: Date, time: string) {
     const timestring = time.split(':');
     let result = date.setHours(+timestring[0]);

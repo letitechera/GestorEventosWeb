@@ -1,7 +1,8 @@
 <login-header></login-header>
 
 <div class="content-body">
-  <div class="events-header">
+  <div class="loader" *ngIf="loading"></div>
+  <div class="events-header" *ngIf="!loading">
     <div class="title">
       <div class="title-decor"></div>
       <div class="title-text">
@@ -9,7 +10,7 @@
       </div>
     </div>
   </div>
-  <div class="p-events-container">
+  <div class="p-events-container" *ngIf="!loading">
     <div class="row">
       <div class="col-md-4 event-col" *ngFor="let event of events">
         <div class="event-container">
