@@ -17,6 +17,9 @@ export class DateService {
   public GetShortDate(date: any) {
     return this.datepipe.transform(date, 'yyyy-MM-dd');
   }
+  public GetScheduleDate(date: any) {
+    return this.datepipe.transform(date, 'MMM dd');
+  }
   public GetTime(date: any) {
     return this.datepipe.transform(date, 'h:mm a');
   }
