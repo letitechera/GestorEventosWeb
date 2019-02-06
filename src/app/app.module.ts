@@ -9,6 +9,7 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule } from '@a
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe, registerLocaleData } from '@angular/common';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import localeEs from '@angular/common/locales/es';
 import { ROUTES } from './app.routing';
 
@@ -95,6 +96,7 @@ registerLocaleData(localeEs, 'es');
   imports: [
     MatDialogModule,
     NgbModule.forRoot(),
+    ScrollToModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpClientModule,
