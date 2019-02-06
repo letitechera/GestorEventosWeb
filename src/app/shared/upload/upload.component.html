@@ -10,7 +10,7 @@
           <span *ngIf="!fileLoaded">Ningun archivo selecionado...</span>
           <span *ngIf="fileLoaded">{{fileName}}</span>
         </div>
-        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files, $event)" style="display:none;">
+        <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files, $event)" style="display:none;" accept="image/*">
       </div>
     </a>
   </div>
