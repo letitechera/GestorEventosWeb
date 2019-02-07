@@ -9,6 +9,8 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule } from '@a
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe, registerLocaleData } from '@angular/common';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { NgQrScannerModule } from 'angular2-qrscanner';
 import localeEs from '@angular/common/locales/es';
 import { ROUTES } from './app.routing';
 
@@ -19,6 +21,7 @@ import { LocationsApiService } from '@services/locations-api/locations-api.servi
 import { AttendantsApiService } from '@services/attendants-api/attendants-api.service';
 import { GeographicsApiService } from '@services/geographics-api/geographics-api.service';
 import { AccountApiService } from './services/account-api/account-api.service';
+import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -40,7 +43,6 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginHeaderComponent } from './shared/login-header/login-header.component';
 import { EventManageComponent } from './pages/event-manage/event-manage.component';
-import { NgQrScannerModule } from 'angular2-qrscanner';
 import { UploadComponent } from './shared/upload/upload.component';
 import { ParticipantsComponent } from './pages/participants/participants.component';
 import { ScheduleComponent } from './pages/schedule/schedule.component';
@@ -97,6 +99,7 @@ registerLocaleData(localeEs, 'es');
   imports: [
     MatDialogModule,
     NgbModule.forRoot(),
+    ScrollToModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpClientModule,
@@ -106,7 +109,7 @@ registerLocaleData(localeEs, 'es');
     ReactiveFormsModule,
     AngularFontAwesomeModule,
     MatButtonModule,
-    NgQrScannerModule
+    NgQrScannerModule,
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },

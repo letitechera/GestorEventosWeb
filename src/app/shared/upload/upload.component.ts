@@ -26,8 +26,8 @@ export class UploadComponent implements OnInit {
 
   ngOnInit() {
     this.formData = new FormData();
-    var emptyImage = this.originalImage == null || this.originalImage == "";
-    this.originalImage = this.eventId == 0 || emptyImage ? environment.defaultImage : this.originalImage;
+    const emptyImage = this.originalImage == null || this.originalImage === '';
+    this.originalImage = this.eventId === 0 || emptyImage ? environment.defaultImage : this.originalImage;
     this.fileUrl = this.originalImage;
   }
 
@@ -43,12 +43,12 @@ export class UploadComponent implements OnInit {
     }
 
     /* Partial Upload */
-    let fileToUpload = <File>files[0];
+    const fileToUpload = <File>files[0];
     this.formData.append('file', fileToUpload, fileToUpload.name);
     this.fileLoaded = true;
     this.fileName = fileToUpload.name;
 
-    if(this.eventId == 0){
+    if (this.eventId === 0) {
       this.saveFile();
     }
   }
@@ -64,17 +64,16 @@ export class UploadComponent implements OnInit {
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
-          if (this.progress == 100) {
-            if(this.eventId != 0){
+          if (this.progress === 100) {
+            if (this.eventId !== 0) {
               this.loadingfile = false;
             }
             this.formData = new FormData();
             this.fileLoaded = false;
             this.resultMsg = true;
           }
-        }
-        else if (event.type === HttpEventType.Response) {
-          if(this.eventId == 0){
+        } else if (event.type === HttpEventType.Response) {
+          if (this.eventId === 0) {
             this.loadingfile = false;
           }
           this.onUploadFinished.emit(event.body);

@@ -10,12 +10,17 @@
  .footer-span{
     font-size: 12px;
  }
- .nav-item{
-    color: $ge-seal;
-    a{
+ .navbar-nav{
+    li:nth-child(1){
+        line-height: 2;
+    }
+    .nav-item{
         color: $ge-seal;
-    }
-    a:hover{
-        color: $ge-chalk;
-    }
+        a{
+            color: $ge-seal;
+        }
+        a:hover{
+            color: $ge-chalk;
+        }
+     }
  }
