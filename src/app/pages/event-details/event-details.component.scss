@@ -2,6 +2,20 @@
 
 .event-details{
     padding: 10px 30px;
+    .img-container-xs{
+        display: none;
+        .event-img{
+            float: right;
+        }
+        .center-cropped {
+            display: block;
+            width: 100%;
+            height: 250px;
+            background-size: 120%;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+    }
 }
 .event-header{
     width: 100%;
@@ -20,7 +34,6 @@
         color: $ge-deep-sky;
     }
 }
-
 .sub-menu-event{
     padding: 20px;
     height: fit-content;
@@ -77,15 +90,18 @@
 }
 .event-right{
     width: 100%;
-    .event-img{
-        float: right;
-    }
-    .center-cropped {
-        width: 500px;
-        height: 250px;
-        background-size: 120%;
-        background-position: center center;
-        background-repeat: no-repeat;
+    .img-container{
+        .event-img{
+            float: right;
+        }
+        .center-cropped {
+            display: block;
+            width: 100%;
+            height: 250px;
+            background-size: 120%;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
     }
     .event-controls{
         float: right;
@@ -118,7 +134,11 @@
 }
 
 @media (max-width: 992px) { 
-
+    .event-header a.event-edit {
+        float: left;
+        color: $ge-deep-sky;
+        font-size: 16px;
+    }
 }
 
 @media (max-width: 768px) { 
@@ -126,21 +146,29 @@
         padding: 30px 20px;
     }
     .event-header a.event-edit {
-        float: left;
+        display: block;
+        clear: both;
         color: $ge-deep-sky;
         font-size: 16px;
     }
     .event-right .event-controls {
         border-right: none;
         float: none;
+        margin-top: 0;
+        margin-bottom: 10px;
     }
-
-    .event-right .center-cropped {
-        width: 100%;
-        height: 200px;
-        background-size: 120%;
-        background-position: center center;
-        background-repeat: no-repeat;
+    .event-details{
+        padding: 0 30px;
+        .img-container-xs{
+            height: 250px;
+            display: block;
+            margin-bottom: 5px;
+        }
     }
-
+    .event-right{
+        margin-bottom: 30px;
+        .img-container{
+            display: none;
+        }
+    }
 }
