@@ -219,9 +219,12 @@ export class EventsApiService {
           }
           results.forEach((result) => {
             data.push({
-              FirstName: result.attendant.firstName,
-              LastName: result.attendant.lastName,
-              Email: result.attendant.email
+              ParticipantId: result.id,
+              FirstName: result.firstName,
+              LastName: result.lastName,
+              Email: result.email,
+              Phone: result.phone,
+              CellPhone: result.cellPhone
             });
           });
           return data;
@@ -233,6 +236,41 @@ export class EventsApiService {
           });
     });
   }
+
+  public sendCertificate(id): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.sendCertificateData(id)
+        .pipe(map((result: any) => {
+          if (result == null) {
+            return null;
+          }
+          return result;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
+  public registerToEvent(participant): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.registerToEventData(participant)
+        .pipe(map((result: any) => {
+          if (result == null) {
+            return null;
+          }
+          return result;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
 
   private getAllEventsData() {
     this.setDefaultHeaders();
@@ -316,6 +354,18 @@ export class EventsApiService {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/` + eventId + `/participants`;
     return this.commonHttpGet(url, this.headers);
+  }
+
+  private sendCertificateData(id) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/certificates/${id}`;
+    return this.commonHttpGet(url, this.headers);
+  }
+
+  private registerToEventData(participant) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/registerToEvent`;
+    return this.commonHttpPost(url, participant, this.headers);
   }
 
   private setDefaultHeaders() {

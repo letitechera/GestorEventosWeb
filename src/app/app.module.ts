@@ -50,6 +50,7 @@ import { SpeakerModalComponent } from './shared/speaker-modal/speaker-modal.comp
 import { PublicEventsComponent } from './pages/public/public-events/public-events.component';
 import { PublicEventComponent } from './pages/public/public-event/public-event.component';
 import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
+import { EventRegistrationComponent } from './pages/public/event-registration/event-registration.component';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -82,7 +83,8 @@ registerLocaleData(localeEs, 'es');
     ActivityModalComponent,
     SpeakerModalComponent,
     PublicEventsComponent,
-    PublicEventComponent
+    PublicEventComponent,
+    EventRegistrationComponent
   ],
   entryComponents: [
     LocationsModalComponent,

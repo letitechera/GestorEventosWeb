@@ -20,7 +20,7 @@ export class PublicEventComponent implements OnInit, OnDestroy {
   public currentSchedule: Schedule;
   public currentIndex: number;
 
-  constructor(private route: ActivatedRoute, private publicApi: PublicApiService, 
+  constructor(private route: ActivatedRoute, private publicApi: PublicApiService,
     private dateService: DateService, private router: Router) { }
 
   ngOnInit() {
@@ -47,25 +47,8 @@ export class PublicEventComponent implements OnInit, OnDestroy {
     });
   }
 
-  public getSchedules(id){
-    this.scheduleLoading = true;
-    this.publicApi.getSchedulesByEvent(id).then((data: any[]) => {
-      if (data != null) {
-        this.schedules = data;
-        this.currentIndex = this.schedules[0].Id;
-        this.currentSchedule = this.schedules[0];
-        this.scheduleLoading = false;
-        console.log(data);
-      }
-    }, (err) => {
-      console.log(err);
-      this.scheduleLoading = false;
-    });
-  }
-
-  public selectDay(schedule) {
-    this.currentIndex = schedule.Id;
-    this.currentSchedule = schedule;
+  public registerToEvent() {
+    this.router.navigateByUrl('public/event-registration/' + this.id);
   }
 
   public goBack() {
