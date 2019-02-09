@@ -35,11 +35,21 @@ export class ParticipantsComponent implements OnInit {
     });
   }
 
+  sendCertificate(participantId){
+    this.eventsApi.sendCertificate(participantId).then((data: any[]) => {
+      alert('certificate sent');
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
   private setDisplayColumns() {
     this.displayedColumns = [
       'FirstName',
       'LastName',
       'Email',
+      'Phone',
+      'CellPhone',
       'Accredit',
       'Certificate'
     ];

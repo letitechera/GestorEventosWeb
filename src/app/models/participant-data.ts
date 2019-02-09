@@ -1,8 +1,9 @@
 export interface ParticipantData {
     ParticipantId: number;
+    EventId: number;
     FirstName: string;
     LastName: string;
     Email: string;
-    EventId: number;
-    QRCode: string;
+    Phone: string;
+    CellPhone: string;
 }

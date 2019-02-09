@@ -20,7 +20,7 @@ export class PublicEventComponent implements OnInit, OnDestroy {
   public currentSchedule: Schedule;
   public currentIndex: number;
 
-  constructor(private route: ActivatedRoute, private publicApi: PublicApiService, 
+  constructor(private route: ActivatedRoute, private publicApi: PublicApiService,
     private dateService: DateService, private router: Router) { }
 
   ngOnInit() {
@@ -45,6 +45,10 @@ export class PublicEventComponent implements OnInit, OnDestroy {
       console.log(err);
       this.eventLoading = false;
     });
+  }
+
+  public registerToEvent() {
+    this.router.navigateByUrl('public/event-registration/' + this.id);
   }
 
   public getSchedules(id) {

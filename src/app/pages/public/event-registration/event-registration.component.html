@@ -1,0 +1,115 @@
+<login-header></login-header>
+
+<div class="content-body">
+  <div class="loader" *ngIf="eventLoading"></div>
+  <div class="event-container" *ngIf="!eventLoading">
+    <div class="event-header">
+      <div>
+        <div class="event-date">
+          <span class="event-day">{{showDayDate(event.StartDate)}}</span>
+          <span class="event-month">{{showAbbreviatedMonth(event.StartDate)}}</span>
+        </div>
+        <div class="event-title">{{event.Name}}</div>
+        <div class="event-topic">{{event.Topic.name}}</div>
+        <div class="event-descr">{{event.Description}}</div>
+      </div>
+      <div class="event-sum">
+        <div class="center-cropped" [ngStyle]="{ 'background-image': 'url(' + event.Image + ')'}">
+        </div>
+      </div>
+    </div>
+    <div class="row event-info">
+      <div class="col-md-9">
+        <div class="event-descr">
+          <h4>Informacion de la inscripcion</h4>
+          <p><b>Luego de completar este formulario de inscripcion, recibira un codigo QR en su direccion de correo
+              electronico, que debera presentar en los puestos de acreditacion del evento.</b></p>
+          <p><b>Revise su correo no deseado ya que le podria estar llegando como spam debido a la incompatibilidad de
+              algunos servidores.</b></p>
+
+          <form *ngIf="eventRegistrationForm!=null" [formGroup]="eventRegistrationForm" (ngSubmit)="registerToEvent()">
+            <fieldset>
+              <div class="row">
+                <div class="col-xs-6 col-md-6 form-left">
+
+                  <div>
+                      <h4>Inscripcion - Confirmacion de Asistencia al Evento</h4>
+
+                      <mat-form-field class="input-firstname">
+                        <input matInput placeholder="Nombre *" formControlName="FirstName" />
+                        <mat-error *ngIf="eventRegistrationForm.get('FirstName').hasError('required') && this.submitted">
+                          Nombre
+                        </mat-error>
+                      </mat-form-field>
+    
+                      <mat-form-field class="input-lastname">
+                        <input matInput placeholder="Apellido *" formControlName="LastName" />
+                        <mat-error *ngIf="eventRegistrationForm.get('LastName').hasError('required') && this.submitted">
+                          Apellido
+                        </mat-error>
+                      </mat-form-field>
+    
+                      <mat-form-field class="input-email">
+                        <input matInput placeholder="Correo Electronico*" formControlName="Email" />
+                        <mat-error *ngIf="eventRegistrationForm.get('Email').hasError('required') && this.submitted">
+                          Correo Electronico
+                        </mat-error>
+                      </mat-form-field>
+    
+                      <mat-form-field class="input-phone">
+                        <input matInput placeholder="Telefono*" formControlName="Phone" />
+                        <mat-error *ngIf="eventRegistrationForm.get('Phone').hasError('required') && this.submitted">
+                          Telefono
+                        </mat-error>
+                      </mat-form-field>
+    
+                      <mat-form-field class="input-email">
+                        <input matInput placeholder="Celular *" formControlName="CellPhone" />
+                        <mat-error *ngIf="eventRegistrationForm.get('CellPhone').hasError('required') && this.submitted">
+                          Celular
+                        </mat-error>
+                      </mat-form-field>
+                  </div>
+
+                  <fieldset class="controls">
+                    <div class="controls-container">
+                      <button type="submit" class="ge-btn-default btn-accept">
+                        <span *ngIf="!loadingBtn">Completar inscripcion</span>
+                        <span *ngIf="loadingBtn">
+                          <fa name="spinner" animation="spin"></fa>
+                        </span>
+                      </button>
+                    </div>
+                  </fieldset>
+                </div>
+              </div>
+            </fieldset>
+          </form>
+
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div>
+          <h5>Fecha y Hora</h5>
+          <p>{{getPrettyDateTime(event.StartDate)}}</p>
+          <p>{{getPrettyDateTime(event.EndDate)}}</p>
+        </div>
+        <div>
+          <h5>Ubicación</h5>
+          <p>{{event.Location.name}}</p>
+          <p>{{event.Location.address1}}</p>
+          <p *ngIf="event.Location.address2!=null||event.Location.address2!=''">
+            {{event.Location.address2}}</p>
+          <p>{{event.Location.city.name}}, {{event.Location.city.country.name}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="event-schedule">
+      <div class="loader" *ngIf="scheduleLoading"></div>
+      <div class="schedule container" *ngIf="!scheduleLoading">
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

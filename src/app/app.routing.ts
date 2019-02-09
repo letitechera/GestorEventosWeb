@@ -16,6 +16,7 @@ import { ParticipantsComponent } from '@pages/participants/participants.componen
 import { ScheduleComponent } from '@pages/schedule/schedule.component';
 import { PublicEventsComponent } from '@pages/public/public-events/public-events.component';
 import { PublicEventComponent } from '@pages/public/public-event/public-event.component';
+import { EventRegistrationComponent } from '@pages/public/event-registration/event-registration.component';
 
 export const ROUTES: Routes = [
     { path: '', redirectTo: 'callback', pathMatch: 'full' },
@@ -35,5 +36,6 @@ export const ROUTES: Routes = [
     { path: 'accreditation', component: AccreditationComponent },
     { path: 'locations', component: LocationsComponent },
     { path: 'public/events', component: PublicEventsComponent },
-    { path: 'public/events/:id', component: PublicEventComponent }
+    { path: 'public/events/:id', component: PublicEventComponent },
+    { path: 'public/event-registration/:id', component: EventRegistrationComponent }
   ];
