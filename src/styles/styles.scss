@@ -293,3 +293,24 @@ th{
         }
     }
 }
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) { 
+    html, body { height: auto; }
+    .content-body{
+        padding-bottom: 30px;
+    }
+    .search .mat-form-field {
+        width: 40%;
+        margin: 0;
+    }
+    .sub-menu{
+        .left-smenu {
+            margin: 30px 0 0 5px;
+        }
+        .right-smenu a {
+            margin: 7px;
+        }
+    }
+}

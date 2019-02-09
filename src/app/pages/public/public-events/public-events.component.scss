@@ -34,7 +34,7 @@
                 a{
                     display: block;
                     width: 100%;
-                    height: 300px;
+                    height: 320px;
                     border-radius: 5px;
                     .event-img{
                         border-top-left-radius: 5px;
@@ -42,9 +42,9 @@
                     }
                     .center-cropped {
                         width: 100%;
-                        height: 200px;
+                        height: 60%;
                         background-size: 110%;
-                        background-position: center center;
+                        background-position: top center;
                         background-repeat: no-repeat;
                     }
                     .event-info{
@@ -61,8 +61,12 @@
                             font-size: 12px;
                         }
                         .event-descr{
-                            display: block;
                             font-size: 12px;
+                            overflow: hidden;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 3;
+                            /* autoprefixer: ignore next */
+                            -webkit-box-orient: vertical;
                         }
                     }
                     .event-date{
@@ -87,6 +91,128 @@
                 a:hover{
                     box-shadow: 0 3px 7px 0 $ge-dolphin, 0 5px 15px 0 $ge-dolphin;
                 }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) { 
+    .events-header {
+        padding: 20px 10px;
+        .title{
+            .title-decor {
+                height: 73px;
+                width: 10px;
+                margin-right: 10px;
+            }
+            .title-text {
+                font-size: 24px;
+                line-height: 1.6;
+                display: block;
+                width: 93%;
+            }
+        } 
+    }
+    .p-events-container{
+        .row{
+            padding: 10px;
+            .event-col {
+                .event-container{
+                    padding: 10px;
+                    a{
+                        height: 330px;
+                        box-shadow: 0 3px 7px 0 $ge-dolphin, 0 5px 15px 0 $ge-dolphin;
+                        .center-cropped{
+                            background-size: 110%;
+                        }
+                        .event-info{
+                            padding-top: 15;
+                            width: 80%;
+                            .event-descr{
+                                padding-top: 5px;
+                                padding-right: 5px;
+                                overflow: hidden;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 3;
+                                /* autoprefixer: off */
+                                -webkit-box-orient: vertical;
+                                /* autoprefixer: on */
+                            }
+                        }
+                        .event-date{
+                            padding: 15px;
+                            width: 20%;
+                            float: right;
+                            text-align: center;
+                        }
+                    }
+                } 
+            }
+        }
+    }
+}
+
+@media (min-width: 769px) and (max-width: 992px) { 
+    .p-events-container{
+        .row{
+            .event-col {
+                .event-container{
+                    padding: 10px;
+                    a{
+                        height: 230px;
+                        .center-cropped {
+                            height: 50%;
+                        }
+                        .event-info{
+                            padding-top: 10px;
+                            width: 75%;
+                            .event-descr{
+                                padding-top: 5px;
+                                padding-right: 5px;
+                                overflow: hidden;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 1;
+                                /* autoprefixer: off */
+                                -webkit-box-orient: vertical;
+                                /* autoprefixer: on */
+                            }
+                        }
+                        .event-date{
+                            padding: 5px;
+                            width: 25%;
+                            float: right;
+                            text-align: center;
+                        }
+                    }
+                } 
+            }
+        }
+    }
+}
+
+@media (min-width: 993px) and (max-width: 1070px) { 
+    .p-events-container{
+        .row{
+            .event-col {
+                .event-container{
+                    padding: 10px;
+                    a{
+                        height: 230px;
+                        .center-cropped {
+                            height: 50%;
+                        }
+                        .event-info{
+                            .event-descr{
+                                overflow: hidden;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 2;
+                                /* autoprefixer: off */
+                                -webkit-box-orient: vertical;
+                                /* autoprefixer: on */
+                            }
+                        }
+                    }
+                } 
             }
         }
     }

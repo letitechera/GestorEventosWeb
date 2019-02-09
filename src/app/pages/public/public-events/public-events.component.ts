@@ -45,12 +45,4 @@ export class PublicEventsComponent implements OnInit {
     return this.dateService.GetAbbreviatedMonth(date).substr(0, 3).toUpperCase();
   }
 
-  public showShortDescription(text: string) {
-    if (text.length >= 43) {
-      return text.substr(0, 42) + '...';
-    } else {
-      return text;
-    }
-  }
-
 }
