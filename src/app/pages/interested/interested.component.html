@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="sub-menu">
     <div class="left-smenu">
-        <a class="style-l" title="Importar lista de contactos">Importar <fa name="upload"></fa></a>
+        <a class="style-l" title="Importar lista de contactos" (click)="openImportDialog()">Importar <fa name="upload"></fa></a>
     </div>
     <div class="right-smenu">
         <a title="Agregar Contacto" (click)="openDialog(null)">

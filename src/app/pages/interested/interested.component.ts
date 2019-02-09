@@ -6,6 +6,7 @@ import { AttendantsApiService } from '@services/attendants-api/attendants-api.se
 import { MatDialog } from '@angular/material';
 import { Interested } from '@models/interested-data';
 import { AttendantsModalComponent } from '@shared/attendants-modal/attendants-modal.component';
+import { ImportModalComponent } from '@shared/import-modal/import-modal.component';
 
 @Component({
   selector: 'app-interested',
@@ -38,6 +39,20 @@ export class InterestedComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if(result=='changed'){
+        this.initData();
+      }
+    });
+  }
+  
+  public openImportDialog() {
+    this.auth.checkSession();
+    const dialogRef = this.dialog.open(ImportModalComponent, {
+      height: '430px',
+      width: '400px',
+      hasBackdrop: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'changed') {
         this.initData();
       }
     });

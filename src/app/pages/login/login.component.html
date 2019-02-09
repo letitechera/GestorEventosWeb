@@ -21,7 +21,7 @@
                     <div class="col-md-6">
                         <mat-form-field class="text-input">
                             <input matInput placeholder="Password" type="password" formControlName="password" />
-                            <mat-error *ngIf="loginForm.get('password').hasError('required')">
+                            <mat-error *ngIf="loginForm.get('password').hasError('required') && submitted">
                                 Escriba una contraseña.
                             </mat-error>
                         </mat-form-field>

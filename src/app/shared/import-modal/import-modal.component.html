@@ -1,0 +1,45 @@
+<div class="modal-header">
+  <P>
+    <span>Importar Contactos</span>
+  </P>
+  <div class="close-modal-block">
+    <button class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+<div class="modal-body">
+  <form class="import-form" (ngSubmit)="submitImport()">
+    <fieldset>
+      <mat-form-field>
+        <div class="file-upload" [ngClass]="{'active': fileLoaded}">
+          <a (click)="file.click()" class="file-btn-wrapper">
+            <div class="file-select">
+              <div class="file-select-button" id="fileName">Cargar imagen</div>
+              <div class="file-select-name" id="noFile">
+                <span *ngIf="!fileLoaded">Ningun archivo selecionado...</span>
+                <span *ngIf="fileLoaded">{{fileName}}</span>
+              </div>
+              <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files, $event)" 
+              style="display:none;">
+            </div>
+          </a>
+        </div>
+      </mat-form-field>
+    </fieldset>
+    <fieldset class="controls">
+      <div class="controls-container">
+        <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
+          <span>Cancelar</span>
+        </button>
+        <button type="submit" class="ge-btn-default btn-accept">
+          <span *ngIf="!loading">Cargar</span>
+          <span *ngIf="loading">
+            <fa name="spinner" animation="spin"></fa>
+          </span>
+        </button>
+      </div>
+      <div *ngIf="resultMsg" class="result-message"><span>La imagen se ha cargado exitosamente!</span></div>
+    </fieldset>
+  </form>
+</div>
