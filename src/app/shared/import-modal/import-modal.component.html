@@ -11,21 +11,30 @@
 <div class="modal-body">
   <form class="import-form" (ngSubmit)="submitImport()">
     <fieldset>
-      <mat-form-field>
-        <div class="file-upload" [ngClass]="{'active': fileLoaded}">
-          <a (click)="file.click()" class="file-btn-wrapper">
-            <div class="file-select">
-              <div class="file-select-button" id="fileName">Cargar imagen</div>
-              <div class="file-select-name" id="noFile">
-                <span *ngIf="!fileLoaded">Ningun archivo selecionado...</span>
-                <span *ngIf="fileLoaded">{{fileName}}</span>
-              </div>
-              <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files, $event)" 
-              style="display:none;">
+      <div class="info-message">
+        <span>El archivo debe ser una planilla de excel en formato .xslx, descargue la muestra de ejemplo aquí:</span>
+      </div>
+      <button type="button" class="ge-btn-default btn-sample" (click)="downloadSample()">
+        <span><fa name="download"></fa> Muestra</span>
+      </button>
+    </fieldset>
+    <fieldset>
+      <div class="load-title">
+        <span>Cargar archivo</span>
+      </div>
+      <div class="file-upload" [ngClass]="{'active': fileLoaded}">
+        <a (click)="file.click()" class="file-btn-wrapper">
+          <div class="file-select">
+            <div class="file-select-button" id="fileName">Cargar planilla</div>
+            <div class="file-select-name" id="noFile">
+              <span *ngIf="!fileLoaded">Ningun archivo selecionado...</span>
+              <span *ngIf="fileLoaded">{{fileName}}</span>
             </div>
-          </a>
-        </div>
-      </mat-form-field>
+            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files, $event)" style="display:none;"
+              accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+          </div>
+        </a>
+      </div>
     </fieldset>
     <fieldset class="controls">
       <div class="controls-container">
@@ -39,7 +48,6 @@
           </span>
         </button>
       </div>
-      <div *ngIf="resultMsg" class="result-message"><span>La imagen se ha cargado exitosamente!</span></div>
     </fieldset>
   </form>
 </div>

@@ -47,7 +47,7 @@ export class InterestedComponent implements OnInit {
   public openImportDialog() {
     this.auth.checkSession();
     const dialogRef = this.dialog.open(ImportModalComponent, {
-      height: '430px',
+      height: '400px',
       width: '400px',
       hasBackdrop: true
     });

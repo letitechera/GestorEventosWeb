@@ -1,5 +1,11 @@
 @import '~styles/palette';
 
+.load-title{
+    margin-top: 20px;
+    padding: 20px 0 10px 0;
+    font-size: 14px;
+    border-top: 1px $ge-dolphin solid;
+}
 .file-upload {
     display:block;
     text-align:center;
@@ -104,39 +110,9 @@
         }
     }
 }
-// .controls{
-//     float: right;
-//     padding-top: 25px;
-//     margin-top: 35px;
-//     padding-left: 25px;
-//     border-top: 0.7px solid $ge-elephant;
-//     a{
-//         cursor: pointer;
-//         display: block;
-//         margin-left: 20px;
-//         width: fit-content;
-//         height: fit-content;
-//         float: right;
-//         font-size: 14px;
-//         background-color: $ge-sunrise;
-//         text-align: center;
-//         color: white;
-//         padding: 10px 20px;
-//     }
-//     a.cancel{
-//         background-color: $ge-elephant;
-//         margin-right: 0;
-//     }
-//     a:hover{
-//         background-color: $ge-sunset;
-//     }
-//     a.cancel:hover{
-//         background-color: $ge-rat;
-//     }
-// }
 
 .controls{
-    margin-top: 5px;
+    margin-top: 10px;
 }
 .controls-container{
     margin-bottom: 0;
@@ -146,8 +122,14 @@
     width: fit-content;
     float: right;
 }
-.result-message{
+.btn-sample{
+    background-color: $ge-deep-sky;
+    float: right;
+}
+.btn-sample:hover{
+    background-color: $ge-dark-sky;
+}
+.info-message{
     padding: 5px 0;
-    color: green;
     font-size: 12px;
 }

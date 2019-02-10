@@ -86,7 +86,7 @@ registerLocaleData(localeEs, 'es');
     SpeakerModalComponent,
     PublicEventsComponent,
     PublicEventComponent,
-    EventRegistrationComponent
+    EventRegistrationComponent,
     ImportModalComponent
   ],
   entryComponents: [
