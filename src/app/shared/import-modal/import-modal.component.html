@@ -34,6 +34,7 @@
               accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
           </div>
         </a>
+        <span *ngIf="error" class="result-message">{{errorMsg}}</span>
       </div>
     </fieldset>
     <fieldset class="controls">

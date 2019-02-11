@@ -11,6 +11,7 @@
     text-align:center;
     font-size: 12px;
     margin-top: 10px;
+    min-height: 81px;
     .file-select {
         display:block;
         border: 2px solid $ge-dolphin;
@@ -112,7 +113,6 @@
 }
 
 .controls{
-    margin-top: 10px;
 }
 .controls-container{
     margin-bottom: 0;
@@ -121,6 +121,9 @@
     width: -moz-fit-content;
     width: fit-content;
     float: right;
+    button{
+        margin-top: 0;
+    }
 }
 .btn-sample{
     background-color: $ge-deep-sky;
@@ -132,4 +135,12 @@
 .info-message{
     padding: 5px 0;
     font-size: 12px;
+}
+.result-message{
+    font-size: 12px;
+    text-align: left;
+    color: red;
+    padding: 5px 0 0 0;
+    display: block;
+    line-height: 1.5;
 }
