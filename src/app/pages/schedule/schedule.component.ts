@@ -11,6 +11,7 @@ import { ActivityModalComponent } from '@shared/activity-modal/activity-modal.co
 import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
 import { SchedulesModalComponent } from '@shared/schedules-modal/schedules-modal.component';
 import { SpeakerModalComponent } from '@shared/speaker-modal/speaker-modal.component';
+import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-schedule',
@@ -128,6 +129,47 @@ export class ScheduleComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'changed') {
         this.initSchedules();
+      }
+    });
+  }
+
+  public openConfirmDialog(type, element) {
+    this.auth.checkSession();
+    let submes = '';
+    switch (type) {
+      case 'schedule':
+        submes = 'este día';
+        break;
+      case 'activity':
+        submes = 'esta actividad';
+        break;
+      case 'speaker':
+        submes = 'este Speaker';
+        break;
+      default:
+        break;
+    }
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        message: `¿Estás seguro de que deseas eliminar ${submes}?`
+      },
+      hasBackdrop: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        switch (type) {
+          case 'schedule':
+            this.deleteSchedule(element);
+            break;
+          case 'activity':
+            this.deleteActivity(element);
+            break;
+          case 'speaker':
+            this.deleteSpeaker(element);
+            break;
+          default:
+            break;
+        }
       }
     });
   }

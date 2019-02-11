@@ -43,7 +43,7 @@
       <ng-container matColumnDef="Options">
         <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
         <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-          <a class="options" (click)="removeLocation(element.Id)">
+          <a class="options" (click)="openConfirmDialog(element.Id)">
             <fa name="remove" title="Eliminar"></fa>
           </a>
         </td>

@@ -53,6 +53,7 @@ import { PublicEventsComponent } from './pages/public/public-events/public-event
 import { PublicEventComponent } from './pages/public/public-event/public-event.component';
 import { EventRegistrationComponent } from './pages/public/event-registration/event-registration.component';
 import { ImportModalComponent } from './shared/import-modal/import-modal.component';
+import { ConfirmationModalComponent } from './shared/confirmation-modal/confirmation-modal.component';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -87,7 +88,8 @@ registerLocaleData(localeEs, 'es');
     PublicEventsComponent,
     PublicEventComponent,
     EventRegistrationComponent,
-    ImportModalComponent
+    ImportModalComponent,
+    ConfirmationModalComponent
   ],
   entryComponents: [
     LocationsModalComponent,
@@ -96,7 +98,8 @@ registerLocaleData(localeEs, 'es');
     SchedulesModalComponent,
     ActivityModalComponent,
     SpeakerModalComponent,
-    ImportModalComponent
+    ImportModalComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     MatDialogModule,

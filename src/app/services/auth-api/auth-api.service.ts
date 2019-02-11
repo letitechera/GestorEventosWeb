@@ -26,7 +26,7 @@ export class AuthApiService {
   }
 
   public checkSession() {
-    if(!this.isAuthenticated()){
+    if (!this.isAuthenticated()) {
       this.logout();
     }
   }
