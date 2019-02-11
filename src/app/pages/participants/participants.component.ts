@@ -35,7 +35,7 @@ export class ParticipantsComponent implements OnInit {
     });
   }
 
-  sendCertificate(participantId){
+  sendCertificate(participantId) {
     this.eventsApi.sendCertificate(participantId).then((data: any[]) => {
       alert('certificate sent');
     }, (err) => {
@@ -50,8 +50,7 @@ export class ParticipantsComponent implements OnInit {
       'Email',
       'Phone',
       'CellPhone',
-      'Accredit',
-      'Certificate'
+      'Controls'
     ];
   }
 

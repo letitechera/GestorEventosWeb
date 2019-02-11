@@ -37,9 +37,10 @@
 .sub-menu-event{
     padding: 20px;
     height: fit-content;
+    margin-top: 10px;
     a{
-        padding: 12px 22px;
-        margin: 7px;
+        padding: 10px 20px;
+        margin: 0;
         font-size: 14px;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: 300;
@@ -113,13 +114,13 @@
         a{
             cursor: pointer;
             display: block;
-            min-width: 137px;
+            min-width: 230px;
             font-size: 14px;
             background-color: $ge-sunrise;
             text-align: center;
             color: white;
-            padding: 5px 10px;
-            margin: 10px 5px;
+            padding: 7px 10px;
+            margin: 15px 5px;
         }
         a.cancel{
             background-color: $ge-elephant;

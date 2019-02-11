@@ -57,7 +57,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.loadingBtn = true;
     this.editAccount();
   }
-  
+
   private editAccount() {
     this.setAccountObject();
     this.usersApi.putAccount(this.account).then((data: any[]) => {
@@ -72,9 +72,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.account.UserId = this.account.UserId;
     this.account.FirstName = this.accountForm.get('FirstName').value;
     this.account.LastName = this.accountForm.get('LastName').value;
-    this.account.Email = this.accountForm.get('Email').value
-    this.account.Phone = this.accountForm.get('Phone').value
-    this.account.CellPhone = this.accountForm.get('CellPhone').value
+    this.account.Email = this.accountForm.get('Email').value;
+    this.account.Phone = this.accountForm.get('Phone').value;
+    this.account.CellPhone = this.accountForm.get('CellPhone').value;
     this.account.Job = this.accountForm.get('Job').value;
     this.account.Organization = this.accountForm.get('Organization').value;
     this.account.Address1 = this.accountForm.get('Address1').value;
@@ -107,7 +107,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
         };
         this.initAccountForm();
         this.loading = false;
-        //this.GetCountries(data.eventTopic.id);
       }
     }, (err) => {
       console.log(err);
