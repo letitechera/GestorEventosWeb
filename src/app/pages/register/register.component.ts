@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
     const lastName = this.registerForm.get('lastName').value;
     const email = this.registerForm.get('email').value;
     const password = this.registerForm.get('password').value;
-    
+  
     this.service.register(firstName, lastName, email, password).subscribe((data) => {
       this.loading = false;
       this.router.navigateByUrl('login');
@@ -53,6 +53,10 @@ export class RegisterComponent implements OnInit {
         this.error = true;
         this.loading = false;
       });
+  }
+
+  public goBack() {
+    this.router.navigateByUrl('login');
   }
 
 }

@@ -2,72 +2,73 @@
 
 .event-container{
     margin: 60px auto;
-    width: 990px;
-    border: 1px $ge-dolphin solid;
-    .event-header{
-        width: 100%;
-        height: fit-content;
-        .center-cropped {
-            width: 70%;
-            height: 300px;
-            background-size: 120%;
-            background-position: center center;
-            background-repeat: no-repeat;
-            float: left;
-        }
-        .event-sum{
-            width: 30%;
-            height: 300px;
-            float: right;
-            padding: 30px;
-            border-bottom: 1px $ge-dolphin solid;
-            .event-date{
-                display: block;
-                font-size: 18px;
-                font-weight: 600;
-                padding-bottom: 30px;
-                span{
-                    display: block;
-                    height: 20px;
-                }
-                .event-day{
-                    color: $ge-elephant;
-                }
-                .event-month{
-                    color: $ge-sunrise;
-                }
+    width: 70%;
+    box-shadow: 0 3px 7px 0 $ge-dolphin, 0 5px 15px 0 $ge-dolphin;
+    .event-wrapper{
+        padding: 40px;
+        .event-info{
+            margin: 20px 0;
+            h4{
+                margin: 30px 0;
+                text-align: center;
             }
-            .event-title{
-                font-weight: 600;
-                padding-bottom: 10px;
-            }
-            .event-topic{
+            p{
                 font-size: 14px;
             }
-            .controls{
-                position: relative;
-                bottom: -90px;
-                a{
-                    padding: 10px 20px;
+            .form-body{
+                width: 70%;
+                margin: 0 auto;
+            }
+        }
+        .event-date{
+            display: block;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 30px 0 20px;
+            span{
+                display: block;
+                height: 20px;
+            }
+            .event-day{
+                color: $ge-elephant;
+            }
+            .event-month{
+                color: $ge-sunrise;
+            }
+        }
+        .event-title{
+            font-weight: 600;
+            padding-bottom: 10px;
+        }
+        .center-cropped{
+            width: 100%;
+            height: 200px;
+            background-size: 120%;
+            background-position: top center;
+            background-repeat: no-repeat;
+        }
+        .event-sum{
+            div{
+                margin: 20px 0;
+                h5{
                     font-size: 16px;
-                    font-family: Arial, Helvetica, sans-serif;
-                    font-weight: 300;
-                    line-height: 1;
-                    text-align: center;
-                    white-space: nowrap;
-                    vertical-align: baseline;
-                    background-color: $ge-deep-sky;
-                    color: $ge-chalk;
-                    width: 100%;
-                    display: block;
+                    font-weight: 600;
+                    color: $ge-earth;
                 }
-                a:hover{
-                    background-color: $ge-dark-sky;
+                p{
+                    font-size: 14px;
+                    margin: 5px 0;
+                    text-transform: capitalize;
                 }
             }
         }
     }
-    .event-info{
-        clear: both;
-    }
+}
+
+@media (max-width: 768px) { 
+
+}
+
+@media (min-width: 769px) and (max-width: 992px) { 
+
 }
