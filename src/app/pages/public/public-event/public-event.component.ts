@@ -49,6 +49,8 @@ export class PublicEventComponent implements OnInit, OnDestroy {
 
   public registerToEvent() {
     this.router.navigateByUrl('public/event-registration/' + this.id);
+  }
+
   public getSchedules(id) {
     this.scheduleLoading = true;
     this.publicApi.getSchedulesByEvent(id).then((data: any[]) => {
@@ -72,7 +74,7 @@ export class PublicEventComponent implements OnInit, OnDestroy {
 
   public scrollToElement($element): void {
     console.log($element);
-    $element.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
+    $element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
   }
 
   public goBack() {
@@ -103,19 +105,19 @@ export class PublicEventComponent implements OnInit, OnDestroy {
   public GetType(id) {
     switch (id) {
       case 1:
-      return 'Conferencia';
+        return 'Conferencia';
       case 2:
-      return 'Curso';
+        return 'Curso';
       case 3:
-      return 'Taller';
+        return 'Taller';
       case 4:
-      return 'Debate';
+        return 'Debate';
       case 5:
-      return 'Discurso';
+        return 'Discurso';
       case 6:
-      return 'Videoconferencia';
+        return 'Videoconferencia';
       case 7:
-      return 'Break';
+        return 'Break';
     }
   }
 

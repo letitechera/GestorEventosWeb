@@ -1,6 +1,8 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Inject } from '@angular/core';
 import { QrScannerComponent } from 'angular2-qrscanner';
 import { EventsApiService } from '@services/events-api/events-api.service';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { ParticipantData } from '@models/participant-data';
 
 @Component({
   selector: 'app-accreditation',
@@ -13,7 +15,7 @@ export class AccreditationComponent implements OnInit {
 
   participant: any;
 
-  constructor(private eventsApi: EventsApiService) { }
+  constructor(private eventsApi: EventsApiService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.qrScannerComponent.getMediaDevices().then(devices => {
@@ -41,17 +43,30 @@ export class AccreditationComponent implements OnInit {
     });
 
     this.qrScannerComponent.capturedQr.subscribe(participantId => {
-      this.eventsApi.accredit(participantId).then((participant: any[]) => {
+      this.eventsApi.accredit(participantId).then((participant: ParticipantData) => {
         this.participant = participant;
         if (participant != null) {
-          console.log("Accreditation OK");
           console.log(participant);
-        }else{
-          console.log("Accreditation FAILED");
+          this.dialog.open(AccreditationModalComponent, {
+            data: {
+              participant: participant.attendant.fullName,
+              event: participant.event.Name
+            }
+          });
+          console.log(participant);
+        } else {
         }
       }, (err) => {
         console.log(err);
       });
     });
   }
+}
+
+@Component({
+  selector: 'accreditation-modal',
+  templateUrl: 'accreditation-modal.html',
+})
+export class AccreditationModalComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: AccreditationComponent) {}
 }

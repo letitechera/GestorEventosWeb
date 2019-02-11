@@ -32,6 +32,7 @@ import { EventsComponent } from './pages/events/events.component';
 import { EventDetailsComponent } from './pages/event-details/event-details.component';
 import { InterestedComponent } from './pages/interested/interested.component';
 import { AccreditationComponent } from './pages/accreditation/accreditation.component';
+import { AccreditationModalComponent } from './pages/accreditation/accreditation.component';
 import { LocationsModalComponent } from './shared/locations-modal/locations-modal.component';
 import { TopicsModalComponent } from './shared/topics-modal/topics-modal.component';
 import { AttendantsModalComponent } from './shared/attendants-modal/attendants-modal.component';
@@ -51,7 +52,6 @@ import { ActivityModalComponent } from './shared/activity-modal/activity-modal.c
 import { SpeakerModalComponent } from './shared/speaker-modal/speaker-modal.component';
 import { PublicEventsComponent } from './pages/public/public-events/public-events.component';
 import { PublicEventComponent } from './pages/public/public-event/public-event.component';
-import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
 import { EventRegistrationComponent } from './pages/public/event-registration/event-registration.component';
 
 registerLocaleData(localeEs, 'es');
@@ -86,7 +86,8 @@ registerLocaleData(localeEs, 'es');
     SpeakerModalComponent,
     PublicEventsComponent,
     PublicEventComponent,
-    EventRegistrationComponent
+    EventRegistrationComponent,
+    AccreditationModalComponent,
   ],
   entryComponents: [
     LocationsModalComponent,
@@ -94,7 +95,8 @@ registerLocaleData(localeEs, 'es');
     AttendantsModalComponent,
     SchedulesModalComponent,
     ActivityModalComponent,
-    SpeakerModalComponent
+    SpeakerModalComponent,
+    AccreditationModalComponent
   ],
   imports: [
     MatDialogModule,
