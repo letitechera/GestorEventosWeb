@@ -33,7 +33,6 @@ export class ImportModalComponent implements OnInit {
   }
 
   public uploadFile = (files, event) => {
-    debugger;
     if (files.length === 0) {
       this.fileLoaded = false;
       return;
@@ -66,7 +65,6 @@ export class ImportModalComponent implements OnInit {
             this.fileLoaded = false;
           }
         } else if (event.type === HttpEventType.Response) {
-          debugger;
           this.loading = false;
           switch (event.status) {
             case 200:
@@ -81,12 +79,17 @@ export class ImportModalComponent implements OnInit {
               this.error = true;
               this.errorMsg = "Error en el archivo subido."
               break;
-            case 500:
+            default:
               this.error = true;
               this.errorMsg = "Ha ocurrido un error, intente más tarde."
               break;
           }
         }
+      }, (err) => {
+        console.log(err);
+        this.loading = false;
+        this.error = true;
+        this.errorMsg = "Ha ocurrido un error, intente más tarde."
       });
   }
 
