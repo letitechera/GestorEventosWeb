@@ -4,6 +4,7 @@ import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { environment } from '@environment';
 import { HttpEventType, HttpClient } from '@angular/common/http';
 import { ExcelService } from '@services/excel/excel.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-import-modal',
@@ -25,7 +26,7 @@ export class ImportModalComponent implements OnInit {
   public errorMsg: string;
 
   constructor(public dialogRef: MatDialogRef<ImportModalComponent>, private auth: AuthApiService,
-    private http: HttpClient, private excelService: ExcelService) { }
+    private http: HttpClient, private excelService: ExcelService, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -69,19 +70,20 @@ export class ImportModalComponent implements OnInit {
           switch (event.status) {
             case 200:
               this.error = false;
+              this.notifier.notify( 'success', 'Los contactos se importaron con éxito' );
               this.dialogRef.close('changed');
               break;
             case 204:
               this.error = true;
-              this.errorMsg = "Verifique errores de planilla, o que todos los contactos tengan un Email."
+              this.errorMsg = 'Verifique errores de planilla, o que todos los contactos tengan un Email.';
               break;
             case 400:
               this.error = true;
-              this.errorMsg = "Error en el archivo subido."
+              this.errorMsg = 'Error en el archivo subido.';
               break;
             default:
               this.error = true;
-              this.errorMsg = "Ha ocurrido un error, intente más tarde."
+              this.errorMsg = 'Ha ocurrido un error, intente más tarde.';
               break;
           }
         }
@@ -89,12 +91,12 @@ export class ImportModalComponent implements OnInit {
         console.log(err);
         this.loading = false;
         this.error = true;
-        this.errorMsg = "Ha ocurrido un error, intente más tarde."
+        this.errorMsg = 'Ha ocurrido un error, intente más tarde.';
       });
   }
 
   public downloadSample() {
-    var data: any = [{
+    const data: any = [{
       Nombre: '',
       Apellido: '',
       Email: '',
@@ -110,9 +112,9 @@ export class ImportModalComponent implements OnInit {
     this.fileUrl = '';
   }
 
-  private getShortName(name: string){
-    if(name.length>30){
-      return name.substr(0, 27)+"...";
+  private getShortName(name: string) {
+    if (name.length > 30) {
+      return name.substr(0, 27) + '...';
     } else {
       return name;
     }

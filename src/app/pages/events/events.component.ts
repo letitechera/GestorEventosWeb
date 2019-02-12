@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { DateService } from '@services/date/date.service';
 import { TopicsModalComponent } from '@shared/topics-modal/topics-modal.component';
 import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-events',
@@ -23,7 +24,7 @@ export class EventsComponent implements OnInit {
   public loading: boolean;
 
   constructor(private eventsApi: EventsApiService, private auth: AuthApiService, private route: Router,
-    private dateService: DateService, private dialog: MatDialog) { }
+    private dateService: DateService, private dialog: MatDialog, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -38,8 +39,10 @@ export class EventsComponent implements OnInit {
 
   public deleteEvent(eventId) {
     this.eventsApi.deleteEvent(eventId).then((data: any[]) => {
+      this.notifier.notify( 'success', 'El evento se eliminó con éxito!' );
       this.initData();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }

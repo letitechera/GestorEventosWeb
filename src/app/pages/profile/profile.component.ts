@@ -5,6 +5,7 @@ import { UsersApiService } from '@services/users-api/users-api.service';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { map } from 'rxjs/operators';
 import { AccountData } from '@models/account-data';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-profile',
@@ -20,14 +21,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
   public submitted: boolean;
 
   constructor(private route: ActivatedRoute, private usersApi: UsersApiService, private auth: AuthApiService,
-    private router: Router, private formBuilder: FormBuilder) { }
+    private router: Router, private formBuilder: FormBuilder, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.auth.checkSession();
     this.submitted = false;
     this.sub = this.route.params.subscribe(params => {
       this.getAccountData();
-      // In a real app: dispatch action to load the details here.
     });
   }
 
@@ -61,9 +61,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private editAccount() {
     this.setAccountObject();
     this.usersApi.putAccount(this.account).then((data: any[]) => {
+      this.notifier.notify( 'success', 'Tu perfil se editó con éxito!' );
       this.loadingBtn = false;
       this.goBack();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }

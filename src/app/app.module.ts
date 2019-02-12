@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe, registerLocaleData } from '@angular/common';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { NgQrScannerModule } from 'angular2-qrscanner';
+import { NotifierModule } from 'angular-notifier';
 import localeEs from '@angular/common/locales/es';
 import { ROUTES } from './app.routing';
 
@@ -116,6 +117,46 @@ registerLocaleData(localeEs, 'es');
     AngularFontAwesomeModule,
     MatButtonModule,
     NgQrScannerModule,
+    NotifierModule.withConfig( {
+        position: {
+          horizontal: {
+            position: 'right',
+            distance: 12
+          },
+          vertical: {
+            position: 'bottom',
+            distance: 12,
+            gap: 10
+          }
+        },
+        theme: 'material',
+        behaviour: {
+          autoHide: 4000,
+          onClick: false,
+          onMouseover: 'pauseAutoHide',
+          showDismissButton: true,
+          stacking: 4
+        },
+        animations: {
+          enabled: true,
+          show: {
+            preset: 'slide',
+            speed: 300,
+            easing: 'ease'
+          },
+          hide: {
+            preset: 'fade',
+            speed: 300,
+            easing: 'ease',
+            offset: 50
+          },
+          shift: {
+            speed: 300,
+            easing: 'ease'
+          },
+          overlap: 150
+        }
+    } )
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },

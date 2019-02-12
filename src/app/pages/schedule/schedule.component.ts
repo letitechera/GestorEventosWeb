@@ -12,6 +12,7 @@ import { SchedulesApiService } from '@services/schedules-api/schedules-api.servi
 import { SchedulesModalComponent } from '@shared/schedules-modal/schedules-modal.component';
 import { SpeakerModalComponent } from '@shared/speaker-modal/speaker-modal.component';
 import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-schedule',
@@ -28,7 +29,7 @@ export class ScheduleComponent implements OnInit {
 
   constructor(private schedulesApi: SchedulesApiService, private auth: AuthApiService, private router: Router,
     private route: ActivatedRoute, private dateService: DateService, private dialog: MatDialog,
-    private eventsApi: EventsApiService) { }
+    private eventsApi: EventsApiService, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -57,7 +58,6 @@ export class ScheduleComponent implements OnInit {
         };
       }
     }, (err) => {
-      console.log(err);
       this.loading = false;
     });
   }
@@ -69,7 +69,6 @@ export class ScheduleComponent implements OnInit {
       this.schedules = data;
     }, (err) => {
       this.loading = false;
-      console.log(err);
     });
   }
 
@@ -176,24 +175,30 @@ export class ScheduleComponent implements OnInit {
 
   public deleteSchedule(scheduleId) {
     this.schedulesApi.deleteSchedule(scheduleId).then((data: any[]) => {
+      this.notifier.notify( 'success', 'Se eliminó el día' );
       this.initSchedules();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }
 
   public deleteActivity(activityId) {
     this.schedulesApi.deleteActivity(activityId).then((data: any[]) => {
+      this.notifier.notify( 'success', 'Se eliminó la actividad' );
       this.initSchedules();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }
 
   public deleteSpeaker(speakerId) {
     this.schedulesApi.deleteSpeaker(speakerId).then((data: any[]) => {
+      this.notifier.notify( 'success', 'Se eliminó la speaker' );
       this.initSchedules();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }
