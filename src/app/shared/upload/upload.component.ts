@@ -13,6 +13,7 @@ export class UploadComponent implements OnInit {
   public progress: number;
   public message: string;
   private baseurl = `${environment.webApiUrl}/upload/eventimage`;
+  @Output() public onUploadStart = new EventEmitter();
   @Output() public onUploadFinished = new EventEmitter();
 
   constructor(private http: HttpClient) { }
@@ -49,6 +50,7 @@ export class UploadComponent implements OnInit {
     this.fileName = fileToUpload.name;
 
     if (this.eventId === 0) {
+      this.onUploadStart.emit(true);
       this.saveFile();
     }
   }
@@ -59,7 +61,6 @@ export class UploadComponent implements OnInit {
     }
     /* Store file */
     this.loadingfile = true;
-
     this.http.post(`${this.baseurl}/${this.eventId}`, this.formData, { reportProgress: true, observe: 'events' })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {

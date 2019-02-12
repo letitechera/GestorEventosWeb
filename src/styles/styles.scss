@@ -89,6 +89,9 @@ button{
 .ge-btn-default:hover{
     background-color: $ge-dark-sky;
 }
+.btn-disabled{
+    cursor: not-allowed;
+}
 
 /* SUB MENU */
 
