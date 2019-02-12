@@ -6,6 +6,7 @@ import { ParticipantData } from '@models/participant-data';
 import { PublicApiService } from '@services/public-api/public-api.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { EventsApiService } from '@services/events-api/events-api.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-event-registration',
@@ -24,7 +25,7 @@ export class EventRegistrationComponent implements OnInit, OnDestroy {
   public eventRegistrationForm: FormGroup;
   public participant: ParticipantData;
 
-  constructor(private route: ActivatedRoute, private publicApi: PublicApiService,
+  constructor(private route: ActivatedRoute, private publicApi: PublicApiService, private notifier: NotifierService,
     private dateService: DateService, private eventsApi: EventsApiService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit() {
@@ -39,20 +40,19 @@ export class EventRegistrationComponent implements OnInit, OnDestroy {
     };
 
     this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
+      this.id = +params['id']; 
       this.initData(this.id);
       this.initEventRegistrationForm();
-      // In a real app: dispatch action to load the details here.
     });
   }
 
   private initEventRegistrationForm() {
     this.eventRegistrationForm = this.formBuilder.group({
-      FirstName: ["", [Validators.required]],
-      LastName: ["", [Validators.required]],
-      Email: ["", [Validators.required]],
-      Phone: ["", [Validators.required]],
-      CellPhone: ["", [Validators.required]],
+      FirstName: ['', [Validators.required]],
+      LastName: ['', [Validators.required]],
+      Email: ['', [Validators.required]],
+      Phone: ['', [Validators.required]],
+      CellPhone: ['', [Validators.required]],
     });
     this.loading = false;
   }
@@ -79,9 +79,11 @@ export class EventRegistrationComponent implements OnInit, OnDestroy {
     this.loadingBtn = true;
     this.setParticipantObject();
     this.eventsApi.registerToEvent(this.participant).then((data: any[]) => {
+      this.notifier.notify( 'success', 'El formulario se ha enviado con éxito' );
       this.loadingBtn = false;
       this.goBack();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }
@@ -90,9 +92,9 @@ export class EventRegistrationComponent implements OnInit, OnDestroy {
     this.participant.EventId = this.id;
     this.participant.FirstName = this.eventRegistrationForm.get('FirstName').value;
     this.participant.LastName = this.eventRegistrationForm.get('LastName').value;
-    this.participant.Email = this.eventRegistrationForm.get('Email').value
-    this.participant.Phone = this.eventRegistrationForm.get('Phone').value
-    this.participant.CellPhone = this.eventRegistrationForm.get('CellPhone').value
+    this.participant.Email = this.eventRegistrationForm.get('Email').value;
+    this.participant.Phone = this.eventRegistrationForm.get('Phone').value;
+    this.participant.CellPhone = this.eventRegistrationForm.get('CellPhone').value;
   }
 
   public goBack() {

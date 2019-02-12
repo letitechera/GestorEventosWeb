@@ -7,6 +7,7 @@ import { EventFullData, EventSendableData } from '@models/event-data';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { LocationsApiService } from '@services/locations-api/locations-api.service';
 import { environment } from '@environment';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-event-manage',
@@ -36,7 +37,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private eventsApi: EventsApiService, private auth: AuthApiService,
     private dateService: DateService, private locationsApi: LocationsApiService,
-    private router: Router, private formBuilder: FormBuilder) { }
+    private router: Router, private formBuilder: FormBuilder, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -151,6 +152,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
         this.GetTopics(data.eventTopic.id);
       }
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
       this.loading = false;
     });
@@ -173,8 +175,10 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.setEventObject();
     this.eventsApi.postEvent(this.eventSend).then((data: any[]) => {
       this.loadingBtn = false;
+      this.notifier.notify( 'success', 'El evento se creó con éxito!' );
       this.goBack();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }
@@ -183,8 +187,10 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.setEventObject();
     this.eventsApi.putEvent(this.eventSend).then((data: any[]) => {
       this.loadingBtn = false;
+      this.notifier.notify( 'success', 'El evento se editó con éxito!' );
       this.goBack();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }
@@ -208,7 +214,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
   }
 
   public uploadStarted = (event) => {
-    if(event){
+    if (event) {
       this.loadingBtn = true;
       this.loadingImg = true;
     }
