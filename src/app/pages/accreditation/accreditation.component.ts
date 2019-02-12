@@ -66,6 +66,8 @@ export class AccreditationComponent implements OnInit {
 @Component({
   selector: 'accreditation-modal',
   templateUrl: 'accreditation-modal.html',
+  styleUrls: ['./accreditation.component.scss'],
+
 })
 export class AccreditationModalComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: AccreditationComponent) {}

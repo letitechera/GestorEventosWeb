@@ -65,9 +65,8 @@
                             overflow: hidden;
                             display: -webkit-box;
                             -webkit-line-clamp: 3;
-                            /* autoprefixer: off */
+                            /* autoprefixer: ignore next */
                             -webkit-box-orient: vertical;
-                            /* autoprefixer: on */
                         }
                     }
                     .event-date{
@@ -121,10 +120,30 @@
                 .event-container{
                     padding: 10px;
                     a{
-                        height: 310px;
+                        height: 330px;
                         box-shadow: 0 3px 7px 0 $ge-dolphin, 0 5px 15px 0 $ge-dolphin;
                         .center-cropped{
-                            background-size: 120%;
+                            background-size: 110%;
+                        }
+                        .event-info{
+                            padding-top: 15;
+                            width: 80%;
+                            .event-descr{
+                                padding-top: 5px;
+                                padding-right: 5px;
+                                overflow: hidden;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 3;
+                                /* autoprefixer: off */
+                                -webkit-box-orient: vertical;
+                                /* autoprefixer: on */
+                            }
+                        }
+                        .event-date{
+                            padding: 15px;
+                            width: 20%;
+                            float: right;
+                            text-align: center;
                         }
                     }
                 } 
@@ -133,16 +152,36 @@
     }
 }
 
-@media (max-width: 992px) { 
+@media (min-width: 769px) and (max-width: 992px) { 
     .p-events-container{
         .row{
             .event-col {
                 .event-container{
                     padding: 10px;
                     a{
-                        height: 260px;
+                        height: 230px;
                         .center-cropped {
                             height: 50%;
+                        }
+                        .event-info{
+                            padding-top: 10px;
+                            width: 75%;
+                            .event-descr{
+                                padding-top: 5px;
+                                padding-right: 5px;
+                                overflow: hidden;
+                                display: -webkit-box;
+                                -webkit-line-clamp: 1;
+                                /* autoprefixer: off */
+                                -webkit-box-orient: vertical;
+                                /* autoprefixer: on */
+                            }
+                        }
+                        .event-date{
+                            padding: 5px;
+                            width: 25%;
+                            float: right;
+                            text-align: center;
                         }
                     }
                 } 
@@ -151,7 +190,7 @@
     }
 }
 
-@media (min-width: 992px) and (max-width: 1070px) { 
+@media (min-width: 993px) and (max-width: 1070px) { 
     .p-events-container{
         .row{
             .event-col {

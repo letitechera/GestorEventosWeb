@@ -5,6 +5,7 @@ import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { LocationsApiService } from '@services/locations-api/locations-api.service';
 import { LocationsModalComponent } from '@shared/locations-modal/locations-modal.component';
 import { map } from 'rxjs/operators';
+import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-locations',
@@ -64,6 +65,21 @@ export class LocationsComponent implements OnInit {
     }, (err) => {
       console.log(err);
       this.loading = false;
+    });
+  }
+
+  public openConfirmDialog(element) {
+    this.auth.checkSession();
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        message: '¿Estás seguro de que deseas eliminar la locación?'
+      },
+      hasBackdrop: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.removeLocation(element);
+      }
     });
   }
 

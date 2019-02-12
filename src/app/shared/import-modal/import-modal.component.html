@@ -1,0 +1,53 @@
+<div class="modal-header">
+  <P>
+    <span>Importar Contactos</span>
+  </P>
+  <div class="close-modal-block">
+    <button class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+<div class="modal-body">
+  <form class="import-form" (ngSubmit)="submitImport()">
+    <fieldset>
+      <div class="info-message">
+        <span>El archivo debe ser una planilla de excel en formato .xslx, descargue la muestra de ejemplo aquí:</span>
+      </div>
+      <button type="button" class="ge-btn-default btn-sample" (click)="downloadSample()">
+        <span><fa name="download"></fa> Muestra</span>
+      </button>
+    </fieldset>
+    <fieldset>
+      <div class="load-title">
+        <span>Cargar archivo</span>
+      </div>
+      <div class="file-upload" [ngClass]="{'active': fileLoaded}">
+        <a (click)="file.click()" class="file-btn-wrapper">
+          <div class="file-select">
+            <div class="file-select-button" id="fileName">Cargar planilla</div>
+            <div class="file-select-name" id="noFile">
+              <span *ngIf="!fileLoaded">Ningun archivo selecionado...</span>
+              <span *ngIf="fileLoaded">{{fileName}}</span>
+            </div>
+            <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files, $event)" style="display:none;"
+              accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+          </div>
+        </a>
+      </div>
+    </fieldset>
+    <fieldset class="controls">
+      <div class="controls-container">
+        <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
+          <span>Cancelar</span>
+        </button>
+        <button type="submit" class="ge-btn-default btn-accept">
+          <span *ngIf="!loading">Cargar</span>
+          <span *ngIf="loading">
+            <fa name="spinner" animation="spin"></fa>
+          </span>
+        </button>
+      </div>
+    </fieldset>
+  </form>
+</div>

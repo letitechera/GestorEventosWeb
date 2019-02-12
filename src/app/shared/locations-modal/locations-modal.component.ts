@@ -4,7 +4,6 @@ import { LocationData } from '@models/location-data';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { LocationsApiService } from '@services/locations-api/locations-api.service';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
-import { map } from 'rxjs/operators';
 import { GeographicsApiService } from '@services/geographics-api/geographics-api.service';
 
 @Component({

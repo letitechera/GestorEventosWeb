@@ -53,6 +53,8 @@ import { SpeakerModalComponent } from './shared/speaker-modal/speaker-modal.comp
 import { PublicEventsComponent } from './pages/public/public-events/public-events.component';
 import { PublicEventComponent } from './pages/public/public-event/public-event.component';
 import { EventRegistrationComponent } from './pages/public/event-registration/event-registration.component';
+import { ImportModalComponent } from './shared/import-modal/import-modal.component';
+import { ConfirmationModalComponent } from './shared/confirmation-modal/confirmation-modal.component';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -88,6 +90,8 @@ registerLocaleData(localeEs, 'es');
     PublicEventComponent,
     EventRegistrationComponent,
     AccreditationModalComponent,
+    ImportModalComponent,
+    ConfirmationModalComponent
   ],
   entryComponents: [
     LocationsModalComponent,
@@ -96,7 +100,9 @@ registerLocaleData(localeEs, 'es');
     SchedulesModalComponent,
     ActivityModalComponent,
     SpeakerModalComponent,
-    AccreditationModalComponent
+    AccreditationModalComponent,
+    ImportModalComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     MatDialogModule,

@@ -1,0 +1,135 @@
+@import '~styles/palette';
+
+.load-title{
+    margin-top: 20px;
+    padding: 20px 0 10px 0;
+    font-size: 14px;
+    border-top: 1px $ge-dolphin solid;
+}
+.file-upload {
+    display:block;
+    text-align:center;
+    font-size: 12px;
+    margin-top: 10px;
+    .file-select {
+        display:block;
+        border: 2px solid $ge-dolphin;
+        color: $ge-rat;
+        cursor:pointer;
+        height:40px;
+        line-height:40px;
+        text-align:left;
+        background: white;
+        overflow:hidden;
+        position:relative;
+        .file-select-button {
+            background:$ge-dolphin;
+            padding:0 10px;
+            display:inline-block;
+            height:40px;
+            line-height:40px;
+            color: $ge-earth;
+        }
+        .file-select-name {
+            line-height:40px;
+            display:inline-block;
+            padding:0 10px;
+        }
+    }
+    .file-select:hover {
+        border-color:$ge-rat;
+        transition:all .2s ease-in-out;
+        -moz-transition:all .2s ease-in-out;
+        -webkit-transition:all .2s ease-in-out;
+        -o-transition:all .2s ease-in-out;
+        .file-select-button {
+            background:$ge-rat;
+            color:$ge-chalk;
+            transition:all .2s ease-in-out;
+            -moz-transition:all .2s ease-in-out;
+            -webkit-transition:all .2s ease-in-out;
+            -o-transition:all .2s ease-in-out;
+        }
+    }
+}
+.file-upload.active {
+    .file-select {
+        border-color: $ge-sunset;
+        transition:all .2s ease-in-out;
+        -moz-transition:all .2s ease-in-out;
+        -webkit-transition:all .2s ease-in-out;
+        -o-transition:all .2s ease-in-out;
+        .file-select-button {
+            background:$ge-sunset;
+            color: $ge-chalk;
+            transition:all .2s ease-in-out;
+            -moz-transition:all .2s ease-in-out;
+            -webkit-transition:all .2s ease-in-out;
+            -o-transition:all .2s ease-in-out;
+        }
+        input[type=file] {
+            z-index:100;
+            cursor:pointer;
+            position:absolute;
+            height:100%;
+            width:100%;
+            top:0;
+            left:0;
+            opacity:0;
+            filter:alpha(opacity=0);
+        }
+    }
+    .file-select.file-select-disabled {
+        opacity:0.65;
+    }
+    .file-select.file-select-disabled:hover {
+        cursor:default;
+        display:block;
+        border: 2px solid $ge-dolphin;
+        color: $ge-earth;
+        cursor:pointer;
+        height:40px;
+        line-height:40px;
+        margin-top:5px;
+        text-align:left;
+        background: $ge-chalk;
+        overflow:hidden;
+        position:relative;
+        .file-select-button {
+            background: $ge-dolphin;
+            color:$ge-seal;
+            padding:0 10px;
+            display:inline-block;
+            height:40px;
+            line-height:40px;
+        }
+        .file-select-name {
+            line-height:40px;
+            display:inline-block;
+            padding:0 10px;
+        }
+    }
+}
+
+.controls{
+    margin-top: 10px;
+}
+.controls-container{
+    margin-bottom: 0;
+    margin-top: 0;
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+    float: right;
+}
+.btn-sample{
+    background-color: $ge-deep-sky;
+    float: right;
+}
+.btn-sample:hover{
+    background-color: $ge-dark-sky;
+}
+.info-message{
+    padding: 5px 0;
+    font-size: 12px;
+}

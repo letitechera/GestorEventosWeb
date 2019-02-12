@@ -75,6 +75,7 @@ export class PublicEventComponent implements OnInit, OnDestroy {
   public scrollToElement($element): void {
     console.log($element);
     $element.scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+    $element.scrollIntoView({behavior: 'smooth', block: 'start', inline: 'nearest'});
   }
 
   public goBack() {
