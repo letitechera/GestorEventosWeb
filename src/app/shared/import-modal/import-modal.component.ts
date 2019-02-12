@@ -101,7 +101,7 @@ export class ImportModalComponent implements OnInit {
       Telefono: '',
       Celular: '',
     }];
-    this.excelService.exportAsExcelFile(data, 'Contactos');
+    this.excelService.exportAsExcelFile(data, 'Contactos_Lista');
   }
 
   public clearImage() {

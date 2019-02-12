@@ -13,6 +13,15 @@ th:nth-child(3) {
 .mat-row{
     cursor: inherit;
 }
+.sub-menu{
+    .left-smenu{
+        a{
+            fa{
+                margin-right: 5px;
+            }
+        }
+    }
+}
 
 @media (max-width: 992px) { 
     td:nth-child(4), td:nth-child(5), th:nth-child(4), th:nth-child(5), .xs-invisible{
