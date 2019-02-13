@@ -30,6 +30,7 @@ export class EventsApiService {
               Location: result.location,
               Address: result.address,
               Topic: result.topic,
+              Percentage: result.percentage,
               CreatedById: result.createdById,
             });
           });

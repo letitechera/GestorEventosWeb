@@ -26,13 +26,13 @@
                                     formControlName="StartDate">
                                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                 <mat-datepicker #picker1></mat-datepicker>
-                                <mat-error *ngIf="eventForm.get('StartDate').hasError('required') && this.submitted">
-                                    Ingrese una fecha
+                                <mat-error *ngIf="eventForm.get('StartDate')?.invalid && this.submitted">
+                                    Ingrese una fecha mayor a hoy
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field class="input-time1">
                                 <input type="time" matInput placeholder="Hora de inicio *" formControlName="StartTime" />
-                                <mat-error *ngIf="eventForm.get('EndTime').hasError('required') && this.submitted">
+                                <mat-error *ngIf="eventForm.get('EndTime')?.invalid && this.submitted">
                                     Escriba una hora
                                 </mat-error>
                             </mat-form-field>
@@ -41,13 +41,13 @@
                                     formControlName="EndDate">
                                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                 <mat-datepicker #picker2></mat-datepicker>
-                                <mat-error *ngIf="eventForm.get('EndDate').hasError('required') && this.submitted">
-                                    Ingrese una fecha
+                                <mat-error *ngIf="eventForm.get('EndDate')?.invalid && this.submitted">
+                                    Ingrese una fecha mayor a hoy
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field class="input-time2">
                                 <input type="time" matInput placeholder="Hora de fin *" formControlName="EndTime" />
-                                <mat-error *ngIf="eventForm.get('EndTime').hasError('required') && this.submitted">
+                                <mat-error *ngIf="eventForm.get('EndTime')?.invalid && this.submitted">
                                     Escriba una hora
                                 </mat-error>
                             </mat-form-field>
@@ -74,6 +74,15 @@
                                 </mat-error>
                             </mat-form-field>
                         </div>
+                        <label>Agrega un porcentaje de asistencia obligatoria para la obtención de certificados:</label>
+                        <mat-form-field class="input-ptge">
+                            <input type="number" [min]="0" [max]="100" maxlength="3" matInput placeholder="" formControlName="Percentage" />
+                            <span matSuffix>%</span>
+                            <mat-hint align="end">0/100</mat-hint>
+                            <mat-error *ngIf="eventForm.get('Percentage')?.invalid">
+                                Agregue un valor entre 0 y 100
+                            </mat-error>
+                        </mat-form-field>
                         <fieldset class="controls">
                             <div class="controls-container">
                                 <button type="button" class="ge-btn-default btn-cancel" (click)="goBack()">

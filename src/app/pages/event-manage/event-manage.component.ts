@@ -4,7 +4,7 @@ import { DateService } from '@services/date/date.service';
 import { EventsApiService } from '@services/events-api/events-api.service';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { EventFullData, EventSendableData } from '@models/event-data';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ValidatorFn, FormControl } from '@angular/forms';
 import { LocationsApiService } from '@services/locations-api/locations-api.service';
 import { environment } from '@environment';
 import { NotifierService } from 'angular-notifier';
@@ -54,6 +54,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
       LocationId: 0,
       EventTopicId: 0,
       Canceled: false,
+      AttendancePercentage: 0,
       Id: 0
     };
 
@@ -109,7 +110,8 @@ export class EventManageComponent implements OnInit, OnDestroy {
       Image: [environment.defaultImage],
       LocationId: [this.selectedlocation, [Validators.required]],
       EventTopicId: [this.selectedtopic, [Validators.required]],
-      Canceled: [false]
+      Canceled: [false],
+      Percentage: [0, [Validators.max(100), Validators.min(0)]]
     });
   }
 
@@ -125,7 +127,8 @@ export class EventManageComponent implements OnInit, OnDestroy {
       Image: [this.event.Image != null || this.event.Image !== '' ? this.event.Image : environment.defaultImage],
       LocationId: [this.selectedlocation, [Validators.required]],
       EventTopicId: [this.selectedtopic, [Validators.required]],
-      Canceled: [this.event.Canceled]
+      Canceled: [this.event.Canceled],
+      Percentage: [this.event.Percentage, [Validators.max(100), Validators.min(0)]]
     });
     this.loading = false;
   }
@@ -144,6 +147,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
           Location: data.location,
           EventTopic: data.eventTopic,
           Canceled: data.canceled,
+          Percentage: data.attendancePercentage
         };
         this.initUpdateForm();
         this.loading = false;
@@ -211,6 +215,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.eventSend.LocationId = this.eventForm.get('LocationId').value;
     this.eventSend.Id = this.id != null && this.id !== 0 ? this.event.EventId : 0;
     this.eventSend.Canceled = false;
+    this.eventSend.AttendancePercentage = this.eventForm.get('Percentage').value;
   }
 
   public uploadStarted = (event) => {

@@ -63,13 +63,29 @@
     width: 40%;
     padding-left: 3%;
 }
-
-.controls-container{
-    margin-bottom: 0;
-    width: -webkit-fit-content;
-    width: -moz-fit-content;
-    width: fit-content;
+.input-ptge{
+    width: 20%;
     float: right;
+    input{
+        text-align: right;
+    }
+}
+label{
+    display: block;
+    padding-top: 20px;
+    font-size: 14px;
+    color: $ge-elephant;
+    margin: 0;
+}
+.controls{
+    clear: both;
+    .controls-container{
+        margin-bottom: 0;
+        width: -webkit-fit-content;
+        width: -moz-fit-content;
+        width: fit-content;
+        float: right;
+    }
 }
 
 @media (max-width: 992px) { 

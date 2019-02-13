@@ -57,6 +57,7 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
           Location: data.location,
           Address: data.address,
           Topic: data.topic,
+          Percentage: data.percentage,
           CreatedById: data.createdById,
         };
       }

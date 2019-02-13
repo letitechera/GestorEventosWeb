@@ -54,6 +54,7 @@ export class ScheduleComponent implements OnInit {
           Location: data.location,
           Address: data.address,
           Topic: data.topic,
+          Percentage: data.percentage,
           CreatedById: data.createdById,
         };
       }
