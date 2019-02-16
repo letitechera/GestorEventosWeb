@@ -22,6 +22,7 @@ import { AttendantsApiService } from '@services/attendants-api/attendants-api.se
 import { GeographicsApiService } from '@services/geographics-api/geographics-api.service';
 import { AccountApiService } from './services/account-api/account-api.service';
 import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
+import { ExcelService } from '@services/excel/excel.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -130,7 +131,8 @@ registerLocaleData(localeEs, 'es');
     AttendantsApiService,
     LocationsApiService,
     GeographicsApiService,
-    SchedulesApiService
+    SchedulesApiService,
+    ExcelService
   ],
   bootstrap: [AppComponent]
 })

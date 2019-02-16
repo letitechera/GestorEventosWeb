@@ -1,5 +1,11 @@
 <app-header></app-header>
 <div class="sub-menu">
+    <div class="left-smenu">
+        <a class="style-l" title="Emitir Certificados" (click)="sendCertificates()">Emitir Certificados</a>
+        <a class="ge-btn-default" title="Descargar lista de Participantes" (click)="downloadParticipants()">
+            <fa name="download"></fa>Descargar Lista
+        </a>
+    </div>
     <div class="search">
         <mat-form-field>
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
@@ -37,17 +43,13 @@
             <td mat-cell *matCellDef="let element"> {{element.CellPhone}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="Accredit">
+        <ng-container matColumnDef="Controls">
             <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-                <button>Acreditar</button>
-            </td>
-        </ng-container>
-
-        <ng-container matColumnDef="Certificate">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-            <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-                <button (click)="sendCertificate(element.ParticipantId)">Emitir Certificado</button>
+                <button (click)="accreditParticipant(element.ParticipantId)" class="ge-btn-default">
+                    <span class="xs-invisible">Acreditar</span>
+                </button>
+                <fa name="checkmark"></fa>
             </td>
         </ng-container>
 

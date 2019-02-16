@@ -237,7 +237,7 @@ export class EventsApiService {
     });
   }
 
-  public sendCertificate(id): Promise<any> {
+  public sendCertificates(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.sendCertificateData(id)
         .pipe(map((result: any) => {

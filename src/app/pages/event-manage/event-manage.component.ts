@@ -28,6 +28,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
   public minEndDate: Date;
   public originalImage: string;
   public loading: boolean;
+  public loadingImg: boolean;
   public loadingBtn: boolean;
   public submitted: boolean;
   public event: EventFullData;
@@ -206,7 +207,16 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.eventSend.Canceled = false;
   }
 
+  public uploadStarted = (event) => {
+    if(event){
+      this.loadingBtn = true;
+      this.loadingImg = true;
+    }
+  }
+
   public uploadFinished = (event) => {
+    this.loadingBtn = false;
+    this.loadingImg = false;
     this.originalImage = event.newFile;
   }
 

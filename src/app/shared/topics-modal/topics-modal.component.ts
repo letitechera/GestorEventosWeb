@@ -23,6 +23,7 @@ export class TopicsModalComponent implements OnInit {
     this.auth.checkSession();
     this.loading = true;
     this.createForm();
+    this.InitTopics();
   }
 
   private InitTopics(){

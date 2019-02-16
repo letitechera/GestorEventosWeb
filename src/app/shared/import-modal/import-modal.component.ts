@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
-import { AttendantsApiService } from '@services/attendants-api/attendants-api.service';
 import { environment } from '@environment';
 import { HttpEventType, HttpClient } from '@angular/common/http';
+import { ExcelService } from '@services/excel/excel.service';
 
 @Component({
   selector: 'app-import-modal',
@@ -22,16 +21,18 @@ export class ImportModalComponent implements OnInit {
   private baseurl = `${environment.webApiUrl}/upload/import/xml`;
   public progress: number;
   public message: string;
+  public error: boolean;
+  public errorMsg: string;
 
   constructor(public dialogRef: MatDialogRef<ImportModalComponent>, private auth: AuthApiService,
-    private formBuilder: FormBuilder, private attendantsApi: AttendantsApiService, private http: HttpClient) { }
+    private http: HttpClient, private excelService: ExcelService) { }
 
   ngOnInit() {
+    this.auth.checkSession();
     this.formData = new FormData();
   }
 
   public uploadFile = (files, event) => {
-    debugger;
     if (files.length === 0) {
       this.fileLoaded = false;
       return;
@@ -45,7 +46,7 @@ export class ImportModalComponent implements OnInit {
     const fileToUpload = <File>files[0];
     this.formData.append('file', fileToUpload, fileToUpload.name);
     this.fileLoaded = true;
-    this.fileName = fileToUpload.name;
+    this.fileName = this.getShortName(fileToUpload.name);
   }
 
   public submitImport() {
@@ -65,15 +66,56 @@ export class ImportModalComponent implements OnInit {
           }
         } else if (event.type === HttpEventType.Response) {
           this.loading = false;
-          this.dialogRef.close('changed');
+          switch (event.status) {
+            case 200:
+              this.error = false;
+              this.dialogRef.close('changed');
+              break;
+            case 204:
+              this.error = true;
+              this.errorMsg = "Verifique errores de planilla, o que todos los contactos tengan un Email."
+              break;
+            case 400:
+              this.error = true;
+              this.errorMsg = "Error en el archivo subido."
+              break;
+            default:
+              this.error = true;
+              this.errorMsg = "Ha ocurrido un error, intente más tarde."
+              break;
+          }
         }
+      }, (err) => {
+        console.log(err);
+        this.loading = false;
+        this.error = true;
+        this.errorMsg = "Ha ocurrido un error, intente más tarde."
       });
+  }
+
+  public downloadSample() {
+    var data: any = [{
+      Nombre: '',
+      Apellido: '',
+      Email: '',
+      Telefono: '',
+      Celular: '',
+    }];
+    this.excelService.exportAsExcelFile(data, 'Contactos_Lista');
   }
 
   public clearImage() {
     this.formData = new FormData();
     this.fileLoaded = false;
     this.fileUrl = '';
+  }
+
+  private getShortName(name: string){
+    if(name.length>30){
+      return name.substr(0, 27)+"...";
+    } else {
+      return name;
+    }
   }
 
   public close(): void {

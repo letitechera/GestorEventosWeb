@@ -79,8 +79,9 @@
                                 <button type="button" class="ge-btn-default btn-cancel" (click)="goBack()">
                                     <span>Cancelar</span>
                                 </button>
-                                <button type="submit" class="ge-btn-default btn-accept">
-                                    <span *ngIf="!loadingBtn && createFlag">Crear Evento</span>
+                                <button type="submit" class="ge-btn-default btn-accept" [disabled]="loadingImg"  
+                                [ngClass]="{'btn-disabled': loadingImg}">
+                                    <span *ngIf="!loadingBtn && createFlag">Crear</span>
                                     <span *ngIf="!loadingBtn && updateFlag">Editar</span>
                                     <span *ngIf="loadingBtn">
                                         <fa name="spinner" animation="spin"></fa>
@@ -92,7 +93,8 @@
                     <div class="col-xs-6 col-md-6 form-right">
                         <!-- file upload -->
 
-                        <app-upload [eventId]="id" [originalImage]="originalImage" (onUploadFinished)="uploadFinished($event)"></app-upload>
+                        <app-upload [eventId]="id" [originalImage]="originalImage" (onUploadFinished)="uploadFinished($event)"
+                        (onUploadStart)="uploadStarted($event)"></app-upload>
 
                         <!-- file upload end -->
                     </div>
