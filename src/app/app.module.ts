@@ -9,6 +9,9 @@ import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MatButtonModule } from '@a
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DatePipe, registerLocaleData } from '@angular/common';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { NgQrScannerModule } from 'angular2-qrscanner';
+import { NotifierModule } from 'angular-notifier';
 import localeEs from '@angular/common/locales/es';
 import { ROUTES } from './app.routing';
 
@@ -19,6 +22,8 @@ import { LocationsApiService } from '@services/locations-api/locations-api.servi
 import { AttendantsApiService } from '@services/attendants-api/attendants-api.service';
 import { GeographicsApiService } from '@services/geographics-api/geographics-api.service';
 import { AccountApiService } from './services/account-api/account-api.service';
+import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
+import { ExcelService } from '@services/excel/excel.service';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
@@ -40,7 +45,6 @@ import { ChangePasswordComponent } from './pages/change-password/change-password
 import { ProfileComponent } from './pages/profile/profile.component';
 import { LoginHeaderComponent } from './shared/login-header/login-header.component';
 import { EventManageComponent } from './pages/event-manage/event-manage.component';
-import { NgQrScannerModule } from 'angular2-qrscanner';
 import { UploadComponent } from './shared/upload/upload.component';
 import { ParticipantsComponent } from './pages/participants/participants.component';
 import { ScheduleComponent } from './pages/schedule/schedule.component';
@@ -49,7 +53,9 @@ import { ActivityModalComponent } from './shared/activity-modal/activity-modal.c
 import { SpeakerModalComponent } from './shared/speaker-modal/speaker-modal.component';
 import { PublicEventsComponent } from './pages/public/public-events/public-events.component';
 import { PublicEventComponent } from './pages/public/public-event/public-event.component';
-import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
+import { EventRegistrationComponent } from './pages/public/event-registration/event-registration.component';
+import { ImportModalComponent } from './shared/import-modal/import-modal.component';
+import { ConfirmationModalComponent } from './shared/confirmation-modal/confirmation-modal.component';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -82,7 +88,10 @@ registerLocaleData(localeEs, 'es');
     ActivityModalComponent,
     SpeakerModalComponent,
     PublicEventsComponent,
-    PublicEventComponent
+    PublicEventComponent,
+    EventRegistrationComponent,
+    ImportModalComponent,
+    ConfirmationModalComponent
   ],
   entryComponents: [
     LocationsModalComponent,
@@ -90,11 +99,14 @@ registerLocaleData(localeEs, 'es');
     AttendantsModalComponent,
     SchedulesModalComponent,
     ActivityModalComponent,
-    SpeakerModalComponent
+    SpeakerModalComponent,
+    ImportModalComponent,
+    ConfirmationModalComponent
   ],
   imports: [
     MatDialogModule,
     NgbModule.forRoot(),
+    ScrollToModule.forRoot(),
     BrowserModule,
     FormsModule,
     HttpClientModule,
@@ -104,7 +116,47 @@ registerLocaleData(localeEs, 'es');
     ReactiveFormsModule,
     AngularFontAwesomeModule,
     MatButtonModule,
-    NgQrScannerModule
+    NgQrScannerModule,
+    NotifierModule.withConfig( {
+        position: {
+          horizontal: {
+            position: 'right',
+            distance: 12
+          },
+          vertical: {
+            position: 'bottom',
+            distance: 12,
+            gap: 10
+          }
+        },
+        theme: 'material',
+        behaviour: {
+          autoHide: 4000,
+          onClick: false,
+          onMouseover: 'pauseAutoHide',
+          showDismissButton: true,
+          stacking: 4
+        },
+        animations: {
+          enabled: true,
+          show: {
+            preset: 'slide',
+            speed: 300,
+            easing: 'ease'
+          },
+          hide: {
+            preset: 'fade',
+            speed: 300,
+            easing: 'ease',
+            offset: 50
+          },
+          shift: {
+            speed: 300,
+            easing: 'ease'
+          },
+          overlap: 150
+        }
+    } )
   ],
   providers: [
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: false } },
@@ -117,7 +169,8 @@ registerLocaleData(localeEs, 'es');
     AttendantsApiService,
     LocationsApiService,
     GeographicsApiService,
-    SchedulesApiService
+    SchedulesApiService,
+    ExcelService
   ],
   bootstrap: [AppComponent]
 })

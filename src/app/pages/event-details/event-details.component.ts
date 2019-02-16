@@ -2,9 +2,9 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EventsApiService } from '@services/events-api/events-api.service';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
-import { map } from 'rxjs/operators';
 import { EventData } from '@models/event-data';
 import { DateService } from '@services/date/date.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'event-details',
@@ -18,7 +18,7 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
   public event: EventData;
 
   constructor(private route: ActivatedRoute, private eventsApi: EventsApiService, private auth: AuthApiService,
-    private dateService: DateService, private router: Router) { }
+    private dateService: DateService, private router: Router, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -38,8 +38,12 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate(['schedule', this.event.EventId]);
   }
 
-  public goBack(){
+  public goBack() {
     this.router.navigateByUrl('events');
+  }
+
+  public goToEventView(){
+    this.router.navigate(['public/events/', this.event.EventId]);
   }
 
   public initData(id) {
@@ -57,7 +61,9 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
           Location: data.location,
           Address: data.address,
           Topic: data.topic,
+          Percentage: data.percentage,
           CreatedById: data.createdById,
+          Canceled: data.canceled
         };
       }
     }, (err) => {
@@ -68,10 +74,25 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
 
   public sendCampaign() {
     this.loading = true;
-    this.eventsApi.sendCampaign(this.id).then(() => {
+    this.eventsApi.sendCampaign(this.event.EventId).then(() => {
       this.loading = false;
+      this.notifier.notify('success', 'El evento está siendo enviado!');
+    }, (err) => {
+      (err) => {
+        this.loading = false;
+        this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
+      }
+    );
+  }
+
+  public cancelEvent() {
+    this.loading = true;
+    this.eventsApi.cancelEvent(this.id).then(() => {
+      this.loading = false;
+      this.notifier.notify('success', 'El evento se ha cancelado');
     },
       (err) => {
+        this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
         console.log(err);
         this.loading = false;
       }

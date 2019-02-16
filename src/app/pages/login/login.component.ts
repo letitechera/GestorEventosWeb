@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
 
   public loginForm: FormGroup;
   public loginError: boolean;
+  public submitted: boolean;
   public loading: boolean;
 
   constructor(private service: AuthApiService, private router: Router, private formBuilder: FormBuilder) {
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.service.logout();
+    this.submitted = false;
     this.createForm();
   }
 
@@ -32,6 +34,7 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+    this.submitted = true;
     if (!this.loginForm.valid) {
       this.loading = false;
       return;
@@ -42,6 +45,7 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.get('password').value;
     this.service.login(username, password).subscribe((data) => {
       this.service.setSession(data);
+      this.submitted = false;
       this.loading = false;
       this.router.navigateByUrl('events');
     },

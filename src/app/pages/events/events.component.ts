@@ -6,6 +6,8 @@ import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { Router } from '@angular/router';
 import { DateService } from '@services/date/date.service';
 import { TopicsModalComponent } from '@shared/topics-modal/topics-modal.component';
+import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-events',
@@ -22,7 +24,7 @@ export class EventsComponent implements OnInit {
   public loading: boolean;
 
   constructor(private eventsApi: EventsApiService, private auth: AuthApiService, private route: Router,
-    private dateService: DateService, private dialog: MatDialog) { }
+    private dateService: DateService, private dialog: MatDialog, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -37,8 +39,10 @@ export class EventsComponent implements OnInit {
 
   public deleteEvent(eventId) {
     this.eventsApi.deleteEvent(eventId).then((data: any[]) => {
+      this.notifier.notify( 'success', 'El evento se eliminó con éxito!' );
       this.initData();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }
@@ -100,6 +104,21 @@ export class EventsComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
+    });
+  }
+
+  public openConfirmDialog(element) {
+    this.auth.checkSession();
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        message: '¿Estás seguro de que deseas eliminar este evento?'
+      },
+      hasBackdrop: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.deleteEvent(element);
+      }
     });
   }
 

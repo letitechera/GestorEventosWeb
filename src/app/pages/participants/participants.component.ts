@@ -5,6 +5,8 @@ import { EventsApiService } from '@services/events-api/events-api.service';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DateService } from '@services/date/date.service';
+import { ExcelService } from '@services/excel/excel.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-participants',
@@ -23,7 +25,7 @@ export class ParticipantsComponent implements OnInit {
   private sub: any;
 
   constructor(private route: ActivatedRoute, private eventsApi: EventsApiService, private auth: AuthApiService, private router: Router,
-    private dateService: DateService, private dialog: MatDialog) { }
+    private dateService: DateService, private dialog: MatDialog, private excelService: ExcelService, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -35,13 +37,38 @@ export class ParticipantsComponent implements OnInit {
     });
   }
 
+  public sendCertificate(participantId) {
+    this.eventsApi.sendCertificate(participantId).then((data: any[]) => {
+      this.notifier.notify( 'success', 'Se envió el Certificado!' );
+    }, (err) => {
+      console.log(err);
+    });
+  }
+
+  public downloadParticipants() {
+    if (this.participants.length > 0) {
+      var data = [];
+      this.participants.forEach(p => {
+        data.push({
+          Nombre: p.FirstName,
+          Apellido: p.LastName,
+          Email: p.Email,
+          Telefono: p.Phone,
+          Celular: p.CellPhone
+        });
+      });
+      this.excelService.exportAsExcelFile(data, 'Participantes_Evento_' + this.id);
+    }
+  }
+
   private setDisplayColumns() {
     this.displayedColumns = [
       'FirstName',
       'LastName',
       'Email',
-      'Accredit',
-      'Certificate'
+      'Phone',
+      'CellPhone',
+      'Controls'
     ];
   }
 

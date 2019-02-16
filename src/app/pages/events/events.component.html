@@ -68,7 +68,7 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
                 <a class="options">
-                    <fa name="remove" title="Eliminar" (click)="deleteEvent(element.EventId)"></fa>
+                    <fa name="remove" title="Eliminar" (click)="openConfirmDialog(element.EventId)"></fa>
                 </a>
             </td>
         </ng-container>

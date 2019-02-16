@@ -1,5 +1,11 @@
 <app-header></app-header>
 <div class="sub-menu">
+    <div class="left-smenu">
+        <a class="style-l" title="Emitir Certificados">Emitir Certificados</a>
+        <a class="ge-btn-default" title="Descargar lista de Participantes" (click)="downloadParticipants()">
+            <fa name="download"></fa>Descargar Lista
+        </a>
+    </div>
     <div class="search">
         <mat-form-field>
             <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Buscar">
@@ -11,7 +17,7 @@
 <div class="content-body">
     <div class="loader" *ngIf="loading"></div>
     <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-  
+
         <ng-container matColumnDef="FirstName">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
             <td mat-cell *matCellDef="let element"> {{element.FirstName}} </td>
@@ -26,19 +32,24 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Correo Electronico </th>
             <td mat-cell *matCellDef="let element"> {{element.Email}} </td>
         </ng-container>
-    
-        <ng-container matColumnDef="Accredit">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
-            <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-                <button>Acreditar</button>
-            </td>           
+
+        <ng-container matColumnDef="Phone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Telefono </th>
+            <td mat-cell *matCellDef="let element"> {{element.Phone}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="Certificate">
+        <ng-container matColumnDef="CellPhone">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Celular </th>
+            <td mat-cell *matCellDef="let element"> {{element.CellPhone}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="Controls">
             <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-                <button>Emitir Certificado</button>
-            </td>           
+                <button (click)="sendCertificate(element.ParticipantId)" class="ge-btn-default">
+                    <span class="xs-invisible">Enviar</span> Certificado
+                </button>
+            </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

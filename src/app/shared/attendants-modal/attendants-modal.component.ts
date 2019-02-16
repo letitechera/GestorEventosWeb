@@ -5,6 +5,7 @@ import { AttendantsApiService } from '@services/attendants-api/attendants-api.se
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { Interested } from '@models/interested-data';
 import { InterestedComponent } from '@pages/interested/interested.component';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-attendants-modal',
@@ -13,8 +14,8 @@ import { InterestedComponent } from '@pages/interested/interested.component';
 })
 export class AttendantsModalComponent implements OnInit {
 
-  public createFlag: boolean
-  public updateFlag: boolean
+  public createFlag: boolean;
+  public updateFlag: boolean;
   public attendantsForm: FormGroup;
   public submitted: boolean;
   public attendant: Interested;
@@ -22,7 +23,8 @@ export class AttendantsModalComponent implements OnInit {
   public loading: boolean;
 
   constructor(public dialogRef: MatDialogRef<AttendantsModalComponent>, private attendantsApi: AttendantsApiService,
-    private auth: AuthApiService, private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any) { }
+    private notifier: NotifierService, private auth: AuthApiService, private formBuilder: FormBuilder,
+     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -73,8 +75,10 @@ export class AttendantsModalComponent implements OnInit {
 
   private addAttendant() {
     this.postAttendant().then((data: any[]) => {
+      this.notifier.notify( 'success', 'El contacto se agregó con éxito!' );
       this.dialogRef.close('changed');
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }
@@ -93,8 +97,10 @@ export class AttendantsModalComponent implements OnInit {
 
   private editAttendant() {
     this.putAttendant().then((data: any[]) => {
+      this.notifier.notify( 'success', 'El contacto se editó con éxito!' );
       this.dialogRef.close('changed');
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }

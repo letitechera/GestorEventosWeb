@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountApiService } from '@services/account-api/account-api.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-forgot-password',
@@ -13,7 +14,8 @@ export class ForgotPasswordComponent implements OnInit {
   public error: boolean;
   public loading: boolean;
 
-  constructor(private service: AccountApiService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private service: AccountApiService, private router: Router, private formBuilder: FormBuilder,
+    private notifier: NotifierService) {
     this.error = false;
     this.loading = false;
   }
@@ -34,6 +36,7 @@ export class ForgotPasswordComponent implements OnInit {
     const email = this.forgotForm.get('email').value;
     this.service.forgotPassword(email).subscribe((data) => {
       this.loading = false;
+      this.notifier.notify( 'success', 'Revise su casilla de correo' );
       this.router.navigateByUrl('login');
     },
     (err) => {
@@ -41,5 +44,9 @@ export class ForgotPasswordComponent implements OnInit {
       this.error = true;
       this.loading = false;
     });
+  }
+
+  public goBack() {
+    this.router.navigateByUrl('login');
   }
 }

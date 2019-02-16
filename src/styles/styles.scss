@@ -13,14 +13,20 @@ body { margin: 0; font-family: opensans, 'Helvetica Neue', sans-serif; }
 .content-body{
     padding-bottom: 56px;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
 
 $spinner-size: 30px;
 $spinner-border-width: 6px;
 $spinner-speed: 0.6s;
 .loader {
     position: absolute;
-    left: 50%;
-    top: 50%;
+    left: 48%;
+    top: 48%;
     z-index: 1;
     height: 30px;
     width: 30px;
@@ -89,6 +95,9 @@ button{
 .ge-btn-default:hover{
     background-color: $ge-dark-sky;
 }
+.btn-disabled{
+    cursor: not-allowed;
+}
 
 /* SUB MENU */
 
@@ -100,9 +109,9 @@ button{
         margin: 30px 0 0 15px;
         a{
             display: inline;
-            padding: 5px 15px;
+            padding: 10px 20px;
             margin: 7px;
-            font-size: 12px;
+            font-size: 14px;
             font-family: Arial, Helvetica, sans-serif;
             font-weight: 300;
             line-height: 1;
@@ -143,6 +152,7 @@ button{
 }
 
 /* MODALS */
+
 .modal-body{
     overflow-x: hidden;
 }
@@ -289,6 +299,27 @@ th{
                 -ms-transform: rotate(45deg);
                     -o-transform: rotate(45deg);
             }
+        }
+    }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) { 
+    html, body { height: auto; }
+    .content-body{
+        padding-bottom: 30px;
+    }
+    .search .mat-form-field {
+        width: 40%;
+        margin: 0;
+    }
+    .sub-menu{
+        .left-smenu {
+            margin: 30px 0 0 5px;
+        }
+        .right-smenu a {
+            margin: 7px;
         }
     }
 }

@@ -14,7 +14,7 @@
       <div class="col-sm-4 col-md-3" *ngFor="let schedule of schedules">
         <div class="schedule-block">
           <div class="schedule-header">
-            <a class="schedule-remove" (click)="deleteSchedule(schedule.Id)">
+            <a class="schedule-remove" (click)="openConfirmDialog('schedule', schedule.Id)">
               <fa name="remove"></fa>
             </a>
             <span>Día {{schedule.PrettyDate}}</span>
@@ -26,7 +26,7 @@
             <div class="activity-block" *ngFor="let activity of schedule.Activities">
               <a class="activity" (click)="openActivityDialog(schedule.Id, schedule.Date, activity)" title="Editar Actividad">
                 <div class="activity-header">
-                  <a class="activity-remove" title="Eliminar Actividad" (click)="$event.stopPropagation(); deleteActivity(activity.id)">
+                  <a class="activity-remove" title="Eliminar Actividad" (click)="$event.stopPropagation(); openConfirmDialog('activity', activity.id)">
                     <fa name="remove"></fa>
                   </a>
                   <span class="activity-name">{{activity.name}}</span>
@@ -39,7 +39,7 @@
                   <a (click)="openSpeakersDialog(activity.id, speaker)" title="Editar">
                     <span>{{speaker.firstName}} {{speaker.lastName}}</span>
                   </a>
-                  <a class="speaker-remove" title="Eliminar Speaker" (click)="deleteSpeaker(speaker.id)">
+                  <a class="speaker-remove" title="Eliminar Speaker" (click)="openConfirmDialog('speaker', speaker.id)">
                     <fa name="remove"></fa>
                   </a>
                 </div>

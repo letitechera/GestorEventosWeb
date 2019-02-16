@@ -12,6 +12,8 @@ import { PublicApiService } from '@services/public-api/public-api.service';
 export class PublicEventsComponent implements OnInit {
   public events: EventData[];
   public loading: boolean;
+  public shortDescription: string;
+
   constructor(private publicApi: PublicApiService, private route: Router,
     private dateService: DateService) { }
 
@@ -23,8 +25,7 @@ export class PublicEventsComponent implements OnInit {
     this.loading = true;
     this.publicApi.getAllEvents().then((data: any[]) => {
       this.loading = false;
-      this.events = data;
-      console.log(data)
+      this.events = data.filter(x => x.Canceled == false);
     }, (err) => {
       this.loading = false;
       console.log(err);
@@ -35,12 +36,12 @@ export class PublicEventsComponent implements OnInit {
     this.route.navigate(['public/events/', eventId]);
   }
 
-  public showDate(date) {
-    return this.dateService.GetShortDate(date);
+  public showDayDate(date) {
+    return this.dateService.GetDayDate(date);
   }
 
-  public showTime(date) {
-    return this.dateService.GetTime(date);
+  public showAbbreviatedMonth(date) {
+    return this.dateService.GetAbbreviatedMonth(date).substr(0, 3).toUpperCase();
   }
 
 }

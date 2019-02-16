@@ -108,12 +108,14 @@
         }
     }
 }
-
 .center-cropped {
     height: 80%;
     background-size: 110%;
     background-position: center center;
     background-repeat: no-repeat;
+}
+.background-loading{
+    opacity: 0.6;
 }
 .event-controls{
     float: right;
@@ -161,4 +163,20 @@
     padding: 5px 0;
     color: green;
     font-size: 12px;
+}
+.loader{
+    left: 47%;
+    top: 32%;
+}
+
+@media (max-width: 992px) { 
+
+}
+
+@media (max-width: 768px) { 
+    .upload-container{
+        height: 250px;
+        padding: 0;
+        margin-bottom: 30px;
+    }
 }

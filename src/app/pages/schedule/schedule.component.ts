@@ -11,6 +11,8 @@ import { ActivityModalComponent } from '@shared/activity-modal/activity-modal.co
 import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
 import { SchedulesModalComponent } from '@shared/schedules-modal/schedules-modal.component';
 import { SpeakerModalComponent } from '@shared/speaker-modal/speaker-modal.component';
+import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-schedule',
@@ -27,7 +29,7 @@ export class ScheduleComponent implements OnInit {
 
   constructor(private schedulesApi: SchedulesApiService, private auth: AuthApiService, private router: Router,
     private route: ActivatedRoute, private dateService: DateService, private dialog: MatDialog,
-    private eventsApi: EventsApiService) { }
+    private eventsApi: EventsApiService, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -52,11 +54,12 @@ export class ScheduleComponent implements OnInit {
           Location: data.location,
           Address: data.address,
           Topic: data.topic,
+          Percentage: data.percentage,
           CreatedById: data.createdById,
+          Canceled: data.canceled
         };
       }
     }, (err) => {
-      console.log(err);
       this.loading = false;
     });
   }
@@ -68,7 +71,6 @@ export class ScheduleComponent implements OnInit {
       this.schedules = data;
     }, (err) => {
       this.loading = false;
-      console.log(err);
     });
   }
 
@@ -132,26 +134,73 @@ export class ScheduleComponent implements OnInit {
     });
   }
 
+  public openConfirmDialog(type, element) {
+    this.auth.checkSession();
+    let submes = '';
+    switch (type) {
+      case 'schedule':
+        submes = 'este día';
+        break;
+      case 'activity':
+        submes = 'esta actividad';
+        break;
+      case 'speaker':
+        submes = 'este Speaker';
+        break;
+      default:
+        break;
+    }
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        message: `¿Estás seguro de que deseas eliminar ${submes}?`
+      },
+      hasBackdrop: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        switch (type) {
+          case 'schedule':
+            this.deleteSchedule(element);
+            break;
+          case 'activity':
+            this.deleteActivity(element);
+            break;
+          case 'speaker':
+            this.deleteSpeaker(element);
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  }
+
   public deleteSchedule(scheduleId) {
     this.schedulesApi.deleteSchedule(scheduleId).then((data: any[]) => {
+      this.notifier.notify( 'success', 'Se eliminó el día' );
       this.initSchedules();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }
 
   public deleteActivity(activityId) {
     this.schedulesApi.deleteActivity(activityId).then((data: any[]) => {
+      this.notifier.notify( 'success', 'Se eliminó la actividad' );
       this.initSchedules();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }
 
   public deleteSpeaker(speakerId) {
     this.schedulesApi.deleteSpeaker(speakerId).then((data: any[]) => {
+      this.notifier.notify( 'success', 'Se eliminó la speaker' );
       this.initSchedules();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }

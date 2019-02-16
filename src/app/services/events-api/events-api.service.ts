@@ -30,7 +30,9 @@ export class EventsApiService {
               Location: result.location,
               Address: result.address,
               Topic: result.topic,
+              Percentage: result.percentage,
               CreatedById: result.createdById,
+              Canceled: result.canceled
             });
           });
           return data;
@@ -94,7 +96,6 @@ export class EventsApiService {
     });
   }
 
-
   public postEvent(event): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.postEventData(event).subscribe((data) => {
@@ -120,6 +121,17 @@ export class EventsApiService {
   public deleteEvent(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.deleteEventData(id).subscribe((data) => {
+        resolve(data);
+      }, (err) => {
+        console.log(err);
+        reject(null);
+      });
+    });
+  }
+
+  public cancelEvent(id): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.cancelEventData(id).subscribe((data) => {
         resolve(data);
       }, (err) => {
         console.log(err);
@@ -174,7 +186,6 @@ export class EventsApiService {
     });
   }
 
-
   public sendCampaign(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.sendCampaignData(id)
@@ -219,12 +230,49 @@ export class EventsApiService {
           }
           results.forEach((result) => {
             data.push({
-              FirstName: result.attendant.firstName,
-              LastName: result.attendant.lastName,
-              Email: result.attendant.email
+              ParticipantId: result.id,
+              FirstName: result.firstName,
+              LastName: result.lastName,
+              Email: result.email,
+              Phone: result.phone,
+              CellPhone: result.cellPhone
             });
           });
           return data;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
+  public sendCertificate(id): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.sendCertificateData(id)
+        .pipe(map((result: any) => {
+          if (result == null) {
+            return null;
+          }
+          return result;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
+  public registerToEvent(participant): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.registerToEventData(participant)
+        .pipe(map((result: any) => {
+          if (result == null) {
+            return null;
+          }
+          return result;
         })).subscribe((data: any[]) => {
           resolve(data);
         },
@@ -282,6 +330,12 @@ export class EventsApiService {
     return this.commonHttpDelete(url, null, this.headers);
   }
 
+  private cancelEventData(eventId) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/CancelEvent/${eventId}`;
+    return this.commonHttpPost(url, null, this.headers);
+  }
+
   private getAllTopicsData() {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/topics`;
@@ -316,6 +370,18 @@ export class EventsApiService {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/` + eventId + `/participants`;
     return this.commonHttpGet(url, this.headers);
+  }
+
+  private sendCertificateData(id) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/certificates/${id}`;
+    return this.commonHttpGet(url, this.headers);
+  }
+
+  private registerToEventData(participant) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/registerToEvent`;
+    return this.commonHttpPost(url, participant, this.headers);
   }
 
   private setDefaultHeaders() {
