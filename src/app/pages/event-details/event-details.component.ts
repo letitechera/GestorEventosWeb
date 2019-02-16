@@ -65,7 +65,6 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
           CreatedById: data.createdById,
           Canceled: data.canceled
         };
-        console.log(Canceled);
       }
     }, (err) => {
       console.log(err);
@@ -75,14 +74,13 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
 
   public sendCampaign() {
     this.loading = true;
-    this.eventsApi.sendCampaign(this.id).then(() => {
+    this.eventsApi.sendCampaign(this.event.EventId).then(() => {
       this.loading = false;
       this.notifier.notify('success', 'El evento está siendo enviado!');
-    },
+    }, (err) => {
       (err) => {
-        this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
-        console.log(err);
         this.loading = false;
+        this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       }
     );
   }
