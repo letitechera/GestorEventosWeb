@@ -56,6 +56,7 @@ export class ScheduleComponent implements OnInit {
           Topic: data.topic,
           Percentage: data.percentage,
           CreatedById: data.createdById,
+          Canceled: data.canceled
         };
       }
     }, (err) => {

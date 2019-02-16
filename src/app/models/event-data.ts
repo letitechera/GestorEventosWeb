@@ -12,6 +12,7 @@ export interface EventData {
     Topic: string;
     CreatedById: string;
     Percentage?: number;
+    Canceled: boolean;
 }
 
 export interface EventFullData {

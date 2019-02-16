@@ -214,7 +214,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.eventSend.EventTopicId = this.eventForm.get('EventTopicId').value;
     this.eventSend.LocationId = this.eventForm.get('LocationId').value;
     this.eventSend.Id = this.id != null && this.id !== 0 ? this.event.EventId : 0;
-    this.eventSend.Canceled = false;
+    this.eventSend.Canceled = this.event.Canceled;
     this.eventSend.AttendancePercentage = this.eventForm.get('Percentage').value;
   }
 

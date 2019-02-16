@@ -48,6 +48,9 @@ export class PublicEventComponent implements OnInit, OnDestroy {
   }
 
   public registerToEvent() {
+    if(this.event.Canceled){
+      return;
+    }
     this.router.navigateByUrl('public/event-registration/' + this.id);
   }
 

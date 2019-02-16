@@ -32,6 +32,7 @@ export class EventsApiService {
               Topic: result.topic,
               Percentage: result.percentage,
               CreatedById: result.createdById,
+              Canceled: result.canceled
             });
           });
           return data;
@@ -95,7 +96,6 @@ export class EventsApiService {
     });
   }
 
-
   public postEvent(event): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.postEventData(event).subscribe((data) => {
@@ -121,6 +121,17 @@ export class EventsApiService {
   public deleteEvent(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.deleteEventData(id).subscribe((data) => {
+        resolve(data);
+      }, (err) => {
+        console.log(err);
+        reject(null);
+      });
+    });
+  }
+
+  public cancelEvent(id): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.cancelEventData(id).subscribe((data) => {
         resolve(data);
       }, (err) => {
         console.log(err);
@@ -174,7 +185,6 @@ export class EventsApiService {
       });
     });
   }
-
 
   public sendCampaign(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
@@ -272,7 +282,6 @@ export class EventsApiService {
     });
   }
 
-
   private getAllEventsData() {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/all`;
@@ -319,6 +328,12 @@ export class EventsApiService {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/DeleteEvent/${eventId}`;
     return this.commonHttpDelete(url, null, this.headers);
+  }
+
+  private cancelEventData(eventId) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/CancelEvent/${eventId}`;
+    return this.commonHttpPost(url, null, this.headers);
   }
 
   private getAllTopicsData() {

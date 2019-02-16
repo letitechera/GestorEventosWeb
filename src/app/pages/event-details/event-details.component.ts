@@ -42,6 +42,10 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('events');
   }
 
+  public goToEventView(){
+    this.router.navigate(['public/events/', this.event.EventId]);
+  }
+
   public initData(id) {
     this.loading = true;
     this.eventsApi.getEventDetails(id).then((data: any) => {
@@ -59,7 +63,9 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
           Topic: data.topic,
           Percentage: data.percentage,
           CreatedById: data.createdById,
+          Canceled: data.canceled
         };
+        console.log(Canceled);
       }
     }, (err) => {
       console.log(err);
@@ -71,7 +77,21 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     this.loading = true;
     this.eventsApi.sendCampaign(this.id).then(() => {
       this.loading = false;
-      this.notifier.notify( 'success', 'El evento está siendo enviado!' );
+      this.notifier.notify('success', 'El evento está siendo enviado!');
+    },
+      (err) => {
+        this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
+        console.log(err);
+        this.loading = false;
+      }
+    );
+  }
+
+  public cancelEvent() {
+    this.loading = true;
+    this.eventsApi.cancelEvent(this.id).then(() => {
+      this.loading = false;
+      this.notifier.notify('success', 'El evento se ha cancelado');
     },
       (err) => {
         this.notifier.notify('error', 'Ups.. Ha ocurrido un error');

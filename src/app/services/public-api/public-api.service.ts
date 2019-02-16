@@ -32,6 +32,7 @@ export class PublicApiService {
               Address: result.address,
               Topic: result.topic,
               CreatedById: result.createdById,
+              Canceled: result.canceled
             });
           });
           return data;
@@ -60,6 +61,7 @@ export class PublicApiService {
             Address: result.address,
             Topic: result.eventTopic,
             CreatedById: result.createdById,
+            Canceled: result.canceled,
           };
           return data;
         })).subscribe((data: any) => {

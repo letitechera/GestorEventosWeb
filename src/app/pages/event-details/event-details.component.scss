@@ -34,6 +34,15 @@
         color: $ge-deep-sky;
     }
 }
+.event-canceled{
+    margin: 15px 0;
+    span{
+        padding: 10px 20px;
+        background-color: red;
+        color: white;
+        font-weight: 600;
+    }
+}
 .sub-menu-event{
     padding: 20px;
     height: fit-content;
