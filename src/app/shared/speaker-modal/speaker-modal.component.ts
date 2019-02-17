@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Speaker } from '@models/schedule-data';
 import { environment } from 'environments/environment.prod';
 import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
+import { HttpEventType, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-speaker-modal',
@@ -13,6 +14,7 @@ import { SchedulesApiService } from '@services/schedules-api/schedules-api.servi
 })
 export class SpeakerModalComponent implements OnInit {
 
+  private baseurl = `${environment.webApiUrl}/upload/speakerimage`;
   public createFlag: boolean;
   public updateFlag: boolean;
   public speakerForm: FormGroup;
@@ -21,12 +23,26 @@ export class SpeakerModalComponent implements OnInit {
   public passedActivityId: number;
   public submitted: boolean;
   public loading: boolean;
+  public loadingfile: boolean;
+  public progress: number;
+  public message: string;
+  public formData: FormData;
+  public fileLoaded: boolean;
+  public fileName: string;
+  public fileUrl: string;
+  public resultMsg: boolean;
+  eventId: any;
+  originalImage: string;
 
   constructor(public dialogRef: MatDialogRef<SpeakerModalComponent>, private schedulesApi: SchedulesApiService,
-    private auth: AuthApiService, private formBuilder: FormBuilder,
+    private auth: AuthApiService, private formBuilder: FormBuilder, private http: HttpClient,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
+    this.originalImage = environment.defaultSpeakerImage;
+    debugger;
+    this.formData = new FormData();
+
     this.submitted = false;
     if (this.data.speaker != null) {
       this.passedSpeaker = {
@@ -40,10 +56,12 @@ export class SpeakerModalComponent implements OnInit {
         ActivityId: this.data.speaker.activityId,
         Id: this.data.speaker.id
       };
+      this.originalImage = this.data.speaker.image;
     } else {
       this.passedSpeaker = null;
     }
     this.passedActivityId = this.data.activityId;
+    this.fileUrl = this.originalImage;
 
     if (this.passedSpeaker == null) {
       this.createFlag = true;
@@ -92,7 +110,7 @@ export class SpeakerModalComponent implements OnInit {
 
   public submitSpeaker() {
     this.submitted = true;
-    if (!this.speakerForm.valid) {
+    if (!this.speakerForm.valid || this.loadingfile) {
       return;
     }
     this.loading = true;
@@ -128,13 +146,61 @@ export class SpeakerModalComponent implements OnInit {
     this.speakerData.Nationality = this.speakerForm.get('Nationality').value;
     this.speakerData.Company = this.speakerForm.get('Company').value;
     this.speakerData.Contact = this.speakerForm.get('Contact').value;
-    this.speakerData.Image = this.speakerForm.get('Image').value;
+    this.speakerData.Image = this.originalImage;
     this.speakerData.ActivityId = this.passedActivityId;
     this.speakerData.Id = this.passedSpeaker != null ? this.passedSpeaker.Id : 0;
   }
 
   public close(): void {
     this.dialogRef.close();
+  }
+
+  public uploadFile = (files, event) => {
+    this.loadingfile = true;
+    if (files.length === 0 || this.loading) {
+      this.fileLoaded = false;
+      return;
+    }
+    this.resultMsg = false;
+    /* Preview */
+    if (event.target.files && event.target.files[0]) {
+      this.fileUrl = URL.createObjectURL(event.target.files[0]);
+    }
+    /* Upload */
+    const fileToUpload = <File>files[0];
+    this.formData.append('file', fileToUpload, fileToUpload.name);
+    this.fileLoaded = true;
+    this.fileName = fileToUpload.name;
+    this.saveFile();
+  }
+
+  public saveFile() {
+    if (!this.fileLoaded) {
+      return;
+    }
+    /* Store file */
+    this.http.post(`${this.baseurl}`, this.formData, { reportProgress: true, observe: 'events' })
+      .subscribe(event => {
+        if (event.type === HttpEventType.UploadProgress) {
+          this.progress = Math.round(100 * event.loaded / event.total);
+          if (this.progress === 100) {
+            this.formData = new FormData();
+            this.fileLoaded = false;
+            this.resultMsg = true;
+          }
+        } else if (event.type === HttpEventType.Response) {
+          this.loadingfile = false;
+          let body = event.body as any;
+          this.originalImage = body.newFile;
+          console.log(this.originalImage);
+        }
+      });
+  }
+
+  public clearImage() {
+    this.formData = new FormData();
+    this.fileLoaded = false;
+    this.fileUrl = this.originalImage;
   }
 
 }
