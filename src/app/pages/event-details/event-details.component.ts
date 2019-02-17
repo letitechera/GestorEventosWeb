@@ -78,7 +78,6 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
       this.loading = false;
       this.notifier.notify('success', 'El evento está siendo enviado!');
     }, (err) => {
-      (err) => {
         this.loading = false;
         this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       }

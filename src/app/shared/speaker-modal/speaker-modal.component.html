@@ -28,8 +28,18 @@
               </mat-error>
             </mat-form-field>
           </div>
-          <div class="col-md-6">
-            (Image)
+          <div class="col-md-6 img-box">
+            <a (click)="file.click()" class="file-btn-wrapper">
+              <div *ngIf="fileUrl!=null" class="event-img center-cropped"
+                [ngStyle]="{ 'background-image': 'url(' + fileUrl + ')' }"
+                [ngClass]="{'background-loading': loadingfile }"></div>
+              <div class="loader" *ngIf="loadingfile"></div>
+              <div class="file-upload" [ngClass]="{'active': fileLoaded}">
+
+                <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files, $event)"
+                  style="display:none;" accept="image/*">
+              </div>
+            </a>
           </div>
         </div>
         <mat-form-field class="input-ocup">
