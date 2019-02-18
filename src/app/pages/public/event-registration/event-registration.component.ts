@@ -36,7 +36,9 @@ export class EventRegistrationComponent implements OnInit, OnDestroy {
       LastName: '',
       Email: '',
       Phone: '',
-      CellPhone: ''
+      CellPhone: '',
+      event: null,
+      attendant: null
     };
 
     this.sub = this.route.params.subscribe(params => {

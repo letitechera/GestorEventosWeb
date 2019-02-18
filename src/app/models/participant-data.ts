@@ -1,3 +1,5 @@
+import { EventData } from "./event-data";
+
 export interface ParticipantData {
     ParticipantId: number;
     EventId: number;
@@ -6,4 +8,10 @@ export interface ParticipantData {
     Email: string;
     Phone: string;
     CellPhone: string;
+    attendant: AttendantData;
+    event: EventData;
+}
+
+export interface AttendantData{
+    fullName: string;
 }

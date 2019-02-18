@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { NotifierService } from 'angular-notifier';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private notifier: NotifierService) { }
   private headers: HttpHeaders;
 
   public getAllEvents(userId): Promise<any> {
@@ -248,19 +249,26 @@ export class EventsApiService {
     });
   }
 
-  public sendCertificate(id): Promise<any> {
+  public sendCertificates(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.sendCertificateData(id)
         .pipe(map((result: any) => {
+          debugger;
           if (result == null) {
             return null;
           }
           return result;
         })).subscribe((data: any[]) => {
           resolve(data);
+          debugger;
         },
           (err) => {
             reject([]);
+            if (err.status == 200) {
+              this.notifier.notify('success', 'Los certificados están siendo enviados');
+            } else {
+              this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
+            }
           });
     });
   }

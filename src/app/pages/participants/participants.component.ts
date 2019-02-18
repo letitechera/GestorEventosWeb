@@ -37,16 +37,24 @@ export class ParticipantsComponent implements OnInit {
     });
   }
 
-  public sendCertificate(participantId) {
-    this.eventsApi.sendCertificate(participantId).then((data: any[]) => {
-      this.notifier.notify( 'success', 'Se envió el Certificado!' );
+  public sendCertificates() {
+    this.eventsApi.sendCertificates(this.id).then((data: any[]) => {
+      alert('certificate sent');
+      this.notifier.notify('success', 'Los certificados están siendo enviados');
     }, (err) => {
-      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
+    });
+  }
+
+  public accreditParticipant(participantId) {
+    this.eventsApi.accredit(participantId).then((data: any[]) => {
+      alert('ok');
+    }, (err) => {
+      console.log(err);
     });
   }
 
   public downloadParticipants() {
-    if(this.participants == null || this.participants == undefined){
+    if (this.participants == null || this.participants == undefined) {
       return;
     }
     if (this.participants.length > 0) {

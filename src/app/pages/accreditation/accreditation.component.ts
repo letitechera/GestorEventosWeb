@@ -1,7 +1,9 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Inject } from '@angular/core';
 import { QrScannerComponent } from 'angular2-qrscanner';
 import { EventsApiService } from '@services/events-api/events-api.service';
 import { NotifierService } from 'angular-notifier';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { ParticipantData } from '@models/participant-data';
 
 @Component({
   selector: 'app-accreditation',
@@ -14,7 +16,7 @@ export class AccreditationComponent implements OnInit {
 
   participant: any;
 
-  constructor(private eventsApi: EventsApiService, private notifier: NotifierService) { }
+  constructor(private eventsApi: EventsApiService, private notifier: NotifierService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.qrScannerComponent.getMediaDevices().then(devices => {
@@ -42,12 +44,18 @@ export class AccreditationComponent implements OnInit {
     });
 
     this.qrScannerComponent.capturedQr.subscribe(participantId => {
-      this.eventsApi.accredit(participantId).then((participant: any[]) => {
+      this.eventsApi.accredit(participantId).then((participant: ParticipantData) => {
         this.participant = participant;
         if (participant != null) {
-          this.notifier.notify('success', 'El participante se acreditó con éxito');
+          console.log(participant);
+          this.dialog.open(AccreditationModalComponent, {
+            data: {
+              participant: participant.attendant.fullName,
+              event: participant.event.Name
+            }
+          });
+          console.log(participant);
         } else {
-        this.notifier.notify('error', 'El participante no pudo ser acreditado');
         }
       }, (err) => {
         this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
@@ -55,4 +63,14 @@ export class AccreditationComponent implements OnInit {
       });
     });
   }
+}
+
+@Component({
+  selector: 'accreditation-modal',
+  templateUrl: 'accreditation-modal.html',
+  styleUrls: ['./accreditation.component.scss'],
+
+})
+export class AccreditationModalComponent {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: AccreditationComponent) {}
 }
