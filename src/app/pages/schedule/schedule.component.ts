@@ -50,6 +50,7 @@ export class ScheduleComponent implements OnInit {
           StartDate: new Date(data.startDate),
           EndDate: new Date(data.endDate),
           Image: data.image != null ? data.image : environment.defaultImage,
+          SmallImage: data.smallImage != null ? data.smallImage : environment.defaultImage,
           Description: data.description,
           Location: data.location,
           Address: data.address,

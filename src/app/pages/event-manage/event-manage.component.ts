@@ -49,6 +49,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
       Name: '',
       Description: '',
       Image: '',
+      SmallImage: '',
       StartDate: '',
       EndDate: '',
       LocationId: 0,
@@ -143,6 +144,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
           StartDate: new Date(data.startDate),
           EndDate: new Date(data.endDate),
           Image: data.image != null ? data.image : '',
+          SmallImage: data.smallImage != null ? data.smallImage : '',
           Description: data.description,
           Location: data.location,
           EventTopic: data.eventTopic,
@@ -211,6 +213,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.eventSend.StartDate = startDateString;
     this.eventSend.EndDate = endDateString;
     this.eventSend.Image = this.originalImage;
+    this.eventSend.SmallImage = this.originalImage.replace('eventimages', 'eventresizedimages');
     this.eventSend.EventTopicId = this.eventForm.get('EventTopicId').value;
     this.eventSend.LocationId = this.eventForm.get('LocationId').value;
     this.eventSend.Id = this.id != null && this.id !== 0 ? this.event.EventId : 0;

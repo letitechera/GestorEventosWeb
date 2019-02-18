@@ -6,6 +6,7 @@ export interface EventData {
     StartDate: Date;
     EndDate: Date;
     Image: string;
+    SmallImage: string;
     Description: string;
     Location: string;
     Address: string;
@@ -21,6 +22,7 @@ export interface EventFullData {
     StartDate: Date;
     EndDate: Date;
     Image: string;
+    SmallImage: string;
     Description: string;
     Location: LocationData;
     EventTopic: TopicData;
@@ -34,6 +36,7 @@ export interface EventSendableData {
     StartDate: string;
     EndDate: string;
     Image: string;
+    SmallImage: string;
     Description: string;
     LocationId: number;
     EventTopicId: number;
