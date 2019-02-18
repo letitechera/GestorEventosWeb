@@ -41,11 +41,14 @@ export class ParticipantsComponent implements OnInit {
     this.eventsApi.sendCertificate(participantId).then((data: any[]) => {
       this.notifier.notify( 'success', 'Se envió el Certificado!' );
     }, (err) => {
-      console.log(err);
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
     });
   }
 
   public downloadParticipants() {
+    if(this.participants == null || this.participants == undefined){
+      return;
+    }
     if (this.participants.length > 0) {
       var data = [];
       this.participants.forEach(p => {

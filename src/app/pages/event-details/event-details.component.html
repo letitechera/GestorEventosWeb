@@ -46,8 +46,8 @@
             <a (click)="getSchedule()" *ngIf="!event.Canceled">Gestionar Agenda</a>
             <a (click)="navigateTo('events/' + event.EventId + '/participants')">Participantes</a>
             <a (click)="sendCampaign()" *ngIf="!event.Canceled">Difundir</a>
-            <a (click)="goToEventView()">Vista Previa</a>
-            <a class="cancel" (click)="cancelEvent()" *ngIf="!event.Canceled">Cancelar Evento</a>
+            <a target="_blank" routerLink="/public/events/{{event.EventId}}">Vista Previa</a>
+            <a class="cancel" (click)="openConfirmDialog()" *ngIf="!event.Canceled">Cancelar Evento</a>
           </div>
         </div>
       </div>

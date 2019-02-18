@@ -77,7 +77,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.locationsApi.getAllLocations().then((locations: any[]) => {
       this.locations = locations;
       if (this.id != null && this.id !== 0) {
-        this.selectedlocation = this.id;
+        this.selectedlocation = id;
       } else {
         this.selectedlocation = locations[0].id;
       }
@@ -89,7 +89,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.eventsApi.getAllTopics().then((topics: any[]) => {
       this.topics = topics;
       if (this.id != null && this.id !== 0) {
-        this.selectedtopic = this.id;
+        this.selectedtopic = id;
       } else {
         this.selectedtopic = topics[0].id;
       }

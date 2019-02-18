@@ -5,6 +5,8 @@ import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { EventData } from '@models/event-data';
 import { DateService } from '@services/date/date.service';
 import { NotifierService } from 'angular-notifier';
+import { MatDialog } from '@angular/material';
+import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'event-details',
@@ -18,7 +20,8 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
   public event: EventData;
 
   constructor(private route: ActivatedRoute, private eventsApi: EventsApiService, private auth: AuthApiService,
-    private dateService: DateService, private router: Router, private notifier: NotifierService) { }
+    private dateService: DateService, private router: Router, private notifier: NotifierService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -82,6 +85,21 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
         this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       }
     );
+  }
+
+  public openConfirmDialog() {
+    this.auth.checkSession();
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        message: '¿Estás seguro de que deseas cancelar este evento?'
+      },
+      hasBackdrop: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.cancelEvent();
+      }
+    });
   }
 
   public cancelEvent() {
