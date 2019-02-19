@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { DateService } from '@services/date/date.service';
 import { SchedulesApiService } from '@services/schedules-api/schedules-api.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-activity-modal',
@@ -28,7 +29,7 @@ export class ActivityModalComponent implements OnInit {
   public loading: boolean;
 
   constructor(public dialogRef: MatDialogRef<ActivityModalComponent>, private schedulesApi: SchedulesApiService,
-    private auth: AuthApiService, private formBuilder: FormBuilder, private dateService: DateService,
+    private auth: AuthApiService, private formBuilder: FormBuilder, private dateService: DateService, private notifier: NotifierService,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
@@ -121,6 +122,7 @@ export class ActivityModalComponent implements OnInit {
       this.dialogRef.close('changed');
     }, (err) => {
       console.log(err);
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
     });
   }
 
@@ -130,6 +132,7 @@ export class ActivityModalComponent implements OnInit {
       this.dialogRef.close('changed');
     }, (err) => {
       console.log(err);
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
     });
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountApiService } from '@services/account-api/account-api.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +15,8 @@ export class RegisterComponent implements OnInit {
   public error: boolean;
   public loading: boolean;
 
-  constructor(private service: AccountApiService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private service: AccountApiService, private router: Router, private formBuilder: FormBuilder, 
+    private notifier: NotifierService) {
     this.error = false;
     this.loading = false;
   }
@@ -43,9 +45,10 @@ export class RegisterComponent implements OnInit {
     const lastName = this.registerForm.get('lastName').value;
     const email = this.registerForm.get('email').value;
     const password = this.registerForm.get('password').value;
-  
+
     this.service.register(firstName, lastName, email, password).subscribe((data) => {
       this.loading = false;
+      this.notifier.notify( 'success', 'Registro exitoso!' );
       this.router.navigateByUrl('login');
     },
       (err) => {

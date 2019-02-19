@@ -14,10 +14,12 @@
         </div>
         <div class="event-header">
           <h2>{{event.Name}}</h2>
-          <a class="event-edit" (click)="editEvent(event)">
+          <a class="event-edit" (click)="editEvent(event)"  *ngIf="!event.Canceled">
             <fa name="edit"></fa>Editar
           </a>
         </div>
+        <div class="event-canceled" *ngIf="event.Canceled">
+          <span>CANCELADO</span></div>
         <div class="event-timespans">
           <div class="timespan-label">
             <span>Comienza:</span> {{showDate(event.StartDate)}} <fa name="caret-right"></fa>
@@ -41,11 +43,11 @@
             <div class="event-img center-cropped" [ngStyle]="{ 'background-image': 'url(' + event.Image + ')'}"></div>
           </div>
           <div class="event-controls">
-            <a (click)="getSchedule()">Gestionar Agenda</a>
+            <a (click)="getSchedule()" *ngIf="!event.Canceled">Gestionar Agenda</a>
             <a (click)="navigateTo('events/' + event.EventId + '/participants')">Participantes</a>
-            <a (click)="sendCampaign()">Difundir</a>
-            <a>Vista Previa</a>
-            <a class="cancel">Cancelar Evento</a>
+            <a (click)="sendCampaign()" *ngIf="!event.Canceled">Difundir</a>
+            <a target="_blank" routerLink="/public/events/{{event.EventId}}">Vista Previa</a>
+            <a class="cancel" (click)="openConfirmDialog()" *ngIf="!event.Canceled">Cancelar Evento</a>
           </div>
         </div>
       </div>

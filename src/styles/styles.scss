@@ -13,6 +13,12 @@ body { margin: 0; font-family: opensans, 'Helvetica Neue', sans-serif; }
 .content-body{
     padding-bottom: 56px;
 }
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
 
 $spinner-size: 30px;
 $spinner-border-width: 6px;

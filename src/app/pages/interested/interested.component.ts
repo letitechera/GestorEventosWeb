@@ -8,6 +8,7 @@ import { Interested } from '@models/interested-data';
 import { AttendantsModalComponent } from '@shared/attendants-modal/attendants-modal.component';
 import { ImportModalComponent } from '@shared/import-modal/import-modal.component';
 import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-interested',
@@ -23,7 +24,7 @@ export class InterestedComponent implements OnInit {
   public loading: boolean;
 
   constructor(private attendantsApi: AttendantsApiService, private auth: AuthApiService,
-    private dialog: MatDialog) { }
+    private dialog: MatDialog, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -126,8 +127,10 @@ export class InterestedComponent implements OnInit {
 
   public removeInterested(id) {
     this.deleteInterested(id).then((data: any[]) => {
+      this.notifier.notify('success', 'El contacto se eliminó con éxito!');
       this.initData();
     }, (err) => {
+      this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       console.log(err);
     });
   }

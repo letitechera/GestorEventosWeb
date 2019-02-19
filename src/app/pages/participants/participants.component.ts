@@ -6,6 +6,7 @@ import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DateService } from '@services/date/date.service';
 import { ExcelService } from '@services/excel/excel.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-participants',
@@ -24,7 +25,7 @@ export class ParticipantsComponent implements OnInit {
   private sub: any;
 
   constructor(private route: ActivatedRoute, private eventsApi: EventsApiService, private auth: AuthApiService, private router: Router,
-    private dateService: DateService, private dialog: MatDialog, private excelService: ExcelService) { }
+    private dateService: DateService, private dialog: MatDialog, private excelService: ExcelService, private notifier: NotifierService) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -39,8 +40,8 @@ export class ParticipantsComponent implements OnInit {
   public sendCertificates() {
     this.eventsApi.sendCertificates(this.id).then((data: any[]) => {
       alert('certificate sent');
+      this.notifier.notify('success', 'Los certificados están siendo enviados');
     }, (err) => {
-      console.log(err);
     });
   }
 
@@ -53,6 +54,9 @@ export class ParticipantsComponent implements OnInit {
   }
 
   public downloadParticipants() {
+    if (this.participants == null || this.participants == undefined) {
+      return;
+    }
     if (this.participants.length > 0) {
       var data = [];
       this.participants.forEach(p => {

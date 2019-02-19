@@ -4,7 +4,9 @@
     <div class="loader" *ngIf="eventLoading"></div>
     <div class="event-container" *ngIf="!eventLoading">
         <div class="event-header">
-            <div class="center-cropped" [ngStyle]="{ 'background-image': 'url(' + event.Image + ')'}">
+            <div class="center-cropped" [ngStyle]="{ 'background-image': 'url(' + event.Image + ')'}"
+            [ngClass]="{'imgCanceled': event.Canceled}">
+                <span *ngIf="event.Canceled">CANCELADO</span>
             </div>
             <div class="event-sum">
                 <div class="event-date">
@@ -14,7 +16,10 @@
                 <div class="event-title">{{event.Name}}</div>
                 <div class="event-topic">{{event.Topic.name}}</div>
                 <div class="controls">
-                    <a (click)="registerToEvent()">Inscribirme!</a>
+                    <a (click)="registerToEvent()" [ngClass]="{'canceled': event.Canceled}">
+                        <span *ngIf="!event.Canceled">Inscribirme!</span>
+                        <span *ngIf="event.Canceled">No disponible</span>
+                    </a>
                 </div>
             </div>
         </div>
@@ -42,7 +47,7 @@
                 </div>
             </div>
         </div>
-        <div class="event-schedule">
+        <div class="event-schedule" *ngIf="schedules.length > 0">
             <div class="loader" *ngIf="scheduleLoading"></div>
             <div class="schedule-container" *ngIf="!scheduleLoading">
                 <div class="schedule-header">

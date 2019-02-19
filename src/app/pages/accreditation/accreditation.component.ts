@@ -1,6 +1,7 @@
 import { Component, ViewChild, OnInit, Inject } from '@angular/core';
 import { QrScannerComponent } from 'angular2-qrscanner';
 import { EventsApiService } from '@services/events-api/events-api.service';
+import { NotifierService } from 'angular-notifier';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ParticipantData } from '@models/participant-data';
 
@@ -15,7 +16,7 @@ export class AccreditationComponent implements OnInit {
 
   participant: any;
 
-  constructor(private eventsApi: EventsApiService, private dialog: MatDialog) { }
+  constructor(private eventsApi: EventsApiService, private notifier: NotifierService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.qrScannerComponent.getMediaDevices().then(devices => {
@@ -57,6 +58,7 @@ export class AccreditationComponent implements OnInit {
         } else {
         }
       }, (err) => {
+        this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
         console.log(err);
       });
     });

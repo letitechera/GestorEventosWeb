@@ -6,6 +6,7 @@ import { LocationsApiService } from '@services/locations-api/locations-api.servi
 import { LocationsModalComponent } from '@shared/locations-modal/locations-modal.component';
 import { map } from 'rxjs/operators';
 import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-locations',
@@ -21,7 +22,7 @@ export class LocationsComponent implements OnInit {
   public loading: boolean;
 
   constructor(private locationsApi: LocationsApiService, private auth: AuthApiService,
-    private dialog: MatDialog) { }
+    private notifier: NotifierService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -85,8 +86,10 @@ export class LocationsComponent implements OnInit {
 
   public removeLocation(id) {
     this.locationsApi.deleteLocation(id).then((data: any[]) => {
+      this.notifier.notify( 'success', 'La locación se eliminó con éxito!' );
       this.initData();
     }, (err) => {
+      this.notifier.notify( 'error', 'Ups.. Ha ocurrido un error' );
       console.log(err);
     });
   }

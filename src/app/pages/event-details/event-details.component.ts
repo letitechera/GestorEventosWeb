@@ -4,6 +4,9 @@ import { EventsApiService } from '@services/events-api/events-api.service';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { EventData } from '@models/event-data';
 import { DateService } from '@services/date/date.service';
+import { NotifierService } from 'angular-notifier';
+import { MatDialog } from '@angular/material';
+import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'event-details',
@@ -17,7 +20,8 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
   public event: EventData;
 
   constructor(private route: ActivatedRoute, private eventsApi: EventsApiService, private auth: AuthApiService,
-    private dateService: DateService, private router: Router) { }
+    private dateService: DateService, private router: Router, private notifier: NotifierService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.auth.checkSession();
@@ -37,8 +41,12 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
     this.router.navigate(['schedule', this.event.EventId]);
   }
 
-  public goBack(){
+  public goBack() {
     this.router.navigateByUrl('events');
+  }
+
+  public goToEventView(){
+    this.router.navigate(['public/events/', this.event.EventId]);
   }
 
   public initData(id) {
@@ -52,11 +60,14 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
           StartDate: new Date(data.startDate),
           EndDate: new Date(data.endDate),
           Image: data.image != null ? data.image : '',
+          SmallImage: data.smallImage != null ? data.smallImage : '',
           Description: data.description,
           Location: data.location,
           Address: data.address,
           Topic: data.topic,
+          Percentage: data.percentage,
           CreatedById: data.createdById,
+          Canceled: data.canceled
         };
       }
     }, (err) => {
@@ -67,10 +78,39 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
 
   public sendCampaign() {
     this.loading = true;
-    this.eventsApi.sendCampaign(this.id).then(() => {
+    this.eventsApi.sendCampaign(this.event.EventId).then(() => {
       this.loading = false;
+      this.notifier.notify('success', 'El evento está siendo enviado!');
+    }, (err) => {
+        this.loading = false;
+        this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
+      }
+    );
+  }
+
+  public openConfirmDialog() {
+    this.auth.checkSession();
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        message: '¿Estás seguro de que deseas cancelar este evento?'
+      },
+      hasBackdrop: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.cancelEvent();
+      }
+    });
+  }
+
+  public cancelEvent() {
+    this.loading = true;
+    this.eventsApi.cancelEvent(this.id).then(() => {
+      this.loading = false;
+      this.notifier.notify('success', 'El evento se ha cancelado');
     },
       (err) => {
+        this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
         console.log(err);
         this.loading = false;
       }

@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { LocationsApiService } from '@services/locations-api/locations-api.service';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { GeographicsApiService } from '@services/geographics-api/geographics-api.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-locations-modal',
@@ -26,7 +27,7 @@ export class LocationsModalComponent implements OnInit {
   public selectedcity: any;
 
   constructor(public dialogRef: MatDialogRef<LocationsModalComponent>, private locationsApi: LocationsApiService,
-    private geoApi: GeographicsApiService, private auth: AuthApiService, 
+    private geoApi: GeographicsApiService, private auth: AuthApiService, private notifier: NotifierService,
     private formBuilder: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
@@ -116,8 +117,10 @@ export class LocationsModalComponent implements OnInit {
   private addLocation() {
     this.setLocationObject();
     this.locationsApi.postLocation(this.location).then((data: any[]) => {
+      this.notifier.notify( 'success', '¡La locación se agregó con éxito!' );
       this.dialogRef.close('changed');
     }, (err) => {
+      this.notifier.notify( 'error', 'Ups.. Ha ocurrido un error' );
       console.log(err);
     });
   }
@@ -125,8 +128,10 @@ export class LocationsModalComponent implements OnInit {
   private editLocation() {
     this.setLocationObject();
     this.locationsApi.putLocation(this.location).then((data: any[]) => {
+      this.notifier.notify( 'success', '¡La locación se editó con éxito!' );
       this.dialogRef.close('changed');
     }, (err) => {
+      this.notifier.notify( 'error', 'Ups.. Ha ocurrido un error' );
       console.log(err);
     });
   }

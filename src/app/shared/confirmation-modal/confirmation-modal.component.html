@@ -7,9 +7,8 @@
   </div>
 </div>
 <div class="modal-body">
-  <div class="loader" *ngIf="loading"></div>
-  <div *ngIf="!loading">
-    <form class="topics-form" (ngSubmit)="submitAccept()">
+  <div>
+    <form (ngSubmit)="submitAccept()">
       <fieldset>
         <p>{{message}}</p>
       </fieldset>

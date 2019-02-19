@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { environment } from '@environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { NotifierService } from 'angular-notifier';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private notifier: NotifierService) { }
   private headers: HttpHeaders;
 
   public getAllEvents(userId): Promise<any> {
@@ -25,12 +26,15 @@ export class EventsApiService {
               Name: result.name,
               StartDate: new Date(result.startDate),
               EndDate: new Date(result.endDate),
+              SmallImage: result.smallImage != null ? result.smallImage : '',
               Image: result.image != null ? result.image : '',
               Description: result.description,
               Location: result.location,
               Address: result.address,
               Topic: result.topic,
+              Percentage: result.percentage,
               CreatedById: result.createdById,
+              Canceled: result.canceled
             });
           });
           return data;
@@ -94,7 +98,6 @@ export class EventsApiService {
     });
   }
 
-
   public postEvent(event): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.postEventData(event).subscribe((data) => {
@@ -120,6 +123,17 @@ export class EventsApiService {
   public deleteEvent(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.deleteEventData(id).subscribe((data) => {
+        resolve(data);
+      }, (err) => {
+        console.log(err);
+        reject(null);
+      });
+    });
+  }
+
+  public cancelEvent(id): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.cancelEventData(id).subscribe((data) => {
         resolve(data);
       }, (err) => {
         console.log(err);
@@ -173,7 +187,6 @@ export class EventsApiService {
       });
     });
   }
-
 
   public sendCampaign(id): Promise<any> {
     return new Promise<any>((resolve, reject) => {
@@ -241,15 +254,22 @@ export class EventsApiService {
     return new Promise<any>((resolve, reject) => {
       this.sendCertificateData(id)
         .pipe(map((result: any) => {
+          debugger;
           if (result == null) {
             return null;
           }
           return result;
         })).subscribe((data: any[]) => {
           resolve(data);
+          debugger;
         },
           (err) => {
             reject([]);
+            if (err.status == 200) {
+              this.notifier.notify('success', 'Los certificados están siendo enviados');
+            } else {
+              this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
+            }
           });
     });
   }
@@ -270,7 +290,6 @@ export class EventsApiService {
           });
     });
   }
-
 
   private getAllEventsData() {
     this.setDefaultHeaders();
@@ -318,6 +337,12 @@ export class EventsApiService {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/DeleteEvent/${eventId}`;
     return this.commonHttpDelete(url, null, this.headers);
+  }
+
+  private cancelEventData(eventId) {
+    this.setDefaultHeaders();
+    const url = `${environment.webApiUrl}/events/CancelEvent/${eventId}`;
+    return this.commonHttpPost(url, null, this.headers);
   }
 
   private getAllTopicsData() {

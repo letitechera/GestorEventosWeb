@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AccountApiService } from '@services/account-api/account-api.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-reset-password',
@@ -16,7 +17,8 @@ export class ResetPasswordComponent implements OnInit {
   private code: string;
   private sub: any;
 
-  constructor(private route: ActivatedRoute, private service: AccountApiService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private route: ActivatedRoute, private service: AccountApiService, private router: Router, private formBuilder: FormBuilder,
+    private notifier: NotifierService) {
     this.error = false;
     this.loading = false;
   }
@@ -45,14 +47,17 @@ export class ResetPasswordComponent implements OnInit {
     const password = this.resetForm.get('password').value;
     const confirmPassword = this.resetForm.get('confirmPassword').value;
 
-    if (confirmPassword != password)
+    if (confirmPassword !== password) {
       return;
+    }
 
     this.service.resetPassword(this.id, this.code, password).subscribe((data) => {
       this.loading = false;
+      this.notifier.notify( 'success', 'La contraseña se cambió con éxito!' );
       this.router.navigateByUrl('login');
     },
       (err) => {
+        this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
         console.log(err);
         this.error = true;
         this.loading = false;

@@ -25,8 +25,7 @@ export class PublicEventsComponent implements OnInit {
     this.loading = true;
     this.publicApi.getAllEvents().then((data: any[]) => {
       this.loading = false;
-      this.events = data;
-      console.log(data);
+      this.events = data.filter(x => x.Canceled == false);
     }, (err) => {
       this.loading = false;
       console.log(err);

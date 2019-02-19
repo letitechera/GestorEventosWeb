@@ -27,11 +27,13 @@ export class PublicApiService {
               StartDate: new Date(result.startDate),
               EndDate: new Date(result.endDate),
               Image: result.image != null ? result.image : environment.defaultImage,
+              SmallImage: result.smallImage != null ? result.smallImage : environment.defaultImage,
               Description: result.description,
               Location: result.location,
               Address: result.address,
               Topic: result.topic,
               CreatedById: result.createdById,
+              Canceled: result.canceled
             });
           });
           return data;
@@ -55,11 +57,13 @@ export class PublicApiService {
             StartDate: new Date(result.startDate),
             EndDate: new Date(result.endDate),
             Image: result.image != null ? result.image : environment.defaultImage,
+            SmallImage: result.smallImage != null ? result.smallImage : environment.defaultImage,
             Description: result.description,
             Location: result.location,
             Address: result.address,
             Topic: result.eventTopic,
             CreatedById: result.createdById,
+            Canceled: result.canceled,
           };
           return data;
         })).subscribe((data: any) => {
