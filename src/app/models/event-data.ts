@@ -48,3 +48,8 @@ export interface TopicData {
     TopicId: number;
     Name: string;
 }
+
+export interface RoleData {
+    RoleId: number;
+    Name: string;
+}

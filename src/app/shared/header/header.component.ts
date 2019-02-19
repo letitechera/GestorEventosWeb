@@ -9,13 +9,16 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  public role: string;
+
   constructor(private authService: AuthApiService, private router: Router) {
   }
 
   ngOnInit() {
+    this.role = this.authService.getRole();
   }
 
-  public navigateTo(page){
+  public navigateTo(page) {
     this.router.navigateByUrl(page);
   }
 

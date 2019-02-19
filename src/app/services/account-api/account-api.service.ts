@@ -49,7 +49,7 @@ export class AccountApiService {
     this.setDefaultHeaders();
     return this.commonHttpPost(`${environment.webApiUrl}/account/change-password`, data, null);
   }
-  
+
   private getUserId() {
     return localStorage.getItem('user_id');
   }

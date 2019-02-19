@@ -57,6 +57,8 @@ import { PublicEventComponent } from './pages/public/public-event/public-event.c
 import { EventRegistrationComponent } from './pages/public/event-registration/event-registration.component';
 import { ImportModalComponent } from './shared/import-modal/import-modal.component';
 import { ConfirmationModalComponent } from './shared/confirmation-modal/confirmation-modal.component';
+import { UsersComponent } from './pages/users/users.component';
+import { RolesModalComponent } from './shared/roles-modal/roles-modal.component';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -93,11 +95,14 @@ registerLocaleData(localeEs, 'es');
     EventRegistrationComponent,
     AccreditationModalComponent,
     ImportModalComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    UsersComponent,
+    RolesModalComponent
   ],
   entryComponents: [
     LocationsModalComponent,
     TopicsModalComponent,
+    RolesModalComponent,
     AttendantsModalComponent,
     SchedulesModalComponent,
     ActivityModalComponent,

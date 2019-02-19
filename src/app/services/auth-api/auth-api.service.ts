@@ -23,12 +23,17 @@ export class AuthApiService {
     localStorage.setItem('access_token', data.auth_token);
     localStorage.setItem('user_id', data.id);
     localStorage.setItem('expires_in', expiresAt);
+    localStorage.setItem('role', data.role);
   }
 
   public checkSession() {
     if (!this.isAuthenticated()) {
       this.logout();
     }
+  }
+
+  public getRole() {
+    return localStorage.getItem('role');
   }
 
   public isLogged() {
