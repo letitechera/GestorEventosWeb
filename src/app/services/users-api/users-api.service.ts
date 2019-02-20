@@ -46,9 +46,28 @@ export class UsersApiService {
             return data;
           }
           results.forEach((result) => {
+            let cleanName = '';
+            switch(result.name){
+              case 'Role_Participant':{
+                cleanName = 'Participante'
+                break;
+              };
+              case 'Role_Creditor':{
+                cleanName = 'Acreditador'
+                break;
+              };
+              case 'Role_Organizer':{
+                cleanName = 'Organizador'
+                break;
+              };
+              case 'Role_Admin':{
+                cleanName = 'Administrador'
+                break;
+              };
+            }
             data.push({
               RoleId: result.id,
-              Name: result.name,
+              Name: cleanName,
             });
           });
           return data;

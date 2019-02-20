@@ -48,7 +48,6 @@ export class AccreditationComponent implements OnInit {
       this.eventsApi.accredit(participantId).then((participant: ParticipantData) => {
         this.participant = participant;
         if (participant != null) {
-          console.log(participant);
           this.openConfirmDialog();
           console.log(participant);
         } else {

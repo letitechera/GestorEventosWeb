@@ -9,18 +9,23 @@
 <div class="modal-body">
   <div class="loader" *ngIf="loading"></div>
   <div *ngIf="!loading && roles">
-    <div class="row">
-        <mat-select placeholder="Rol" [(ngModel)]="selectedRole">
-          <mat-option *ngFor="let role of roles" [value]="role.Name">
-            {{ role.Name }}
-          </mat-option>
-        </mat-select>
+    <form>
+      <fieldset>
+        <mat-form-field class="input-type">
+          <mat-select placeholder="Rol">
+            <mat-option *ngFor="let role of roles" [value]="role.Name">
+              {{ role.Name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </fieldset>
       <fieldset class="controls">
         <div class="controls-container">
           <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
             <span>Cancelar</span>
           </button>
-          <button type="submit" class="ge-btn-default btn-accept" [disabled]="loadingImg" [ngClass]="{'btn-disabled': loadingImg}">
+          <button type="submit" class="ge-btn-default btn-accept" [disabled]="loadingImg"
+            [ngClass]="{'btn-disabled': loadingImg}">
             <span (click)="assignRole()">Aceptar</span>
             <span *ngIf="loadingBtn">
               <fa name="spinner" animation="spin"></fa>
@@ -28,6 +33,6 @@
           </button>
         </div>
       </fieldset>
-    </div>
+    </form>
   </div>
 </div>

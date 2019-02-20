@@ -65,7 +65,7 @@ export class UsersComponent implements OnInit {
 
   openRolesDialog(userId): void {
     const dialogRef = this.dialog.open(RolesModalComponent, {
-      height: '400px',
+      height: '230px',
       width: '350px',
       hasBackdrop: true,
       data: { selectedUser: userId }

@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="sub-menu">
     <div class="left-smenu">
-        <a class="style-l" title="Emitir Certificados" (click)="sendCertificates()">Emitir Certificados</a>
+        <a class="style-l" title="Emitir Certificados" (click)="openConfirmCertificates()">Emitir Certificados</a>
         <a class="ge-btn-default" title="Descargar lista de Participantes" (click)="downloadParticipants()">
             <fa name="download"></fa>Descargar Lista
         </a>
@@ -46,7 +46,7 @@
         <ng-container matColumnDef="Controls">
             <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
             <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-                <button (click)="accreditParticipant(element.ParticipantId)" class="ge-btn-default">
+                <button (click)="openConfirmAccredit(element.ParticipantId)" class="ge-btn-default">
                     <span class="xs-invisible">Acreditar</span>
                 </button>
                 <fa name="checkmark"></fa>

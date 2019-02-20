@@ -53,8 +53,8 @@ export class EventRegistrationComponent implements OnInit, OnDestroy {
       FirstName: ['', [Validators.required]],
       LastName: ['', [Validators.required]],
       Email: ['', [Validators.required]],
-      Phone: ['', [Validators.required]],
-      CellPhone: ['', [Validators.required]],
+      Phone: [''],
+      CellPhone: [''],
     });
     this.loading = false;
   }

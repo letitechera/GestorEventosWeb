@@ -21,6 +21,7 @@ export class ConfirmationModalComponent implements OnInit {
     if (this.data != null) {
       this.title = this.data.title != null ? this.data.title : this.defaultTitle;
       this.message = this.data.message != null ? this.data.message : this.defaultMessage;
+      debugger;
       this.success = this.data.success != null ? true : null;
     } else {
       this.title = this.defaultTitle;
