@@ -225,6 +225,12 @@ table {
     width: 100%;
     border: 1px solid rgba(0,0,0,.07);
 }
+td, th{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 10px;
+}
 th{
     color: $ge-elephant;
 }

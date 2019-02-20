@@ -24,8 +24,11 @@ th:nth-child(3) {
 }
 
 @media (max-width: 992px) { 
-    td:nth-child(4), td:nth-child(5), th:nth-child(4), th:nth-child(5), .xs-invisible{
-        display: none;
+    td, th{
+        width: 30%;
+    }
+    td.mat-cell:first-of-type{
+        padding-right: 0;
     }
     td.mat-cell:last-of-type{
         padding-right: 0;
@@ -33,10 +36,13 @@ th:nth-child(3) {
 }
 
 @media (max-width: 768px) { 
-    td:nth-child(4), td:nth-child(5), th:nth-child(4), th:nth-child(5), .xs-invisible{
-        display: none;
+    td, th{
+        width: 30%;
     }
     td.mat-cell:last-of-type{
         padding-right: 0;
+    }
+    .xs-invisible{
+        display: none;
     }
 }

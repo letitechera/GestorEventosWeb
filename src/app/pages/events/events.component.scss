@@ -1,11 +1,5 @@
 @import '~styles/palette';
 
-td, th{
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    padding: 0 10px;
-}
 td.mat-cell:first-of-type{
     padding: 0 10px;
     max-width: 90px;

@@ -53,7 +53,7 @@ export class AccreditationComponent implements OnInit {
         } else {
         }
       }, (err) => {
-        this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
+        this.notifier.notify('error', 'Hubo un error en la lectura del código QR');
         console.log(err);
       });
     });
