@@ -12,7 +12,42 @@ export class EventsApiService {
   constructor(private http: HttpClient, private notifier: NotifierService) { }
   private headers: HttpHeaders;
 
-  public getAllEvents(userId): Promise<any> {
+  public getAllEvents(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      this.getAllEventsData()
+        .pipe(map((results: any[]) => {
+          const data = [];
+          if (!results) {
+            return data;
+          }
+          results.forEach((result) => {
+            data.push({
+              EventId: result.id,
+              Name: result.name,
+              StartDate: new Date(result.startDate),
+              EndDate: new Date(result.endDate),
+              SmallImage: result.smallImage != null ? result.smallImage : '',
+              Image: result.image != null ? result.image : '',
+              Description: result.description,
+              Location: result.location,
+              Address: result.address,
+              Topic: result.topic,
+              Percentage: result.percentage,
+              CreatedById: result.createdById,
+              Canceled: result.canceled
+            });
+          });
+          return data;
+        })).subscribe((data: any[]) => {
+          resolve(data);
+        },
+          (err) => {
+            reject([]);
+          });
+    });
+  }
+
+  public getAllEventsById(userId): Promise<any> {
     return new Promise<any>((resolve, reject) => {
       this.getAllEventsByUser(userId)
         .pipe(map((results: any[]) => {
@@ -282,7 +317,7 @@ export class EventsApiService {
             return null;
           }
           return result;
-        })).subscribe((data: any[]) => {
+        })).subscribe(data => {
           resolve(data);
         },
           (err) => {
@@ -390,7 +425,7 @@ export class EventsApiService {
   private registerToEventData(participant) {
     this.setDefaultHeaders();
     const url = `${environment.webApiUrl}/events/registerToEvent`;
-    return this.commonHttpPost(url, participant, this.headers);
+    return this.http.post(url, participant, { headers: this.headers, observe: 'events' });
   }
 
   private setDefaultHeaders() {

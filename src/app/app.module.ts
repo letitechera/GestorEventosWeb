@@ -34,7 +34,6 @@ import { EventsComponent } from './pages/events/events.component';
 import { EventDetailsComponent } from './pages/event-details/event-details.component';
 import { InterestedComponent } from './pages/interested/interested.component';
 import { AccreditationComponent } from './pages/accreditation/accreditation.component';
-import { AccreditationModalComponent } from './pages/accreditation/accreditation.component';
 import { LocationsModalComponent } from './shared/locations-modal/locations-modal.component';
 import { TopicsModalComponent } from './shared/topics-modal/topics-modal.component';
 import { AttendantsModalComponent } from './shared/attendants-modal/attendants-modal.component';
@@ -93,7 +92,6 @@ registerLocaleData(localeEs, 'es');
     PublicEventsComponent,
     PublicEventComponent,
     EventRegistrationComponent,
-    AccreditationModalComponent,
     ImportModalComponent,
     ConfirmationModalComponent,
     UsersComponent,
@@ -107,7 +105,6 @@ registerLocaleData(localeEs, 'es');
     SchedulesModalComponent,
     ActivityModalComponent,
     SpeakerModalComponent,
-    AccreditationModalComponent,
     ImportModalComponent,
     ConfirmationModalComponent
   ],

@@ -19,11 +19,13 @@ export class PublicEventComponent implements OnInit, OnDestroy {
   public schedules: Schedule[];
   public currentSchedule: Schedule;
   public currentIndex: number;
+  public checkAddress2: boolean;
 
   constructor(private route: ActivatedRoute, private publicApi: PublicApiService,
     private dateService: DateService, private router: Router) { }
 
   ngOnInit() {
+
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
       this.currentIndex = 0;
@@ -37,8 +39,10 @@ export class PublicEventComponent implements OnInit, OnDestroy {
     this.publicApi.getEvent(id).then((data: any) => {
       if (data != null) {
         this.event = data;
+        if(this.event.Location.address2 != null||this.event.Location.address2!=''){
+          this.checkAddress2 = true;
+        }
         this.eventLoading = false;
-        console.log(this.event);
         this.getSchedules(data.EventId);
       }
     }, (err) => {
@@ -58,6 +62,9 @@ export class PublicEventComponent implements OnInit, OnDestroy {
     this.scheduleLoading = true;
     this.publicApi.getSchedulesByEvent(id).then((data: any[]) => {
       if (data != null) {
+        if(data.length <= 0){
+          return; 
+        }
         this.schedules = data;
         this.currentIndex = this.schedules[0].Id;
         this.currentSchedule = this.schedules[0];

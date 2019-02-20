@@ -55,18 +55,20 @@
                             display: block;
                             padding-bottom: 5px;
                             font-weight: 600;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
                         }
                         .event-loc{
                             display: block;
                             font-size: 12px;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            white-space: nowrap;
                         }
                         .event-descr{
                             font-size: 12px;
-                            overflow: hidden;
                             display: -webkit-box;
-                            -webkit-line-clamp: 3;
-                            /* autoprefixer: ignore next */
-                            -webkit-box-orient: vertical;
                         }
                     }
                     .event-date{
@@ -131,12 +133,6 @@
                             .event-descr{
                                 padding-top: 5px;
                                 padding-right: 5px;
-                                overflow: hidden;
-                                display: -webkit-box;
-                                -webkit-line-clamp: 3;
-                                /* autoprefixer: off */
-                                -webkit-box-orient: vertical;
-                                /* autoprefixer: on */
                             }
                         }
                         .event-date{
@@ -169,12 +165,6 @@
                             .event-descr{
                                 padding-top: 5px;
                                 padding-right: 5px;
-                                overflow: hidden;
-                                display: -webkit-box;
-                                -webkit-line-clamp: 1;
-                                /* autoprefixer: off */
-                                -webkit-box-orient: vertical;
-                                /* autoprefixer: on */
                             }
                         }
                         .event-date{
@@ -200,16 +190,6 @@
                         height: 230px;
                         .center-cropped {
                             height: 50%;
-                        }
-                        .event-info{
-                            .event-descr{
-                                overflow: hidden;
-                                display: -webkit-box;
-                                -webkit-line-clamp: 2;
-                                /* autoprefixer: off */
-                                -webkit-box-orient: vertical;
-                                /* autoprefixer: on */
-                            }
                         }
                     }
                 } 

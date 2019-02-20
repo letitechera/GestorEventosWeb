@@ -14,7 +14,7 @@
       </fieldset>
       <fieldset class="controls">
         <div class="controls-container">
-          <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
+          <button type="button" class="ge-btn-default btn-cancel" (click)="close()" *ngIf="success != null">
             <span>Cancelar</span>
           </button>
           <button type="submit" class="ge-btn-default btn-accept">

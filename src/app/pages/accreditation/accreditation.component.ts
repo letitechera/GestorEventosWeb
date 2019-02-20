@@ -4,6 +4,7 @@ import { EventsApiService } from '@services/events-api/events-api.service';
 import { NotifierService } from 'angular-notifier';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ParticipantData } from '@models/participant-data';
+import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-accreditation',
@@ -48,12 +49,7 @@ export class AccreditationComponent implements OnInit {
         this.participant = participant;
         if (participant != null) {
           console.log(participant);
-          this.dialog.open(AccreditationModalComponent, {
-            data: {
-              participant: participant.attendant.fullName,
-              event: participant.event.Name
-            }
-          });
+          this.openConfirmDialog();
           console.log(participant);
         } else {
         }
@@ -63,14 +59,20 @@ export class AccreditationComponent implements OnInit {
       });
     });
   }
+
+  public openConfirmDialog() {
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        title: 'Participante Acreditado',
+        message: '¡El paricipante ha sido acreditado con éxito!',
+        success: true,
+      },
+      hasBackdrop: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+      }
+    });
+  }
 }
 
-@Component({
-  selector: 'accreditation-modal',
-  templateUrl: 'accreditation-modal.html',
-  styleUrls: ['./accreditation.component.scss'],
-
-})
-export class AccreditationModalComponent {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: AccreditationComponent) {}
-}

@@ -80,9 +80,9 @@ export class EventRegistrationComponent implements OnInit, OnDestroy {
     }
     this.loadingBtn = true;
     this.setParticipantObject();
-    this.eventsApi.registerToEvent(this.participant).then((data: any[]) => {
-      this.notifier.notify( 'success', 'El formulario se ha enviado con éxito' );
+    this.eventsApi.registerToEvent(this.participant).then((data: any) => {
       this.loadingBtn = false;
+      this.notifier.notify('success', 'La inscripción se realizó con éxito');
       this.goBack();
     }, (err) => {
       this.notifier.notify('error', 'Ups.. Ha ocurrido un error');

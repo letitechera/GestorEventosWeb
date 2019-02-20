@@ -8,7 +8,7 @@ export interface EventData {
     Image: string;
     SmallImage: string;
     Description: string;
-    Location: string;
+    Location: any;
     Address: string;
     Topic: string;
     CreatedById: string;

@@ -145,7 +145,7 @@ export class ActivityModalComponent implements OnInit {
     this.activityData.Description = this.activityForm.get('Description').value;
     this.activityData.StartTime = startDateString;
     this.activityData.EventScheduleId = this.passedScheduleId;
-    this.activityData.Id = this.data != null ? this.data.Id : 0;
+    this.activityData.Id = this.passedActivity != null ? this.passedActivity.Id : 0;
   }
 
   public close(): void {

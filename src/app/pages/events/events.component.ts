@@ -76,8 +76,7 @@ export class EventsComponent implements OnInit {
 
   private initData() {
     this.loading = true;
-    const userId = this.auth.getUserId();
-    this.eventsApi.getAllEvents(userId).then((data: any[]) => {
+    this.eventsApi.getAllEvents().then((data: any[]) => {
       this.loading = false;
       this.events = data;
       if (this.events) {
