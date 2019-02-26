@@ -12,7 +12,7 @@
     <form>
       <fieldset>
         <mat-form-field class="input-type">
-          <mat-select placeholder="Rol">
+          <mat-select placeholder="Rol" [(ngModel)]="selectedRole"  name="first">
             <mat-option *ngFor="let role of roles" [value]="role.Name">
               {{ role.Name }}
             </mat-option>

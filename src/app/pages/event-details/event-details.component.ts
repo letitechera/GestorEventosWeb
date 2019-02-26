@@ -18,6 +18,7 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
   private sub: any;
   public loading: boolean;
   public event: EventData;
+  public role: string;
 
   constructor(private route: ActivatedRoute, private eventsApi: EventsApiService, private auth: AuthApiService,
     private dateService: DateService, private router: Router, private notifier: NotifierService,
@@ -25,7 +26,8 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.auth.checkSession();
-
+    this.role = this.auth.getRole();
+    
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
       this.initData(this.id);

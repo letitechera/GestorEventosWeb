@@ -10,24 +10,12 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   public role: string;
-  public currentIndex: number;
 
   constructor(private authService: AuthApiService, private router: Router) {
   }
 
   ngOnInit() {
     this.role = this.authService.getRole();
-    this.currentIndex = 1;
-  }
-
-  public setSection(index: number, page) {
-    this.currentIndex = index;
-    console.log(this.currentIndex);
-    this.navigateTo(page);
-  }
-  
-  public checkIndex(index){
-    return this.currentIndex === index;
   }
 
   public navigateTo(page) {

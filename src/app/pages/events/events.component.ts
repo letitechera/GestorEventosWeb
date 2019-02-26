@@ -18,6 +18,7 @@ export class EventsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sorter: MatSort;
+  public role: string;
   public displayedColumns: string[] = [];
   public dataSource: MatTableDataSource<EventData>;
   public events: EventData[];
@@ -28,7 +29,7 @@ export class EventsComponent implements OnInit {
 
   ngOnInit() {
     this.auth.checkSession();
-
+    this.role = this.auth.getRole();
     this.setDisplayColumns();
     this.initData();
   }

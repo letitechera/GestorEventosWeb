@@ -48,10 +48,6 @@ export class UsersApiService {
           results.forEach((result) => {
             let cleanName = '';
             switch(result.name){
-              case 'Role_Participant':{
-                cleanName = 'Participante'
-                break;
-              };
               case 'Role_Creditor':{
                 cleanName = 'Acreditador'
                 break;
@@ -65,10 +61,12 @@ export class UsersApiService {
                 break;
               };
             }
-            data.push({
-              RoleId: result.id,
-              Name: cleanName,
-            });
+            if(result.name != 'Role_Participant'){
+              data.push({
+                RoleId: result.id,
+                Name: cleanName,
+              });
+            }
           });
           return data;
         })).subscribe((data: any[]) => {

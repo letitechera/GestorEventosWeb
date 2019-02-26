@@ -12,6 +12,7 @@ import { DatePipe, registerLocaleData } from '@angular/common';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { NgQrScannerModule } from 'angular2-qrscanner';
 import { NotifierModule } from 'angular-notifier';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 import localeEs from '@angular/common/locales/es';
 import { ROUTES } from './app.routing';
 
@@ -122,6 +123,7 @@ registerLocaleData(localeEs, 'es');
     AngularFontAwesomeModule,
     MatButtonModule,
     NgQrScannerModule,
+    DeviceDetectorModule.forRoot(),
     NotifierModule.withConfig( {
         position: {
           horizontal: {
