@@ -37,16 +37,16 @@
               </mat-form-field>
 
               <mat-form-field class="input-phone">
-                <input matInput placeholder="Telefono*" formControlName="Phone" />
-                <mat-error *ngIf="eventRegistrationForm.get('Phone').hasError('required') && this.submitted">
-                  Telefono
+                <input matInput placeholder="Telefono" formControlName="Phone" type="number"/>
+                <mat-error *ngIf="eventRegistrationForm.get('Phone')?.invalid">
+                  Correo Electronico
                 </mat-error>
               </mat-form-field>
 
               <mat-form-field class="input-email">
-                <input matInput placeholder="Celular *" formControlName="CellPhone" />
-                <mat-error *ngIf="eventRegistrationForm.get('CellPhone').hasError('required') && this.submitted">
-                  Celular
+                <input matInput placeholder="Celular" formControlName="CellPhone" type="number"/>
+                <mat-error *ngIf="eventRegistrationForm.get('CellPhone')?.invalid">
+                  Correo Electronico
                 </mat-error>
               </mat-form-field>
             </fieldset>
@@ -71,7 +71,7 @@
           </div>
           <div class="event-title">{{event.Name}}</div>
         </div>
-        <div class="center-cropped" [ngStyle]="{ 'background-image': 'url(' + event.Image + ')'}">
+        <div class="center-cropped" [ngStyle]="{ 'background-image': 'url(' + event.SmallImage + ')'}">
         </div>
         <div class="event-sum">
           <div>

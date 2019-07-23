@@ -49,6 +49,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
       Name: '',
       Description: '',
       Image: '',
+      SmallImage: '',
       StartDate: '',
       EndDate: '',
       LocationId: 0,
@@ -77,7 +78,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.locationsApi.getAllLocations().then((locations: any[]) => {
       this.locations = locations;
       if (this.id != null && this.id !== 0) {
-        this.selectedlocation = this.id;
+        this.selectedlocation = id;
       } else {
         this.selectedlocation = locations[0].id;
       }
@@ -89,7 +90,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.eventsApi.getAllTopics().then((topics: any[]) => {
       this.topics = topics;
       if (this.id != null && this.id !== 0) {
-        this.selectedtopic = this.id;
+        this.selectedtopic = id;
       } else {
         this.selectedtopic = topics[0].id;
       }
@@ -143,6 +144,7 @@ export class EventManageComponent implements OnInit, OnDestroy {
           StartDate: new Date(data.startDate),
           EndDate: new Date(data.endDate),
           Image: data.image != null ? data.image : '',
+          SmallImage: data.smallImage != null ? data.smallImage : '',
           Description: data.description,
           Location: data.location,
           EventTopic: data.eventTopic,
@@ -211,10 +213,11 @@ export class EventManageComponent implements OnInit, OnDestroy {
     this.eventSend.StartDate = startDateString;
     this.eventSend.EndDate = endDateString;
     this.eventSend.Image = this.originalImage;
+    this.eventSend.SmallImage = this.originalImage.replace('eventimages', 'eventresizedimages');
     this.eventSend.EventTopicId = this.eventForm.get('EventTopicId').value;
     this.eventSend.LocationId = this.eventForm.get('LocationId').value;
     this.eventSend.Id = this.id != null && this.id !== 0 ? this.event.EventId : 0;
-    this.eventSend.Canceled = this.event.Canceled;
+    this.eventSend.Canceled = this.id != null && this.id !== 0 ? this.event.Canceled : false;
     this.eventSend.AttendancePercentage = this.eventForm.get('Percentage').value;
   }
 

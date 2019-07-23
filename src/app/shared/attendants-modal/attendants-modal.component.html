@@ -14,20 +14,20 @@
     <form [formGroup]="attendantsForm" class="attendants-form" (ngSubmit)="submitAttendant()">
       <fieldset>
         <mat-form-field>
-          <input matInput placeholder="Nombre" formControlName="firstName" />
-          <mat-error *ngIf="attendantsForm.get('firstName').hasError('required') && this.submitted">
+          <input matInput placeholder="Nombre *" formControlName="firstName" />
+          <mat-error *ngIf="attendantsForm.get('firstName').hasError('required')">
             Escriba un nombre
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Apellido" formControlName="lastName" />
-          <mat-error *ngIf="attendantsForm.get('lastName').hasError('required') && this.submitted">
+          <input matInput placeholder="Apellido *" formControlName="lastName" />
+          <mat-error *ngIf="attendantsForm.get('lastName').hasError('required')">
             Escriba un apellido
           </mat-error>
         </mat-form-field>
         <mat-form-field>
-          <input matInput placeholder="Email" formControlName="email" type="email" />
-          <mat-error *ngIf="attendantsForm.get('email').hasError('required') && this.submitted">
+          <input matInput placeholder="Email *" formControlName="email" type="email" />
+          <mat-error *ngIf="attendantsForm.get('email').hasError('required')">
             Escriba un email
           </mat-error>
           <mat-error *ngIf="attendantsForm.get('email').hasError('pattern')">

@@ -10,6 +10,7 @@ export class ConfirmationModalComponent implements OnInit {
 
   public title: string;
   public message: string;
+  public success: boolean;
   public defaultTitle = 'Corfirmar Acción';
   public defaultMessage = '¿Estás seguro de que deseas realizar esta acción?';
 
@@ -20,9 +21,11 @@ export class ConfirmationModalComponent implements OnInit {
     if (this.data != null) {
       this.title = this.data.title != null ? this.data.title : this.defaultTitle;
       this.message = this.data.message != null ? this.data.message : this.defaultMessage;
+      this.success = this.data.success != null ? true : null;
     } else {
       this.title = this.defaultTitle;
       this.message = this.defaultMessage;
+      this.success = null;
     }
   }
 

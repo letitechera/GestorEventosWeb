@@ -17,7 +17,7 @@
           <input matInput [min]="minDate" matInput [max]="maxDate"[matDatepicker]="picker1" placeholder="Fecha *" formControlName="Date">
           <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
           <mat-datepicker #picker1></mat-datepicker>
-          <mat-error *ngIf="scheduleForm.get('Date').hasError('required') && this.submitted">
+          <mat-error *ngIf="scheduleForm.get('Date')?.invalid">
             Ingrese una fecha
           </mat-error>
         </mat-form-field>

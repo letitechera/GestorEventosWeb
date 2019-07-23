@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthApiService } from '@services/auth-api/auth-api.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   public submitted: boolean;
   public loading: boolean;
 
-  constructor(private service: AuthApiService, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private service: AuthApiService, private router: Router, private formBuilder: FormBuilder,
+    private notifier: NotifierService) {
     this.loginError = false;
     this.loading = false;
   }
@@ -44,19 +46,25 @@ export class LoginComponent implements OnInit {
     const username = this.loginForm.get('username').value;
     const password = this.loginForm.get('password').value;
     this.service.login(username, password).subscribe((data) => {
-      this.service.setSession(data);
       this.submitted = false;
       this.loading = false;
-      this.router.navigateByUrl('events');
+      debugger;
+      this.service.setSession(data);
+      let rol = this.service.getRole();
+      if (rol == null || rol == 'null') {
+        this.notifier.notify('warning', 'Para iniciar sesión debes esperar a que un administrador te asigne un Rol');
+      } else {
+        this.router.navigateByUrl('events');
+      }
     },
-    (err) => {
-      console.log(err);
-      this.loginError = true;
-      this.loading = false;
-    });
+      (err) => {
+        console.log(err);
+        this.loginError = true;
+        this.loading = false;
+      });
   }
 
-  public navigateTo(page){
+  public navigateTo(page) {
     this.router.navigateByUrl(page);
   }
 }

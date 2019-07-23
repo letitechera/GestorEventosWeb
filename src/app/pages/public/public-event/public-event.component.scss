@@ -30,6 +30,7 @@
             float: right;
             padding: 30px;
             border-bottom: 1px $ge-dolphin solid;
+            position: relative;
 
             .event-date{
                 display: block;
@@ -65,14 +66,12 @@
                     text-align: center;
                     white-space: nowrap;
                     vertical-align: baseline;
-                    background-color: $ge-deep-sky;
-                    color: $ge-chalk;
-                    width: 100%;
+                    background-color: #0DA189;
+                    color: #FDFCF6;
                     display: block;
-                    width: 100%;
-                    display: block;
-                    position: sticky;
-                    top: 100%;
+                    position: absolute;
+                    width: 80%;
+                    bottom: 30px;
                 }
                 a:hover{
                     background-color: $ge-dark-sky;

@@ -37,14 +37,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
       FirstName: [this.account.FirstName, [Validators.required]],
       LastName: [this.account.LastName, [Validators.required]],
       Email: [this.account.Email, [Validators.required]],
-      Phone: [this.account.Phone, [Validators.required]],
-      CellPhone: [this.account.CellPhone, [Validators.required]],
-      Job: [this.account.Job, [Validators.required]],
-      Organization: [this.account.Organization, [Validators.required]],
-      Address1: [this.account.Address1, [Validators.required]],
-      Address2: [this.account.Address2, [Validators.required]],
-      City: [this.account.City, [Validators.required]],
-      Country: [this.account.Country, [Validators.required]],
+      Phone: [this.account.Phone],
+      CellPhone: [this.account.CellPhone],
+      Job: [this.account.Job],
+      Organization: [this.account.Organization],
+      Address1: [this.account.Address1],
+      Address2: [this.account.Address2],
+      City: [this.account.City],
+      Country: [this.account.Country],
     });
     this.loading = false;
   }

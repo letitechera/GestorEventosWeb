@@ -1,0 +1,19 @@
+@import "~styles/palette";
+.hidden {
+  display: none;
+}
+
+.modal-body{
+  font-size: 14px;
+  .loader{
+    left: 45%;
+    top: 45%;
+  }
+}
+.ge-btn-default{
+  margin: 7px 0 0 7px;
+  float: right;
+}
+.controls-container{
+  margin-top: 0;
+}

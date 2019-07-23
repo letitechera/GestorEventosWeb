@@ -16,23 +16,23 @@
         <div class="inline">
           <mat-form-field class="input-name">
             <input matInput placeholder="Nombre *" formControlName="Name" />
-            <mat-error *ngIf="locationsForm.get('Name').hasError('required') && this.submitted">
+            <mat-error *ngIf="locationsForm.get('Name').hasError('required')">
               Escriba un nombre
             </mat-error>
           </mat-form-field>
           <mat-form-field class="input-capacity">
             <input matInput placeholder="Capacidad *" formControlName="Capacity" type="number" />
-            <mat-error *ngIf="locationsForm.get('Capacity').hasError('required') && this.submitted">
+            <mat-error *ngIf="locationsForm.get('Capacity').hasError('required')">
               Escriba un número
             </mat-error>
-            <mat-error *ngIf="locationsForm.get('Capacity').hasError('pattern') && this.submitted">
+            <mat-error *ngIf="locationsForm.get('Capacity').hasError('pattern')">
               Escriba un número válido
             </mat-error>
           </mat-form-field>
         </div>
         <mat-form-field>
           <input matInput placeholder="Dirección Principal *" formControlName="Address1" />
-          <mat-error *ngIf="locationsForm.get('Address1').hasError('required') && this.submitted">
+          <mat-error *ngIf="locationsForm.get('Address1').hasError('required')">
             Escriba una dirección
           </mat-error>
         </mat-form-field>

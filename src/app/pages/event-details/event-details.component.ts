@@ -5,6 +5,8 @@ import { AuthApiService } from '@services/auth-api/auth-api.service';
 import { EventData } from '@models/event-data';
 import { DateService } from '@services/date/date.service';
 import { NotifierService } from 'angular-notifier';
+import { MatDialog } from '@angular/material';
+import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'event-details',
@@ -16,13 +18,16 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
   private sub: any;
   public loading: boolean;
   public event: EventData;
+  public role: string;
 
   constructor(private route: ActivatedRoute, private eventsApi: EventsApiService, private auth: AuthApiService,
-    private dateService: DateService, private router: Router, private notifier: NotifierService) { }
+    private dateService: DateService, private router: Router, private notifier: NotifierService,
+    private dialog: MatDialog) { }
 
   ngOnInit() {
     this.auth.checkSession();
-
+    this.role = this.auth.getRole();
+    
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id']; // (+) converts string 'id' to a number
       this.initData(this.id);
@@ -57,6 +62,7 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
           StartDate: new Date(data.startDate),
           EndDate: new Date(data.endDate),
           Image: data.image != null ? data.image : '',
+          SmallImage: data.smallImage != null ? data.smallImage : '',
           Description: data.description,
           Location: data.location,
           Address: data.address,
@@ -82,6 +88,21 @@ export class EventDetailsComponent implements OnInit, OnDestroy {
         this.notifier.notify('error', 'Ups.. Ha ocurrido un error');
       }
     );
+  }
+
+  public openConfirmDialog() {
+    this.auth.checkSession();
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        message: '¿Estás seguro de que deseas cancelar este evento?'
+      },
+      hasBackdrop: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.cancelEvent();
+      }
+    });
   }
 
   public cancelEvent() {

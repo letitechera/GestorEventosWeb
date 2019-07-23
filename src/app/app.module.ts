@@ -12,6 +12,7 @@ import { DatePipe, registerLocaleData } from '@angular/common';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { NgQrScannerModule } from 'angular2-qrscanner';
 import { NotifierModule } from 'angular-notifier';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 import localeEs from '@angular/common/locales/es';
 import { ROUTES } from './app.routing';
 
@@ -56,6 +57,8 @@ import { PublicEventComponent } from './pages/public/public-event/public-event.c
 import { EventRegistrationComponent } from './pages/public/event-registration/event-registration.component';
 import { ImportModalComponent } from './shared/import-modal/import-modal.component';
 import { ConfirmationModalComponent } from './shared/confirmation-modal/confirmation-modal.component';
+import { UsersComponent } from './pages/users/users.component';
+import { RolesModalComponent } from './shared/roles-modal/roles-modal.component';
 
 registerLocaleData(localeEs, 'es');
 @NgModule({
@@ -91,11 +94,14 @@ registerLocaleData(localeEs, 'es');
     PublicEventComponent,
     EventRegistrationComponent,
     ImportModalComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    UsersComponent,
+    RolesModalComponent
   ],
   entryComponents: [
     LocationsModalComponent,
     TopicsModalComponent,
+    RolesModalComponent,
     AttendantsModalComponent,
     SchedulesModalComponent,
     ActivityModalComponent,
@@ -117,6 +123,7 @@ registerLocaleData(localeEs, 'es');
     AngularFontAwesomeModule,
     MatButtonModule,
     NgQrScannerModule,
+    DeviceDetectorModule.forRoot(),
     NotifierModule.withConfig( {
         position: {
           horizontal: {

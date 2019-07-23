@@ -40,7 +40,6 @@ export class SpeakerModalComponent implements OnInit {
 
   ngOnInit() {
     this.originalImage = environment.defaultSpeakerImage;
-    debugger;
     this.formData = new FormData();
 
     this.submitted = false;

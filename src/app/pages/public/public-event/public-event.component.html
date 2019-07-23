@@ -41,13 +41,13 @@
                     <h5>Ubicación</h5>
                     <p>{{event.Location.name}}</p>
                     <p>{{event.Location.address1}}</p>
-                    <p *ngIf="event.Location.address2!=null||event.Location.address2!=''">
+                    <p *ngIf="checkAddress2 != undefined && checkAddress2">
                         {{event.Location.address2}}</p>
                     <p>{{event.Location.city.name}}, {{event.Location.city.country.name}}</p>
                 </div>
             </div>
         </div>
-        <div class="event-schedule" *ngIf="schedules.length > 0">
+        <div class="event-schedule" *ngIf="schedules != undefined && schedules.length > 0">
             <div class="loader" *ngIf="scheduleLoading"></div>
             <div class="schedule-container" *ngIf="!scheduleLoading">
                 <div class="schedule-header">

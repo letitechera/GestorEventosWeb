@@ -14,6 +14,7 @@ import { LocationsComponent } from '@pages/locations/locations.component';
 import { EventManageComponent } from '@pages/event-manage/event-manage.component';
 import { ParticipantsComponent } from '@pages/participants/participants.component';
 import { ScheduleComponent } from '@pages/schedule/schedule.component';
+import { UsersComponent } from '@pages/users/users.component';
 import { PublicEventsComponent } from '@pages/public/public-events/public-events.component';
 import { PublicEventComponent } from '@pages/public/public-event/public-event.component';
 import { EventRegistrationComponent } from '@pages/public/event-registration/event-registration.component';
@@ -35,6 +36,7 @@ export const ROUTES: Routes = [
     { path: 'contacts', component: InterestedComponent },
     { path: 'accreditation', component: AccreditationComponent },
     { path: 'locations', component: LocationsComponent },
+    { path: 'users', component: UsersComponent },
     { path: 'public/events', component: PublicEventsComponent },
     { path: 'public/events/:id', component: PublicEventComponent },
     { path: 'public/event-registration/:id', component: EventRegistrationComponent }

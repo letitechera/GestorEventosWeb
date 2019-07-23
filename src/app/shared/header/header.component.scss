@@ -23,11 +23,6 @@ nav{
                     color: $ge-dolphin;
                 }
             }
-            li.active{
-                a{
-                    color: $ge-seal;
-                }
-            }
             li.right-item{
                 display: none;
             }
@@ -60,6 +55,11 @@ nav{
                 }
             }
         }
+    }
+}
+.active{
+    a{
+        color: $ge-seal;
     }
 }
 

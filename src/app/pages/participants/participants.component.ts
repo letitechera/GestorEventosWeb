@@ -7,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { DateService } from '@services/date/date.service';
 import { ExcelService } from '@services/excel/excel.service';
 import { NotifierService } from 'angular-notifier';
+import { ConfirmationModalComponent } from '@shared/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-participants',
@@ -37,15 +38,77 @@ export class ParticipantsComponent implements OnInit {
     });
   }
 
-  public sendCertificate(participantId) {
-    this.eventsApi.sendCertificate(participantId).then((data: any[]) => {
-      this.notifier.notify( 'success', 'Se envió el Certificado!' );
+  public sendCertificates() {
+    this.eventsApi.sendCertificates(this.id).then((data: any[]) => {
+      alert('certificate sent');
+      this.notifier.notify('success', 'Los certificados están siendo enviados');
     }, (err) => {
+      this.notifier.notify( 'error', 'Ups.. Ha ocurrido un error' );
+    });
+  }
+
+  public openConfirmCertificates() {
+    this.auth.checkSession();
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        message: '¿Estás seguro de que deseas enviar los certificados?'
+      },
+      hasBackdrop: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.sendCertificates();
+      }
+    });
+  }
+
+  public openConfirmAccredit(participantId) {
+    this.auth.checkSession();
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        title: 'Acreditar Usuario',
+        message: 'El usuario sumará una asistencia a su historial, ¿desea continuar?'
+      },
+      hasBackdrop: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        this.accreditParticipant(participantId);
+      }
+    });
+  }
+
+  public accreditParticipant(participantId) {
+    this.loading = true;
+    this.eventsApi.accredit(participantId).then((data: any[]) => {
+      this.openSuccessDialog();
+      this.loading = false;
+    }, (err) => {
+      this.loading = false;
+      this.notifier.notify( 'error', 'Ups.. Ha ocurrido un error' );
       console.log(err);
     });
   }
 
+  public openSuccessDialog() {
+    const dialogRef = this.dialog.open(ConfirmationModalComponent, {
+      data: {
+        title: 'Participante Acreditado',
+        message: '¡El paricipante ha sido acreditado con éxito!',
+        success: true,
+      },
+      hasBackdrop: true
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+      }
+    });
+  }
+
   public downloadParticipants() {
+    if (this.participants == null || this.participants == undefined) {
+      return;
+    }
     if (this.participants.length > 0) {
       var data = [];
       this.participants.forEach(p => {

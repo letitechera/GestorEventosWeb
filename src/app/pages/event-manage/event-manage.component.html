@@ -22,7 +22,7 @@
                         </mat-form-field>
                         <div class="inline">
                             <mat-form-field class="input-startdate">
-                                <input matInput [min]="minDate" [matDatepicker]="picker1" placeholder="Fecha de Inicio *"
+                                <input matInput [min]="minDate" [matDatepicker]="picker1" placeholder="Inicio *"
                                     formControlName="StartDate">
                                 <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                                 <mat-datepicker #picker1></mat-datepicker>
@@ -37,7 +37,7 @@
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field class="input-enddate">
-                                <input matInput [min]="minEndDate" [matDatepicker]="picker2" placeholder="Fecha de Finalización *"
+                                <input matInput [min]="minEndDate" [matDatepicker]="picker2" placeholder="Finalización *"
                                     formControlName="EndDate">
                                 <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                                 <mat-datepicker #picker2></mat-datepicker>
@@ -59,7 +59,7 @@
                                         {{ location.Name }}
                                     </mat-option>
                                 </mat-select>
-                                <mat-error *ngIf="eventForm.get('LocationId').hasError('required')">
+                                <mat-error *ngIf="eventForm.get('LocationId')?.invalid && this.submitted">
                                     Elija una locación
                                 </mat-error>
                             </mat-form-field>
@@ -69,7 +69,7 @@
                                         {{ topic.Name }}
                                     </mat-option>
                                 </mat-select>
-                                <mat-error *ngIf="eventForm.get('EventTopicId').hasError('required')">
+                                <mat-error *ngIf="eventForm.get('EventTopicId')?.invalid && this.submitted">
                                     Elija un tema
                                 </mat-error>
                             </mat-form-field>

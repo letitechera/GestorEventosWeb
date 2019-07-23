@@ -1,10 +1,10 @@
 <app-header></app-header>
 <div class="content-body">
-
-    <h3>Scanee el código QR</h3>
-
-    <qr-scanner [debug]="false" [canvasWidth]="500" [canvasHeight]="500" [stopAfterScan]="true" [updateTime]="500">
-    </qr-scanner>
-
+    <div class="loader" *ngIf="loading"></div>
+    <div>
+        <h3>Escanee el código <span>QR</span></h3>
+        <qr-scanner [debug]="false" [canvasWidth]="250" [canvasHeight]="250" [stopAfterScan]="true" [updateTime]="500">
+        </qr-scanner>
+    </div>
 </div>
 <app-footer></app-footer>

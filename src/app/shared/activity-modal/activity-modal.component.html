@@ -15,19 +15,19 @@
       <fieldset>
         <mat-form-field class="input-descr">
           <input matInput placeholder="Titulo *" formControlName="Name" />
-          <mat-error *ngIf="activityForm.get('Name').hasError('required') && this.submitted">
+          <mat-error *ngIf="activityForm.get('Name').hasError('required')">
             Escriba una descripción a la Actividad
           </mat-error>
         </mat-form-field>
         <mat-form-field class="input-descr">
           <input matInput placeholder="Descripción *" formControlName="Description" />
-          <mat-error *ngIf="activityForm.get('Description').hasError('required') && this.submitted">
+          <mat-error *ngIf="activityForm.get('Description').hasError('required')">
             Escriba una descripción a la Actividad
           </mat-error>
         </mat-form-field>
         <mat-form-field class="input-time">
           <input type="time" matInput placeholder="Hora *" formControlName="StartTime" />
-          <mat-error *ngIf="activityForm.get('StartTime').hasError('required') && this.submitted">
+          <mat-error *ngIf="activityForm.get('StartTime')?.invalid">
             Escriba una hora
           </mat-error>
         </mat-form-field>

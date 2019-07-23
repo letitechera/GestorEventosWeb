@@ -36,7 +36,9 @@ export class EventRegistrationComponent implements OnInit, OnDestroy {
       LastName: '',
       Email: '',
       Phone: '',
-      CellPhone: ''
+      CellPhone: '',
+      event: null,
+      attendant: null
     };
 
     this.sub = this.route.params.subscribe(params => {
@@ -51,8 +53,8 @@ export class EventRegistrationComponent implements OnInit, OnDestroy {
       FirstName: ['', [Validators.required]],
       LastName: ['', [Validators.required]],
       Email: ['', [Validators.required]],
-      Phone: ['', [Validators.required]],
-      CellPhone: ['', [Validators.required]],
+      Phone: [''],
+      CellPhone: [''],
     });
     this.loading = false;
   }
@@ -78,9 +80,9 @@ export class EventRegistrationComponent implements OnInit, OnDestroy {
     }
     this.loadingBtn = true;
     this.setParticipantObject();
-    this.eventsApi.registerToEvent(this.participant).then((data: any[]) => {
-      this.notifier.notify( 'success', 'El formulario se ha enviado con éxito' );
+    this.eventsApi.registerToEvent(this.participant).then((data: any) => {
       this.loadingBtn = false;
+      this.notifier.notify('success', 'La inscripción se realizó con éxito');
       this.goBack();
     }, (err) => {
       this.notifier.notify('error', 'Ups.. Ha ocurrido un error');

@@ -59,24 +59,22 @@ export class UploadComponent implements OnInit {
     if (!this.fileLoaded) {
       return;
     }
-    /* Store file */
     this.loadingfile = true;
+    if(this.eventId !== 0){
+      this.onUploadStart.emit(true);
+    }
+    /* Store file */
     this.http.post(`${this.baseurl}/${this.eventId}`, this.formData, { reportProgress: true, observe: 'events' })
       .subscribe(event => {
         if (event.type === HttpEventType.UploadProgress) {
           this.progress = Math.round(100 * event.loaded / event.total);
           if (this.progress === 100) {
-            if (this.eventId !== 0) {
-              this.loadingfile = false;
-            }
             this.formData = new FormData();
             this.fileLoaded = false;
             this.resultMsg = true;
           }
         } else if (event.type === HttpEventType.Response) {
-          if (this.eventId === 0) {
-            this.loadingfile = false;
-          }
+          this.loadingfile = false;
           this.onUploadFinished.emit(event.body);
         }
       });

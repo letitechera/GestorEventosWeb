@@ -13,20 +13,23 @@
     <div class="navbar-center">
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mx-auto text-center">
-                <li class="nav-item active">
-                    <a class="nav-link" (click)="navigateTo('events')">Eventos</a>
-                </li>
                 <li class="nav-item">
-                    <a class="nav-link" (click)="navigateTo('contacts')">Contactos</a>
+                    <a class="nav-link" (click)="navigateTo('events')" [routerLinkActive]="['active']" >Eventos</a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="role == 'Role_Admin'">
+                    <a class="nav-link" (click)="navigateTo('contacts')" [routerLinkActive]="['active']" >Contactos</a>
+                </li>
+                <li class="nav-item" *ngIf="role == 'Role_Admin'">
                     <a class="nav-link" (click)="navigateTo('locations')">Locaciones</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" target="_blank" routerLink="/public/events">Sitio Público</a>
                 </li>
+                <li class="nav-item" *ngIf="role == 'Role_Admin'">
+                    <a class="nav-link" (click)="navigateTo('users')">Usuarios</a>
+                </li>
                 <!-- (click)="navigateTo('public/events')" -->
-                <li class="nav-item">
+                <li class="nav-item" *ngIf="role == 'Role_Creditor'">
                     <a class="nav-link" (click)="navigateTo('accreditation')"> | Acreditación | </a>
                 </li>
                 <li class="right-item nav-item">
