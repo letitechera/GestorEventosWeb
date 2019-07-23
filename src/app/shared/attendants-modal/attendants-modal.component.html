@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <P>
+    <span *ngIf="createFlag">Agregar Contacto</span>
+    <span *ngIf="updateFlag">Editar Contacto</span>
+  </P>
+  <div class="close-modal-block">
+    <button class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+<div class="modal-body">
+  <div>
+    <form [formGroup]="attendantsForm" class="attendants-form" (ngSubmit)="submitAttendant()">
+      <fieldset>
+        <mat-form-field>
+          <input matInput placeholder="Nombre *" formControlName="firstName" />
+          <mat-error *ngIf="attendantsForm.get('firstName').hasError('required')">
+            Escriba un nombre
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Apellido *" formControlName="lastName" />
+          <mat-error *ngIf="attendantsForm.get('lastName').hasError('required')">
+            Escriba un apellido
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Email *" formControlName="email" type="email" />
+          <mat-error *ngIf="attendantsForm.get('email').hasError('required')">
+            Escriba un email
+          </mat-error>
+          <mat-error *ngIf="attendantsForm.get('email').hasError('pattern')">
+            Escriba un email válido
+          </mat-error>
+        </mat-form-field>
+      </fieldset>
+      <fieldset class="controls">
+        <div class="controls-container">
+          <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
+            <span>Cancelar</span>
+          </button>
+          <button type="submit" class="ge-btn-default btn-accept">
+            <span *ngIf="!loading && createFlag">Agregar</span>
+            <span *ngIf="!loading && updateFlag">Editar</span>
+            <span *ngIf="loading">
+              <fa name="spinner" animation="spin"></fa>
+            </span>
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

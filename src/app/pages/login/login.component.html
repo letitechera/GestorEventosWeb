@@ -1,4 +1,6 @@
-<div class="login-wrapper">
+<login-header></login-header>
+
+<div class="login-wrapper content-body">
     <div class="login-content">
         <div class="login-header">
             <h5>Ingresa con tus datos</h5>
@@ -10,7 +12,7 @@
                         <mat-form-field class="text-input">
                             <input matInput placeholder="Email" type="email" formControlName="username" />
                             <mat-error *ngIf="loginForm.get('username').hasError('required')">
-                                Username is required
+                                Escriba un nombre de usuario o email.
                             </mat-error>
                         </mat-form-field>
                     </div>
@@ -19,27 +21,31 @@
                     <div class="col-md-6">
                         <mat-form-field class="text-input">
                             <input matInput placeholder="Password" type="password" formControlName="password" />
-                            <mat-error *ngIf="loginForm.get('password').hasError('required')">
-                                Password is required
+                            <mat-error *ngIf="loginForm.get('password').hasError('required') && submitted">
+                                Escriba una contraseña.
                             </mat-error>
                         </mat-form-field>
                     </div>
                 </div>
                 <div class="row">
                     <mat-error *ngIf="loginError">
-                        El usuario o contraseña son incorrectos
+                        El usuario o contraseña son incorrectos.
                     </mat-error>
                 </div>
             </fieldset>
             <div id="submit-block">
                 <div class="submit-input">
-                    <button type="submit" id="login-submit" class="btn btn-next">
+                    <button type="submit" id="login-submit" class="ge-btn-default btn-accept">
                         <span *ngIf="!loading">Login</span>
                         <span *ngIf="loading"><fa name="spinner" animation="spin"></fa></span> 
                     </button>
                 </div>
             </div>
-            <div class="register-container">¿No tienes una cuenta? <a>Regístrate aquí</a></div>
+            <div class="controls-container">
+                <div (click)="navigateTo('register')" class="control-line">¿No tienes una cuenta? <a>Regístrate aquí</a></div>
+                <div (click)="navigateTo('forgot-password')" class="control-line"><a>Olvidé mi contraseña</a></div>
+            </div>
         </form>
     </div>
 </div>
+<app-footer></app-footer>

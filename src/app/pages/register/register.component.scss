@@ -1,0 +1,47 @@
+@import '~styles/palette';
+
+.register-wrapper{
+    text-align: center;
+    .register-content{
+        margin: 0 auto;
+        padding-top: 50px;
+        width: 20%;
+        .register-header{
+            margin-top: 10%;
+        }
+        .register-form{
+            fieldset{
+                padding-top: 10px;
+                .row{
+                    .col-md-6 {
+                        flex: none;
+                        max-width: none;
+                    }
+                    mat-error{
+                        font-size: 14px;
+                        margin: auto;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) { 
+    .register-wrapper{
+        .register-content{
+            width: 100%;
+            padding: 0 40px;
+            padding-top: 50px;
+        }
+    }
+}
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 769px) and (max-width: 992px) { 
+    .register-wrapper{
+        .register-content{
+            width: 80%;
+        }
+    }
+}

@@ -1,0 +1,77 @@
+@import '~styles/palette';
+
+.profile-details{
+    padding: 30px;
+    .form-container{
+        width: 50%;
+        margin: 0 auto;
+        h3{
+            margin: 30px 0;
+        }
+        h3.first{
+            margin-top: 0;
+        }
+    }
+}
+.sub-menu-event{
+    padding: 20px 10px 0 40px;
+    a.goback{
+        float: left;
+        padding: 10px 20px;
+        margin: 7px;
+        font-size: 14px;
+        font-weight: 300;
+        line-height: 1;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        color: white;
+        background-color: $ge-sunrise;
+    }
+    a.goback:hover{
+        background-color: $ge-sunset;
+    }
+    a.section{
+        line-height: 3.5;
+        margin: 10px;
+        font-size: 14px;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        color: $ge-earth;
+        fa{
+            color: $ge-sunrise;
+            transition: .2s;
+            padding: 5px;
+        }
+    }
+    a.section:hover{
+        color: $ge-seal;
+        fa{
+            color: $ge-sunset;
+        }
+    }
+    a.selected{
+        line-height: 3.5;
+        margin: 10px;
+        font-size: 14px;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: baseline;
+        color: black;
+        fa{
+            color: $ge-earth;
+            transition: .2s;
+            padding: 5px;
+        }
+    }
+}
+
+@media (max-width: 768px) { 
+    .profile-details{
+        .form-container{
+            width:  100%;
+            padding: 0 10px;
+        }
+    }
+}

@@ -14,7 +14,7 @@ export class CallbackComponent implements OnInit {
 
   ngOnInit() {
     if (this.authservice.isLogged()) {
-      this.router.navigateByUrl('home');
+      this.router.navigateByUrl('events');
     } else {
       this.router.navigateByUrl('login');
     }

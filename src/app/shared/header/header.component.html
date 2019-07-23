@@ -1,31 +1,57 @@
-<nav class="navbar navbar-light navbar-expand-md justify-content-center">
-    <a href="/" class="navbar-brand mr-0">Gestor Eventos</a>
-    <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#collapsingNavbar2">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse justify-content-between align-items-center w-100" id="collapsingNavbar2">
-        <ul class="navbar-nav mx-auto text-center">
-            <li class="nav-item active">
-                <a class="nav-link">Eventos <span class="sr-only">Home</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">Participantes</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link">Certificados</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"> | Acreditación | </a>
-            </li>
-        </ul>
+<nav class="navbar navbar-dark navbar-expand-md">
+    <div class="navbar-left">
+        <a href="/events" class="navbar-brand mr-0">
+            <img src="../../../assets/img/ge_logo_xs.png" />
+        </a>
+    </div>
+    <div class="navbar-hamburger">
+        <button class="navbar-toggler ml-1" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav"
+            aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+    <div class="navbar-center">
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto text-center">
+                <li class="nav-item">
+                    <a class="nav-link" (click)="navigateTo('events')" [routerLinkActive]="['active']" >Eventos</a>
+                </li>
+                <li class="nav-item" *ngIf="role == 'Role_Admin'">
+                    <a class="nav-link" (click)="navigateTo('contacts')" [routerLinkActive]="['active']" >Contactos</a>
+                </li>
+                <li class="nav-item" *ngIf="role == 'Role_Admin'">
+                    <a class="nav-link" (click)="navigateTo('locations')">Locaciones</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" target="_blank" routerLink="/public/events">Sitio Público</a>
+                </li>
+                <li class="nav-item" *ngIf="role == 'Role_Admin'">
+                    <a class="nav-link" (click)="navigateTo('users')">Usuarios</a>
+                </li>
+                <!-- (click)="navigateTo('public/events')" -->
+                <li class="nav-item" *ngIf="role == 'Role_Creditor'">
+                    <a class="nav-link" (click)="navigateTo('accreditation')"> | Acreditación | </a>
+                </li>
+                <li class="right-item nav-item">
+                    <a (click)="navigateTo('profile')" class="nav-link">
+                        <fa name="user" class="profile-icon"></fa> Mi cuenta
+                    </a>
+                </li>
+                <li class="right-item nav-item">
+                    <a (click)="logout()" class="nav-link">Salir</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar-right">
         <ul class="nav navbar-nav flex-row justify-content-center flex-nowrap">
             <li class="right-item nav-item">
-                <a>
-                    <fa name="user" class="profile-icon"></fa> Mi perfil
-                </a> 
+                <a (click)="navigateTo('profile')">
+                    <fa name="user" class="profile-icon"></fa> Mi cuenta
+                </a>
             </li>
             <li class="right-item nav-item">
-                <a>Logout</a>
+                <a (click)="logout()">Salir</a>
             </li>
         </ul>
     </div>

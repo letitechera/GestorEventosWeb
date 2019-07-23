@@ -18,10 +18,11 @@
     ],
     "baseUrl": "src",
     "paths": {
+      "@pages/*": ["app/pages/*"],
       "@shared/*": ["app/shared/*"],
       "@services/*": ["app/services/*"],
-      "@model/*": ["app/model/*"],
-      "@pages/*": ["app/pages/*"],
+      "@models/*": ["app/models/*"],
+      "@palette": ["styles/palette.scss"],
       "@environment": ["environments/environment"]
     }
   }

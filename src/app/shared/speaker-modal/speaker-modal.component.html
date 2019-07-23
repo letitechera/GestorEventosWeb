@@ -1,0 +1,81 @@
+<div class="modal-header">
+  <P>
+    <span *ngIf="createFlag">Agregar Speaker</span>
+    <span *ngIf="updateFlag">Editar Speaker</span>
+  </P>
+  <div class="close-modal-block">
+    <button class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="form-container">
+    <form [formGroup]="speakerForm" class="speaker-form" (ngSubmit)="submitSpeaker()">
+      <fieldset>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="input-name">
+              <input matInput placeholder="Nombre *" formControlName="FirstName" />
+              <mat-error *ngIf="speakerForm.get('FirstName').hasError('required') && this.submitted">
+                Escriba un Nombre
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="input-last">
+              <input matInput placeholder="Apellido *" formControlName="LastName" />
+              <mat-error *ngIf="speakerForm.get('LastName').hasError('required') && this.submitted">
+                Escriba un Apellido
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 img-box">
+            <a (click)="file.click()" class="file-btn-wrapper">
+              <div *ngIf="fileUrl!=null" class="event-img center-cropped"
+                [ngStyle]="{ 'background-image': 'url(' + fileUrl + ')' }"
+                [ngClass]="{'background-loading': loadingfile }"></div>
+              <div class="loader" *ngIf="loadingfile"></div>
+              <div class="file-upload" [ngClass]="{'active': fileLoaded}">
+
+                <input type="file" #file placeholder="Choose file" (change)="uploadFile(file.files, $event)"
+                  style="display:none;" accept="image/*">
+              </div>
+            </a>
+          </div>
+        </div>
+        <mat-form-field class="input-ocup">
+          <input matInput placeholder="Ocupación *" formControlName="Position" />
+          <mat-error *ngIf="speakerForm.get('Position').hasError('required') && this.submitted">
+            Escriba una Ocupación
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-nat">
+          <input matInput placeholder="Nacionalidad *" formControlName="Nationality" />
+          <mat-error *ngIf="speakerForm.get('Nationality').hasError('required') && this.submitted">
+            Escriba una Nacionalidad
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-comp">
+          <input matInput placeholder="Empresa" formControlName="Company" />
+        </mat-form-field>
+        <mat-form-field class="input-cont">
+          <input matInput placeholder="Link de contacto" formControlName="Contact" />
+        </mat-form-field>
+      </fieldset>
+      <fieldset class="controls">
+        <div class="controls-container">
+          <button type="button" class="ge-btn-default btn-cancel" (click)="close()">
+            <span>Cancelar</span>
+          </button>
+          <button type="submit" class="ge-btn-default 
+          ">
+            <span *ngIf="!loading && createFlag">Agregar</span>
+            <span *ngIf="!loading && updateFlag">Editar</span>
+            <span *ngIf="loading">
+              <fa name="spinner" animation="spin"></fa>
+            </span>
+          </button>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

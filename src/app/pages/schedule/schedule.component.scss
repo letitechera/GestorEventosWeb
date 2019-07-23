@@ -1,0 +1,198 @@
+@import '~styles/palette';
+
+.event-info-container{
+    padding: 30px;
+    font-size: 20px;
+    a{
+        color: $ge-deep-sky;
+    }
+    a:hover{
+        color: $ge-dark-sky;
+    }
+}
+.schedule-container{
+    .event-info-container{
+        padding: 20px;
+    }
+    .schedule-controls{
+        padding: 0 20px;
+        a{
+            padding: 10px 15px;
+            margin: 10px;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 300;
+            line-height: 1;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: baseline;
+            cursor: pointer;
+            background-color: $ge-sunrise;
+            color: $ge-chalk;
+            fa{
+                padding-right: 3px;
+            }
+        }
+        a:hover{
+            background-color: $ge-sunset;
+            color: $ge-chalk;
+        }
+    }
+    .blocks-container{
+        padding: 20px 30px;
+        .schedule-block{
+        padding: 10px;
+        border: 1px $ge-dolphin solid;
+        height: fit-content;
+        margin-bottom: 15px;
+            .schedule-header{
+                text-align: center;
+                padding: 5px;
+                padding-top: 0;
+                font-size: 14px;
+                border-bottom: 1px $ge-dolphin solid;
+                a.schedule-remove{
+                    display: block;
+                    width: 100%;
+                    height: 12px;
+                    font-size: 12px;
+                    text-align: left;
+                    color: white;
+                    padding: 0 5px 5px 0;
+                    line-height: 0;
+                    -o-transition:.2s;
+                    -ms-transition:.2s;
+                    -moz-transition:.2s;
+                    -webkit-transition:.2s;
+                    transition:.2s;
+                }
+                a{
+                    display: block;
+                    float:right;
+                    color: $ge-deep-sky;
+                }
+                a:hover{
+                    color: $ge-dark-sky;
+                }
+            }
+            .schedule-header:hover{
+                .schedule-remove{
+                    color: $ge-sunset;
+                }
+            }
+            .activities-container{
+                margin-bottom: 10px;
+                .activity-block{
+                    margin: 10px 0;
+                    padding: 5px 10px;
+                    font-size: 14px;
+                    border: 1px $ge-dolphin solid;
+                    width: 100%;
+                    a.activity{
+                        display: block;
+                        .activity-header{
+                            height: 30px;
+                            .activity-remove{
+                                font-size:12px;
+                                display: block;
+                                height: 15px;
+                                line-height: 0;
+                                text-align: right;
+                                color: white;
+                            }
+                            .activity-name{
+                                display: block;
+                                width: 80%;
+                                font-weight: 700;
+                                float: left;
+                            }
+                            .activity-time{
+                                display: block;
+                                width: 20%;
+                                color: $ge-elephant;
+                                float: right;
+                                text-align: right;
+                            }
+                        }
+                        .activity-description{
+                            clear: both;
+                            width: 100%;
+                            margin: 20px 0;
+                        }
+                    }
+                    a.activity:hover{
+                        color: $ge-elephant;
+                        .activity-header{
+                            .activity-remove{
+                                color: $ge-sunset;
+                            }
+                        }
+                    }
+                    .speakers-container{
+                        border-top: 1px $ge-dolphin solid;
+                        padding: 5px 0;
+                        .speaker-block{
+                            margin: 5px 0;
+                            a:hover{
+                                color: $ge-elephant;
+                            }
+                            a.speaker-remove{
+                                float: right;
+                                font-size: 12px;
+                                color: white;
+                                line-height: 1.7;
+                                padding: 3px;
+                                -o-transition:.2s;
+                                -ms-transition:.2s;
+                                -moz-transition:.2s;
+                                -webkit-transition:.2s;
+                                transition:.2s;
+                            }
+                        }
+                        .speaker-block:hover{
+                            cursor: pointer;
+                            a.speaker-remove{
+                                color: $ge-sunset;
+                            }
+                        }
+                        .speakers-controls{
+                            a{
+                                font-size: 12px;
+                                fa{
+                                    color: $ge-deep-sky;
+                                }
+                            }
+                            a:hover{
+                                color: $ge-elephant;
+                                fa{
+                                    color: $ge-dark-sky;
+                                }
+                            }
+                        }
+                    }
+                }
+                .add-activity{
+                    text-align: center;
+                    margin: 30px auto;
+                    a{
+                        color: white;
+                        display: inline-block;
+                        height: 40px;
+                        width: 40px;
+                        padding: 10px;
+                        font-size: 100%;
+                        line-height: 1.2;
+                        text-align: center;
+                        white-space: nowrap;
+                        vertical-align: middle;
+                        border-radius: 100%;
+                        background-color: $ge-deep-sky;
+                    }
+                    a:hover{
+                        background-color: $ge-dark-sky;
+                    }
+                }
+            }
+        }
+    }
+}

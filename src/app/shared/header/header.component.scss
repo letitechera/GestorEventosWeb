@@ -1,34 +1,117 @@
+@import '~styles/palette';
 nav{
-    background-color: #E5E8E8;
-    #collapsingNavbar2{
+    background-color: $ge-earth;
+    .navbar-left{
+        float: left;
+        a.navbar-brand{
+            color: $ge-chalk;
+        }
+    }
+    .navbar-center{
+        clear: both;
+        margin: 0 auto;
+        width: fit-content;
+    }
+    #navbarNav{
         ul{
             li.nav-item{
                 a{
+                    color: $ge-chalk;
                     cursor: pointer;
-                    :hover{
-                        color: skyblue;
-                    }
                 }
-            }
-            li.active{
-                a{
-                    color: black;
+                a:hover{
+                    color: $ge-dolphin;
                 }
             }
             li.right-item{
+                display: none;
+            }
+            
+        }
+    }
+    .navbar-right{
+        float: right;
+        ul{
+            li.right-item{
                 margin: 15px;
                 a{
+                    cursor: pointer;
+                    color: $ge-chalk;
                     .profile-icon{
-                        color: skyblue;
+                        color: $ge-deep-sky;
                         margin: 3px;
+                        -o-transition:.5s;
+                        -ms-transition:.5s;
+                        -moz-transition:.5s;
+                        -webkit-transition:.5s;
+                        transition:.5s;
                     }
                 }
                 a:hover{
+                    color:  $ge-dolphin;
                     .profile-icon{
-                        color: grey;
+                        color: $ge-dark-sky;
                     }
                 }
             }
+        }
+    }
+}
+.active{
+    a{
+        color: $ge-seal;
+    }
+}
+
+@media (max-width: 992px) { 
+    nav{
+        #navbarNav{
+            ul{
+                li{
+                    font-size: 14px;
+                }
+            }
+        }
+        .navbar-right ul li.right-item{
+            font-size: 14px;
+            margin: 0;
+            margin-right: 10px;
+        }
+    }
+}
+
+@media (max-width: 768px) { 
+    nav{
+        #navbarNav{
+            ul{
+                li.right-item{
+                    display: block;
+                    a{
+                        color: $ge-chalk;
+                        .profile-icon{
+                            color: $ge-deep-sky;
+                            margin: 3px;
+                            -o-transition:.5s;
+                            -ms-transition:.5s;
+                            -moz-transition:.5s;
+                            -webkit-transition:.5s;
+                            transition:.5s;
+                        }
+                    }
+                    a:hover{
+                        color:  $ge-dolphin;
+                        .profile-icon{
+                            color: $ge-dark-sky;
+                        }
+                    }
+                }
+            }
+        }
+        .navbar-right {
+            display: none;
+        }
+        .navbar-center {
+            width: 100%;
         }
     }
 }

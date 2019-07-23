@@ -1,0 +1,14 @@
+@import '~styles/palette';
+
+th:nth-child(1), th:nth-child(2) {
+    width: 20%;
+}
+th:last-child {
+    width: 5%;
+}
+
+@media (max-width: 768px) { 
+    .search .mat-form-field {
+        margin: 0;
+    }
+}
